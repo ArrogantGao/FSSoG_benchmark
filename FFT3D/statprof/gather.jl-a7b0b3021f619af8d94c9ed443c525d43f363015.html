@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'></meta>
+    <link rel='stylesheet' type='text/css' href='statprofiler.css'></link>
+    <title>StatProfilerHTML - ../../.julia/packages/ChebParticleMesh/ElXWI/src/gather.jl</title>
+  </head>
+  <body>
+    <div class='report-header'>
+      <div class='backlink'>
+        <a href='index.html'>Report index</a>
+      </div>
+      <div class='report-title'>
+        StatProfilerHTML.jl report
+      </div>
+      <div class='generated-on'>
+        Generated on Tue, 20 Feb 2024 21:17:56
+      </div>
+    </div>
+    <table>
+      <caption>File source code</caption>
+      <thead>
+        <tr>
+          <th>Line</th>
+          <th>Exclusive</th>
+          <th>Inclusive</th>
+          <th>Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id='L1'>
+          <td class='lineno'>1</td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td>
+            <div class='call-sites'>
+              3525 &#40;42 &#37;&#41;
+              samples spent in gather_single
+              <br />
+              199 &#40;6 &#37;&#41; &#40;ex.&#41;,
+              3524 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from gather
+              <a href='gather.jl-a7b0b3021f619af8d94c9ed443c525d43f363015.html#L29'>line 29</a>
+              <br />
+              1 &#40;0 &#37;&#41; &#40;ex.&#41;,
+              1 &#40;0 &#37;&#41; &#40;incl.&#41;
+              when called from energy_mid
+              <a href='energy_mid.jl-0df523ddfebcb5fedf65be9d47a55083f2260b03.html#L38'>line 38</a>
+              <br />
+            </div>
+            
+            <span class='code'>@inbounds function gather_single&#40;q::T, pos::NTuple&#123;N, T&#125;, gridinfo::GridInfo&#123;N, T&#125;, gridbox::GridBox&#123;N, T&#125;, chebcoefs::NTuple&#123;N, ChebCoef&#123;T&#125;&#125;&#41; where&#123;N, T&#125;</span>
+          </td>
+        </tr>
+        <tr id='L2'>
+          <td class='lineno'>2</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    </span>
+          </td>
+        </tr>
+        <tr id='L3'>
+          <td class='lineno'>3</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    potential_i &#61; zero&#40;T&#41;</span>
+          </td>
+        </tr>
+        <tr id='L4'>
+          <td class='lineno'>4</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L5'>
+          <td class='lineno'>5</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    cheb_value &#61; gridbox.cheb_value</span>
+          </td>
+        </tr>
+        <tr id='L6'>
+          <td class='lineno'>6</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    idl &#61; gridinfo.index_list</span>
+          </td>
+        </tr>
+        <tr id='L7'>
+          <td class='lineno'>7</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L8'>
+          <td class='lineno'>8</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>9 &#40;0 &#37;&#41;</td>
+          <td>
+            
+            <div class='callees'>
+              9 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='index.jl-e80e4b9a9506e171e4a7038743749ecd0936d042.html#L24'>image_grid_id</a>
+              <br />
+            </div>
+            <span class='code'>    near_id_image &#61; image_grid_id&#40;pos, gridinfo&#41;</span>
+          </td>
+        </tr>
+        <tr id='L9'>
+          <td class='lineno'>9</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    near_pos_image &#61; image_grid_pos&#40;near_id_image, gridinfo&#41;</span>
+          </td>
+        </tr>
+        <tr id='L10'>
+          <td class='lineno'>10</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    for i in 1:N</span>
+          </td>
+        </tr>
+        <tr id='L11'>
+          <td class='lineno'>11</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        dx &#61; pos&#91;i&#93; - near_pos_image&#91;i&#93;</span>
+          </td>
+        </tr>
+        <tr id='L12'>
+          <td class='lineno'>12</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>155 &#40;2 &#37;&#41;</td>
+          <td>
+            
+            <div class='callees'>
+              155 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='chebpoly.jl-e2e581397c09a2cdd33ae9c7d82dc9fdc0817317.html#L49'>pwcheb_eval&#33;</a>
+              <br />
+            </div>
+            <span class='code'>        pwcheb_eval&#33;&#40;dx, cheb_value&#91;i&#93;, chebcoefs&#91;i&#93;&#41;</span>
+          </td>
+        </tr>
+        <tr id='L13'>
+          <td class='lineno'>13</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    end</span>
+          </td>
+        </tr>
+        <tr id='L14'>
+          <td class='lineno'>14</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L15'>
+          <td class='lineno'>15</td>
+          <td class='tracecount excl'>132 &#40;2 &#37;&#41;</td>
+          <td class='tracecount incl'>132 &#40;2 &#37;&#41;</td>
+          <td>
+            
+            
+            <span class='code'>    for i in gridinfo.iter_list</span>
+          </td>
+        </tr>
+        <tr id='L16'>
+          <td class='lineno'>16</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        image_id &#61; near_id_image.id .&#43; i</span>
+          </td>
+        </tr>
+        <tr id='L17'>
+          <td class='lineno'>17</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>3442 &#40;41 &#37;&#41;</td>
+          <td>
+            <div class='call-sites'>
+              418 &#40;5 &#37;&#41;
+              samples spent in #41
+              <br />
+              
+              418 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from ntuple
+              <a href='ntuple.jl-1e595f9c89b9ff72974ef4a5e32236a11cdb9a03.html#L19'>line 19</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1995 &#40;58 &#37;&#41;
+              samples spent calling
+              <a href='reduce.jl-604df21779731fea7810abe982bd09e207a8f0a5.html#L620'>prod</a>
+              <br />
+              418 &#40;12 &#37;&#41;
+              samples spent calling
+              <a href='ntuple.jl-1e595f9c89b9ff72974ef4a5e32236a11cdb9a03.html#L19'>ntuple</a>
+              <br />
+              417 &#40;12 &#37;&#41;
+              samples spent calling
+              <a href='essentials.jl-dca5ff521169103b2c0df51fc60a4cb8f8d56231.html#L13'>getindex</a>
+              <br />
+              417 &#40;12 &#37;&#41;
+              samples spent calling
+              <a href='float.jl-f6ce64b5a75ccb10e4a371128ee71f3943191a06.html#L411'>*</a>
+              <br />
+              194 &#40;6 &#37;&#41;
+              samples spent calling
+              <a href='essentials.jl-dca5ff521169103b2c0df51fc60a4cb8f8d56231.html#L14'>getindex</a>
+              <br />
+              1 &#40;0 &#37;&#41;
+              samples spent calling
+              <a href='essentials.jl-dca5ff521169103b2c0df51fc60a4cb8f8d56231.html#L0'>getindex</a>
+              <br />
+            </div>
+            <span class='code'>        potential_i &#43;&#61; real&#40;gridbox.pad_grid&#91;ntuple&#40;j -&gt; idl&#91;j&#93;&#91;image_id&#91;j&#93;&#93;, N&#41;...&#93;&#41; * prod&#40;cheb_value&#91;j&#93;&#91;i&#91;j&#93; &#43; gridinfo.w&#91;j&#93; &#43; 1&#93; for j in 1:N&#41;</span>
+          </td>
+        </tr>
+        <tr id='L18'>
+          <td class='lineno'>18</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>134 &#40;2 &#37;&#41;</td>
+          <td>
+            
+            <div class='callees'>
+              134 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='iterators.jl-8e5e238083956832ffb24d2faf9981c150460056.html#L1123'>iterate</a>
+              <br />
+            </div>
+            <span class='code'>    end</span>
+          </td>
+        </tr>
+        <tr id='L19'>
+          <td class='lineno'>19</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L20'>
+          <td class='lineno'>20</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
+          <td>
+            
+            <div class='callees'>
+              3 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='operators.jl-030a332fa0dfaffe33926d18d4cba86617b4aba8.html#L587'>*</a>
+              <br />
+            </div>
+            <span class='code'>    return q * 4π * prod&#40;gridinfo.h&#41; * potential_i</span>
+          </td>
+        </tr>
+        <tr id='L21'>
+          <td class='lineno'>21</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>end</span>
+          </td>
+        </tr>
+        <tr id='L22'>
+          <td class='lineno'>22</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L23'>
+          <td class='lineno'>23</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            <div class='call-sites'>
+              3538 &#40;42 &#37;&#41;
+              samples spent in gather
+              <br />
+              1 &#40;0 &#37;&#41; &#40;ex.&#41;,
+              3538 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from energy_mid
+              <a href='energy_mid.jl-0df523ddfebcb5fedf65be9d47a55083f2260b03.html#L38'>line 38</a>
+              <br />
+            </div>
+            
+            <span class='code'>@inbounds function gather&#40;qs::Vector&#123;T&#125;, poses::Vector&#123;NTuple&#123;N, T&#125;&#125;, gridinfo::GridInfo&#123;N, T&#125;, gridbox::GridBox&#123;N, T&#125;, chebcoefs::NTuple&#123;N, ChebCoef&#123;T&#125;&#125;&#41; where&#123;N, T&#125;</span>
+          </td>
+        </tr>
+        <tr id='L24'>
+          <td class='lineno'>24</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L25'>
+          <td class='lineno'>25</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    @assert length&#40;qs&#41; &#61;&#61; length&#40;poses&#41;</span>
+          </td>
+        </tr>
+        <tr id='L26'>
+          <td class='lineno'>26</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L27'>
+          <td class='lineno'>27</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    potential &#61; zero&#40;T&#41;</span>
+          </td>
+        </tr>
+        <tr id='L28'>
+          <td class='lineno'>28</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    for i in 1:length&#40;qs&#41;</span>
+          </td>
+        </tr>
+        <tr id='L29'>
+          <td class='lineno'>29</td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>3538 &#40;42 &#37;&#41;</td>
+          <td>
+            
+            <div class='callees'>
+              3524 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='gather.jl-a7b0b3021f619af8d94c9ed443c525d43f363015.html#L1'>gather_single</a>
+              <br />
+              6 &#40;0 &#37;&#41;
+              samples spent calling
+              <a href='iterators.jl-8e5e238083956832ffb24d2faf9981c150460056.html#L1'>gather_single</a>
+              <br />
+              3 &#40;0 &#37;&#41;
+              samples spent calling
+              <a href='range.jl-13ae9c59d7e63dd2e1ef395b43a819c8535e26f3.html#L1'>gather_single</a>
+              <br />
+              3 &#40;0 &#37;&#41;
+              samples spent calling
+              <a href='essentials.jl-dca5ff521169103b2c0df51fc60a4cb8f8d56231.html#L1'>gather_single</a>
+              <br />
+              1 &#40;0 &#37;&#41;
+              samples spent calling
+              <a href='essentials.jl-dca5ff521169103b2c0df51fc60a4cb8f8d56231.html#L13'>getindex</a>
+              <br />
+            </div>
+            <span class='code'>        potential &#43;&#61; gather_single&#40;qs&#91;i&#93;, poses&#91;i&#93;, gridinfo, gridbox, chebcoefs&#41;</span>
+          </td>
+        </tr>
+        <tr id='L30'>
+          <td class='lineno'>30</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    end</span>
+          </td>
+        </tr>
+        <tr id='L31'>
+          <td class='lineno'>31</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L32'>
+          <td class='lineno'>32</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    return potential</span>
+          </td>
+        </tr>
+        <tr id='L33'>
+          <td class='lineno'>33</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>end</span>
+          </td>
+        </tr>
+        <tr id='L34'>
+          <td class='lineno'>34</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L35'>
+          <td class='lineno'>35</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>@inbounds function gather_single_direct&#40;q::T, pos::NTuple&#123;N, T&#125;, gridinfo::GridInfo&#123;N, T&#125;, gridbox::GridBox&#123;N, T&#125;, chebcoefs::NTuple&#123;N, ChebCoef&#123;T&#125;&#125;&#41; where&#123;N, T&#125;</span>
+          </td>
+        </tr>
+        <tr id='L36'>
+          <td class='lineno'>36</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    </span>
+          </td>
+        </tr>
+        <tr id='L37'>
+          <td class='lineno'>37</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    potential_i &#61; zero&#40;T&#41;</span>
+          </td>
+        </tr>
+        <tr id='L38'>
+          <td class='lineno'>38</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L39'>
+          <td class='lineno'>39</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    cheb_value &#61; gridbox.cheb_value</span>
+          </td>
+        </tr>
+        <tr id='L40'>
+          <td class='lineno'>40</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    idl &#61; gridinfo.index_list</span>
+          </td>
+        </tr>
+        <tr id='L41'>
+          <td class='lineno'>41</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L42'>
+          <td class='lineno'>42</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    near_id_image &#61; image_grid_id&#40;pos, gridinfo&#41;</span>
+          </td>
+        </tr>
+        <tr id='L43'>
+          <td class='lineno'>43</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    near_pos_image &#61; image_grid_pos&#40;near_id_image, gridinfo&#41;</span>
+          </td>
+        </tr>
+        <tr id='L44'>
+          <td class='lineno'>44</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    for i in 1:N</span>
+          </td>
+        </tr>
+        <tr id='L45'>
+          <td class='lineno'>45</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        dx &#61; pos&#91;i&#93; - near_pos_image&#91;i&#93;</span>
+          </td>
+        </tr>
+        <tr id='L46'>
+          <td class='lineno'>46</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        f_eval&#33;&#40;dx, cheb_value&#91;i&#93;, chebcoefs&#91;i&#93;&#41;</span>
+          </td>
+        </tr>
+        <tr id='L47'>
+          <td class='lineno'>47</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    end</span>
+          </td>
+        </tr>
+        <tr id='L48'>
+          <td class='lineno'>48</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L49'>
+          <td class='lineno'>49</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    for i in gridinfo.iter_list</span>
+          </td>
+        </tr>
+        <tr id='L50'>
+          <td class='lineno'>50</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        image_id &#61; near_id_image.id .&#43; i</span>
+          </td>
+        </tr>
+        <tr id='L51'>
+          <td class='lineno'>51</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        potential_i &#43;&#61; real&#40;gridbox.pad_grid&#91;ntuple&#40;j -&gt; idl&#91;j&#93;&#91;image_id&#91;j&#93;&#93;, N&#41;...&#93;&#41; * prod&#40;cheb_value&#91;j&#93;&#91;i&#91;j&#93; &#43; gridinfo.w&#91;j&#93; &#43; 1&#93; for j in 1:N&#41;</span>
+          </td>
+        </tr>
+        <tr id='L52'>
+          <td class='lineno'>52</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    end</span>
+          </td>
+        </tr>
+        <tr id='L53'>
+          <td class='lineno'>53</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L54'>
+          <td class='lineno'>54</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    return q * 4π * prod&#40;gridinfo.h&#41; * potential_i</span>
+          </td>
+        </tr>
+        <tr id='L55'>
+          <td class='lineno'>55</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>end</span>
+          </td>
+        </tr>
+        <tr id='L56'>
+          <td class='lineno'>56</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L57'>
+          <td class='lineno'>57</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>@inbounds function gather_direct&#40;qs::Vector&#123;T&#125;, poses::Vector&#123;NTuple&#123;N, T&#125;&#125;, gridinfo::GridInfo&#123;N, T&#125;, gridbox::GridBox&#123;N, T&#125;, chebcoefs::NTuple&#123;N, ChebCoef&#123;T&#125;&#125;&#41; where&#123;N, T&#125;</span>
+          </td>
+        </tr>
+        <tr id='L58'>
+          <td class='lineno'>58</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L59'>
+          <td class='lineno'>59</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    @assert length&#40;qs&#41; &#61;&#61; length&#40;poses&#41;</span>
+          </td>
+        </tr>
+        <tr id='L60'>
+          <td class='lineno'>60</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L61'>
+          <td class='lineno'>61</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    potential &#61; zero&#40;T&#41;</span>
+          </td>
+        </tr>
+        <tr id='L62'>
+          <td class='lineno'>62</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    for i in 1:length&#40;qs&#41;</span>
+          </td>
+        </tr>
+        <tr id='L63'>
+          <td class='lineno'>63</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        potential &#43;&#61; gather_single_direct&#40;qs&#91;i&#93;, poses&#91;i&#93;, gridinfo, gridbox, chebcoefs&#41;</span>
+          </td>
+        </tr>
+        <tr id='L64'>
+          <td class='lineno'>64</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    end</span>
+          </td>
+        </tr>
+        <tr id='L65'>
+          <td class='lineno'>65</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L66'>
+          <td class='lineno'>66</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    return potential</span>
+          </td>
+        </tr>
+        <tr id='L67'>
+          <td class='lineno'>67</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>end</span>
+          </td>
+        </tr>
+        <tr id='L68'>
+          <td class='lineno'>68</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L69'>
+          <td class='lineno'>69</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>function gather_single_naive&#40;q::T, pos::NTuple&#123;N, T&#125;, gridinfo::GridInfo&#123;N, T&#125;, gridbox::GridBox&#123;N, T&#125;, chebcoefs::NTuple&#123;N, ChebCoef&#123;T&#125;&#125;&#41; where&#123;N, T&#125;</span>
+          </td>
+        </tr>
+        <tr id='L70'>
+          <td class='lineno'>70</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    </span>
+          </td>
+        </tr>
+        <tr id='L71'>
+          <td class='lineno'>71</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    potential_i &#61; zero&#40;T&#41;</span>
+          </td>
+        </tr>
+        <tr id='L72'>
+          <td class='lineno'>72</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L73'>
+          <td class='lineno'>73</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    near_id_image &#61; image_grid_id&#40;pos, gridinfo&#41;</span>
+          </td>
+        </tr>
+        <tr id='L74'>
+          <td class='lineno'>74</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L75'>
+          <td class='lineno'>75</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    for d_id in Iterators.product&#40;&#91;&#40;-gridinfo.image&#91;d&#93;&#41;:&#40;gridinfo.image&#91;d&#93;&#41; for d in 1:N&#93;...&#41;</span>
+          </td>
+        </tr>
+        <tr id='L76'>
+          <td class='lineno'>76</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        image_id &#61; near_id_image.id .&#43; d_id</span>
+          </td>
+        </tr>
+        <tr id='L77'>
+          <td class='lineno'>77</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        pos_image &#61; image_grid_pos&#40;ImageIndex&#40;image_id&#41;, gridinfo&#41;</span>
+          </td>
+        </tr>
+        <tr id='L78'>
+          <td class='lineno'>78</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        d_pos &#61; pos .- pos_image</span>
+          </td>
+        </tr>
+        <tr id='L79'>
+          <td class='lineno'>79</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>        potential_i &#43;&#61; real&#40;gridbox.image_grid&#91;image_id...&#93;&#41; * prod&#40;chebcoefs&#91;d&#93;.f&#40;d_pos&#91;d&#93;&#41; for d in 1:N&#41;</span>
+          </td>
+        </tr>
+        <tr id='L80'>
+          <td class='lineno'>80</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    end</span>
+          </td>
+        </tr>
+        <tr id='L81'>
+          <td class='lineno'>81</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L82'>
+          <td class='lineno'>82</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    return q * 4π * prod&#40;gridinfo.h&#41; * potential_i</span>
+          </td>
+        </tr>
+        <tr id='L83'>
+          <td class='lineno'>83</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>end</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
