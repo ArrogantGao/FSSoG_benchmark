@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -1204,11 +1204,11 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              215 &#40;3 &#37;&#41;
+              585 &#40;8 &#37;&#41;
               samples spent in unary_einsum&#33;
               <br />
               
-              215 &#40;100 &#37;&#41; &#40;incl.&#41;
+              585 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L84'>line 84</a>
               <br />
@@ -1230,21 +1230,26 @@
         <tr id='L120'>
           <td class='lineno'>120</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L386'>macro expansion</a>
+              <br />
+            </div>
             <span class='code'>    @debug &quot;Permutedims&quot; ix &#61;&gt; iy size&#40;x&#41; perm</span>
           </td>
         </tr>
         <tr id='L121'>
           <td class='lineno'>121</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>215 &#40;3 &#37;&#41;</td>
+          <td class='tracecount incl'>584 &#40;8 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              215 &#40;100 &#37;&#41;
+              584 &#40;100 &#37;&#41;
               samples spent calling
               <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L122'>tensorpermute&#33;</a>
               <br />

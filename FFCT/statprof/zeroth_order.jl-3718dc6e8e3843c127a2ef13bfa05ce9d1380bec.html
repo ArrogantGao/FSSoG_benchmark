@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'></meta>
     <link rel='stylesheet' type='text/css' href='statprofiler.css'></link>
-    <title>StatProfilerHTML - ../../.julia/packages/FFTW/6nZei/src/FFTW.jl</title>
+    <title>StatProfilerHTML - ../../../.julia/packages/FastSpecSoG/VvHyd/src/FFCT/zeroth_order.jl</title>
   </head>
   <body>
     <div class='report-header'>
@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Tue, 20 Feb 2024 21:17:56
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -33,9 +33,18 @@
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
+            <div class='call-sites'>
+              1722 &#40;23 &#37;&#41;
+              samples spent in zeroth_order
+              <br />
+              
+              1722 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from energy_long_einsum
+              <a href='energy_long.jl-7a7bb982ef2fa42807770cd492b7e09a2c3d1533.html#L62'>line 62</a>
+              <br />
+            </div>
             
-            
-            <span class='code'>module FFTW</span>
+            <span class='code'>function zeroth_order&#40;q::Vector&#123;T&#125;, z::Vector&#123;T&#125;, soepara::SoePara&#123;Complex&#123;T&#125;&#125;, uspara::USeriesPara&#123;T&#125;, sort_z::Vector&#123;Int&#125;, L::NTuple&#123;3, T&#125;, M_mid::Int&#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L2'>
@@ -45,7 +54,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    L_x, L_y, L_z &#61; L</span>
           </td>
         </tr>
         <tr id='L3'>
@@ -55,7 +64,7 @@
           <td>
             
             
-            <span class='code'>using LinearAlgebra, Reexport, Preferences</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L4'>
@@ -65,7 +74,7 @@
           <td>
             
             
-            <span class='code'>@reexport using AbstractFFTs</span>
+            <span class='code'>    E_k0 &#61; zero&#40;Complex&#123;T&#125;&#41;</span>
           </td>
         </tr>
         <tr id='L5'>
@@ -75,27 +84,37 @@
           <td>
             
             
-            <span class='code'>using Base.Threads</span>
+            <span class='code'>    for l in M_mid &#43; 1:length&#40;uspara.sw&#41;</span>
           </td>
         </tr>
         <tr id='L6'>
           <td class='lineno'>6</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'></span>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='essentials.jl-f0c8802a556c409b803937db99f588c9c5999872.html#L13'>getindex</a>
+              <br />
+            </div>
+            <span class='code'>        sl, wl &#61; uspara.sw&#91;l&#93;</span>
           </td>
         </tr>
         <tr id='L7'>
           <td class='lineno'>7</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1721 &#40;23 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>import AbstractFFTs: Plan, ScaledPlan,</span>
+            <div class='callees'>
+              1721 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L8'>FET1d</a>
+              <br />
+            </div>
+            <span class='code'>        E_k0 &#43;&#61; wl * sl^2 * FET1d&#40;q, q, z, soepara, α &#61; sl, sort_x &#61; sort_z&#41;</span>
           </td>
         </tr>
         <tr id='L8'>
@@ -105,7 +124,7 @@
           <td>
             
             
-            <span class='code'>                     fft, ifft, bfft, fft&#33;, ifft&#33;, bfft&#33;,</span>
+            <span class='code'>    end</span>
           </td>
         </tr>
         <tr id='L9'>
@@ -115,7 +134,7 @@
           <td>
             
             
-            <span class='code'>                     plan_fft, plan_ifft, plan_bfft, plan_fft&#33;, plan_ifft&#33;, plan_bfft&#33;,</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L10'>
@@ -125,7 +144,7 @@
           <td>
             
             
-            <span class='code'>                     rfft, irfft, brfft, plan_rfft, plan_irfft, plan_brfft,</span>
+            <span class='code'>    return real&#40;π * E_k0 / &#40;2 * L_x * L_y&#41;&#41;</span>
           </td>
         </tr>
         <tr id='L11'>
@@ -135,7 +154,7 @@
           <td>
             
             
-            <span class='code'>                     fftshift, ifftshift,</span>
+            <span class='code'>end</span>
           </td>
         </tr>
         <tr id='L12'>
@@ -145,7 +164,7 @@
           <td>
             
             
-            <span class='code'>                     rfft_output_size, brfft_output_size,</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L13'>
@@ -153,9 +172,18 @@
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
+            <div class='call-sites'>
+              33 &#40;0 &#37;&#41;
+              samples spent in revise_z&#33;
+              <br />
+              
+              33 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from energy_long_einsum
+              <a href='energy_long.jl-7a7bb982ef2fa42807770cd492b7e09a2c3d1533.html#L61'>line 61</a>
+              <br />
+            </div>
             
-            
-            <span class='code'>                     plan_inv, normalization</span>
+            <span class='code'>function revise_z&#33;&#40;z::Vector&#123;T&#125;, sort_z::Vector&#123;Int&#125;, poses::Vector&#123;NTuple&#123;3, T&#125;&#125;&#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L14'>
@@ -165,7 +193,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    for i in 1:length&#40;poses&#41;</span>
           </td>
         </tr>
         <tr id='L15'>
@@ -175,7 +203,7 @@
           <td>
             
             
-            <span class='code'>export dct, idct, dct&#33;, idct&#33;, plan_dct, plan_idct, plan_dct&#33;, plan_idct&#33;</span>
+            <span class='code'>        z&#91;i&#93; &#61; poses&#91;i&#93;&#91;3&#93;</span>
           </td>
         </tr>
         <tr id='L16'>
@@ -185,17 +213,22 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    end</span>
           </td>
         </tr>
         <tr id='L17'>
           <td class='lineno'>17</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>33 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>include&#40;&quot;providers.jl&quot;&#41;</span>
+            <div class='callees'>
+              33 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='sort.jl-012515466f8014602c26304899719aa5a0eeea24.html#L1708'>sortperm&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    sortperm&#33;&#40;sort_z, z&#41;</span>
           </td>
         </tr>
         <tr id='L18'>
@@ -205,7 +238,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    return z</span>
           </td>
         </tr>
         <tr id='L19'>
@@ -215,7 +248,7 @@
           <td>
             
             
-            <span class='code'>function __init__&#40;&#41;</span>
+            <span class='code'>end</span>
           </td>
         </tr>
         <tr id='L20'>
@@ -225,7 +258,7 @@
           <td>
             
             
-            <span class='code'>    # If someone is trying to set the provider via the old environment variable, warn them that they</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L21'>
@@ -235,7 +268,7 @@
           <td>
             
             
-            <span class='code'>    # should instead use &#96;set_provider&#33;&#40;&#41;&#96; instead.</span>
+            <span class='code'>SoePara4&#40;&#41; &#61; SoePara&#123;ComplexF64&#125;&#40;&#91;</span>
           </td>
         </tr>
         <tr id='L22'>
@@ -245,7 +278,7 @@
           <td>
             
             
-            <span class='code'>    if haskey&#40;ENV, &quot;JULIA_FFTW_PROVIDER&quot;&#41;</span>
+            <span class='code'>    &#40;2.48631398597651 - 0.897378323045937im, 0.826249456689224 - 1.78131068518845im&#41;,</span>
           </td>
         </tr>
         <tr id='L23'>
@@ -255,7 +288,7 @@
           <td>
             
             
-            <span class='code'>        Base.depwarn&#40;&quot;JULIA_FFTW_PROVIDER is deprecated; use FFTW.set_provider&#33;&#40;&#41; instead&quot;, :JULIA_FFTW_PROVIDER&#41;</span>
+            <span class='code'>    &#40;2.48631398597651 &#43; 0.897378323045937im, 0.826249456689224 &#43; 1.78131068518845im&#41;,</span>
           </td>
         </tr>
         <tr id='L24'>
@@ -265,7 +298,7 @@
           <td>
             
             
-            <span class='code'>    end</span>
+            <span class='code'>    &#40;2.40315018095227 - 2.83616068448077im, -0.326515398594273 &#43; 0.111936582560313im&#41;,</span>
           </td>
         </tr>
         <tr id='L25'>
@@ -275,7 +308,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    &#40;2.40315018095227 &#43; 2.83616068448077im, -0.326515398594273 - 0.111936582560313im&#41;</span>
           </td>
         </tr>
         <tr id='L26'>
@@ -285,7 +318,7 @@
           <td>
             
             
-            <span class='code'>    # Hook FFTW threads up to our partr runtime, and re-assign the</span>
+            <span class='code'>&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L27'>
@@ -295,7 +328,7 @@
           <td>
             
             
-            <span class='code'>    # libfftw3&#123;,f&#125; refs at runtime, since we may have relocated and</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L28'>
@@ -305,7 +338,7 @@
           <td>
             
             
-            <span class='code'>    # changed the path to the library since the last time we precompiled.</span>
+            <span class='code'>SoePara8&#40;&#41; &#61; SoePara&#123;ComplexF64&#125;&#40;&#91;</span>
           </td>
         </tr>
         <tr id='L29'>
@@ -315,7 +348,7 @@
           <td>
             
             
-            <span class='code'>    @static if fftw_provider &#61;&#61; &quot;fftw&quot;</span>
+            <span class='code'>    &#40;3.33815646978136 &#43; 5.05854898587389im, -0.00886007694548523 &#43; 0.0113042091292579im&#41;,</span>
           </td>
         </tr>
         <tr id='L30'>
@@ -325,7 +358,7 @@
           <td>
             
             
-            <span class='code'>        libfftw3&#91;&#93; &#61; FFTW_jll.libfftw3_path</span>
+            <span class='code'>    &#40;3.33815646978136 - 5.05854898587389im, -0.00886007694548516 - 0.011304209129258im&#41;,</span>
           </td>
         </tr>
         <tr id='L31'>
@@ -335,7 +368,7 @@
           <td>
             
             
-            <span class='code'>        libfftw3f&#91;&#93; &#61; FFTW_jll.libfftw3f_path</span>
+            <span class='code'>    &#40;3.53279071224249 &#43; 0.653112650324427im, 2.97739506379945 &#43; 6.91132455163189im&#41;,</span>
           </td>
         </tr>
         <tr id='L32'>
@@ -345,7 +378,7 @@
           <td>
             
             
-            <span class='code'>        fftw_init_threads&#40;&#41;</span>
+            <span class='code'>    &#40;3.53279071224249 - 0.653112650324427im, 2.97739506379944 - 6.9113245516319im&#41;,</span>
           </td>
         </tr>
         <tr id='L33'>
@@ -355,7 +388,7 @@
           <td>
             
             
-            <span class='code'>    end</span>
+            <span class='code'>    &#40;3.50499106490061 &#43; 1.98468086946842im, -2.89181556737244 - 1.11452178676621im&#41;,</span>
           </td>
         </tr>
         <tr id='L34'>
@@ -365,7 +398,7 @@
           <td>
             
             
-            <span class='code'>    @static if fftw_provider &#61;&#61; &quot;mkl&quot;</span>
+            <span class='code'>    &#40;3.50499106490061 - 1.98468086946842im, -2.89181556737244 &#43; 1.11452178676621im&#41;,</span>
           </td>
         </tr>
         <tr id='L35'>
@@ -375,7 +408,7 @@
           <td>
             
             
-            <span class='code'>        libfftw3&#91;&#93; &#61; MKL_jll.libmkl_rt_path</span>
+            <span class='code'>    &#40;3.44496629848779 &#43; 3.40626818209147im, 0.423280530725485 - 0.16080466274867im&#41;,</span>
           </td>
         </tr>
         <tr id='L36'>
@@ -385,7 +418,7 @@
           <td>
             
             
-            <span class='code'>        libfftw3f&#91;&#93; &#61; MKL_jll.libmkl_rt_path</span>
+            <span class='code'>    &#40;3.44496629848779 - 3.40626818209147im, 0.423280530725485 &#43; 0.160804662748669im&#41;</span>
           </td>
         </tr>
         <tr id='L37'>
@@ -395,7 +428,7 @@
           <td>
             
             
-            <span class='code'>    end</span>
+            <span class='code'>&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L38'>
@@ -405,7 +438,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L39'>
@@ -415,7 +448,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'># the default 16 terms approach</span>
           </td>
         </tr>
         <tr id='L40'>
@@ -425,7 +458,7 @@
           <td>
             
             
-            <span class='code'># most FFTW calls other than fftw_execute should be protected by a lock to be thread-safe</span>
+            <span class='code'>SoePara16&#40;&#41; &#61; SoePara&#123;ComplexF64&#125;&#40;&#91;</span>
           </td>
         </tr>
         <tr id='L41'>
@@ -435,7 +468,7 @@
           <td>
             
             
-            <span class='code'>const fftwlock &#61; ReentrantLock&#40;&#41;</span>
+            <span class='code'>    &#40;4.56160429581067 &#43; 8.10664614462486im, 5.99673832958228e-6 - 1.68666706190233e-6im&#41;,</span>
           </td>
         </tr>
         <tr id='L42'>
@@ -445,7 +478,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    &#40;4.56160429581067 - 8.10664614462486im, 5.99673832964075e-6 &#43; 1.68666706179742e-6im&#41;,</span>
           </td>
         </tr>
         <tr id='L43'>
@@ -455,7 +488,7 @@
           <td>
             
             
-            <span class='code'># protect thread-safety of expressions or whole functions by fftwlock:</span>
+            <span class='code'>    &#40;4.67614751620509 &#43; 6.66817205403247im, -0.00128256763349392 &#43; 5.69515998682304e-5im&#41;,</span>
           </td>
         </tr>
         <tr id='L44'>
@@ -465,7 +498,7 @@
           <td>
             
             
-            <span class='code'>macro exclusive&#40;ex&#41;</span>
+            <span class='code'>    &#40;4.67614751620509 - 6.66817205403247im, -0.00128256763349477 - 5.695159986638e-5im&#41;,</span>
           </td>
         </tr>
         <tr id='L45'>
@@ -475,7 +508,7 @@
           <td>
             
             
-            <span class='code'>    if Meta.isexpr&#40;ex, :function&#41; || &#40;Meta.isexpr&#40;ex, :&#40;&#61;&#41;&#41; &amp;&amp; Meta.isexpr&#40;ex.args&#91;1&#93;, :call&#41;&#41;</span>
+            <span class='code'>    &#40;4.75706771210077 &#43; 5.46277771275372im, 0.0467989716657016 &#43; 0.024842808276986im&#41;,</span>
           </td>
         </tr>
         <tr id='L46'>
@@ -485,7 +518,7 @@
           <td>
             
             
-            <span class='code'>        newbody &#61; quote</span>
+            <span class='code'>    &#40;4.75706771210077 - 5.46277771275372im, 0.0467989716657026 - 0.0248428082770166im&#41;,</span>
           </td>
         </tr>
         <tr id='L47'>
@@ -493,23 +526,9 @@
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              274 &#40;3 &#37;&#41;
-              samples spent in cFFTWPlan
-              <br />
-              
-              140 &#40;51 &#37;&#41; &#40;incl.&#41;
-              when called from #plan_fft&#33;#12
-              <a href='fft.jl-106647d4d495eb77df75f1a58527ec7a3fae9cd4.html#L796'>line 796</a>
-              <br />
-              
-              134 &#40;49 &#37;&#41; &#40;incl.&#41;
-              when called from #plan_bfft&#33;#23
-              <a href='fft.jl-106647d4d495eb77df75f1a58527ec7a3fae9cd4.html#L796'>line 796</a>
-              <br />
-            </div>
             
-            <span class='code'>            lock&#40;fftwlock&#41;</span>
+            
+            <span class='code'>    &#40;4.81739468471801 &#43; 4.37139574323745im, -0.335267028777594 - 0.757075111679156im&#41;,</span>
           </td>
         </tr>
         <tr id='L48'>
@@ -519,30 +538,17 @@
           <td>
             
             
-            <span class='code'>            try</span>
+            <span class='code'>    &#40;4.81739468471801 - 4.37139574323745im, -0.335267028777571 &#43; 0.757075111679353im&#41;,</span>
           </td>
         </tr>
         <tr id='L49'>
           <td class='lineno'>49</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>273 &#40;3 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
             
-            <div class='callees'>
-              271 &#40;99 &#37;&#41;
-              samples spent calling
-              <a href='fft.jl-106647d4d495eb77df75f1a58527ec7a3fae9cd4.html#L652'>macro expansion</a>
-              <br />
-              1 &#40;0 &#37;&#41;
-              samples spent calling
-              <a href='fft.jl-106647d4d495eb77df75f1a58527ec7a3fae9cd4.html#L658'>macro expansion</a>
-              <br />
-              1 &#40;0 &#37;&#41;
-              samples spent calling
-              <a href='fft.jl-106647d4d495eb77df75f1a58527ec7a3fae9cd4.html#L651'>macro expansion</a>
-              <br />
-            </div>
-            <span class='code'>                &#36;&#40;esc&#40;ex.args&#91;2&#93;&#41;&#41;</span>
+            
+            <span class='code'>    &#40;4.86201933938979 &#43; 3.34750236244862im, -1.99598682670183 &#43; 5.9922116425601im&#41;,</span>
           </td>
         </tr>
         <tr id='L50'>
@@ -552,7 +558,7 @@
           <td>
             
             
-            <span class='code'>            finally</span>
+            <span class='code'>    &#40;4.86201933938979 - 3.34750236244862im, -1.99598682670221 - 5.99221164256101im&#41;,</span>
           </td>
         </tr>
         <tr id='L51'>
@@ -562,22 +568,17 @@
           <td>
             
             
-            <span class='code'>                unlock&#40;fftwlock&#41;</span>
+            <span class='code'>    &#40;4.89345823682377 &#43; 2.3658861273834im, 23.9009795446709 - 12.0862363354612im&#41;,</span>
           </td>
         </tr>
         <tr id='L52'>
           <td class='lineno'>52</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
             
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='fft.jl-106647d4d495eb77df75f1a58527ec7a3fae9cd4.html#L330'>destroy_deferred</a>
-              <br />
-            </div>
-            <span class='code'>                destroy_deferred&#40;&#41; # deallocate plans queued to be destroyed while we held the lock</span>
+            
+            <span class='code'>    &#40;4.89345823682377 - 2.3658861273834im, 23.9009795446732 &#43; 12.0862363354632im&#41;,</span>
           </td>
         </tr>
         <tr id='L53'>
@@ -587,7 +588,7 @@
           <td>
             
             
-            <span class='code'>            end</span>
+            <span class='code'>    &#40;4.91338156910332 &#43; 1.41021110952036im, -64.0632116678656 - 22.5380203666186im&#41;,</span>
           </td>
         </tr>
         <tr id='L54'>
@@ -597,7 +598,7 @@
           <td>
             
             
-            <span class='code'>        end</span>
+            <span class='code'>    &#40;4.91338156910332 - 1.41021110952036im, -64.0632116678705 &#43; 22.5380203666172im&#41;,</span>
           </td>
         </tr>
         <tr id='L55'>
@@ -607,7 +608,7 @@
           <td>
             
             
-            <span class='code'>        Expr&#40;:function, esc&#40;ex.args&#91;1&#93;&#41;, newbody&#41;</span>
+            <span class='code'>    &#40;4.92300187934591 &#43; 0.468589313154398im, 42.9479635779022 &#43; 98.1965284307393im&#41;,</span>
           </td>
         </tr>
         <tr id='L56'>
@@ -617,7 +618,7 @@
           <td>
             
             
-            <span class='code'>    else</span>
+            <span class='code'>    &#40;4.92300187934591 - 0.468589313154398im, 42.9479635779079 - 98.1965284307392im&#41;,</span>
           </td>
         </tr>
         <tr id='L57'>
@@ -627,7 +628,7 @@
           <td>
             
             
-            <span class='code'>        return quote</span>
+            <span class='code'>    &#40;0.0334524767879181 &#43; 0.0245907245253121im, 2.77886417555933e-16 - 1.05052462423441e-16im&#41;,</span>
           </td>
         </tr>
         <tr id='L58'>
@@ -637,7 +638,7 @@
           <td>
             
             
-            <span class='code'>            lock&#40;fftwlock&#41;</span>
+            <span class='code'>    &#40;0.0334524767879181 - 0.0245907245253121im, 2.77886412307273e-16 &#43; 1.0505268058843e-16im&#41;</span>
           </td>
         </tr>
         <tr id='L59'>
@@ -647,167 +648,7 @@
           <td>
             
             
-            <span class='code'>            try</span>
-          </td>
-        </tr>
-        <tr id='L60'>
-          <td class='lineno'>60</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>                &#36;&#40;esc&#40;ex&#41;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L61'>
-          <td class='lineno'>61</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>            finally</span>
-          </td>
-        </tr>
-        <tr id='L62'>
-          <td class='lineno'>62</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>                unlock&#40;fftwlock&#41;</span>
-          </td>
-        </tr>
-        <tr id='L63'>
-          <td class='lineno'>63</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>                destroy_deferred&#40;&#41; # deallocate plans queued to be destroyed while we held the lock</span>
-          </td>
-        </tr>
-        <tr id='L64'>
-          <td class='lineno'>64</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>            end</span>
-          </td>
-        </tr>
-        <tr id='L65'>
-          <td class='lineno'>65</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>        end</span>
-          </td>
-        </tr>
-        <tr id='L66'>
-          <td class='lineno'>66</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>    end</span>
-          </td>
-        </tr>
-        <tr id='L67'>
-          <td class='lineno'>67</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>end</span>
-          </td>
-        </tr>
-        <tr id='L68'>
-          <td class='lineno'>68</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'></span>
-          </td>
-        </tr>
-        <tr id='L69'>
-          <td class='lineno'>69</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>include&#40;&quot;fft.jl&quot;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L70'>
-          <td class='lineno'>70</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>include&#40;&quot;dct.jl&quot;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L71'>
-          <td class='lineno'>71</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'></span>
-          </td>
-        </tr>
-        <tr id='L72'>
-          <td class='lineno'>72</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>include&#40;&quot;precompile.jl&quot;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L73'>
-          <td class='lineno'>73</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>_precompile_&#40;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L74'>
-          <td class='lineno'>74</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'></span>
-          </td>
-        </tr>
-        <tr id='L75'>
-          <td class='lineno'>75</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>end # module</span>
+            <span class='code'>&#93;&#41;</span>
           </td>
         </tr>
       </tbody>

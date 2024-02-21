@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -301,10 +301,24 @@
         <tr id='L28'>
           <td class='lineno'>28</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in SubArray
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from unsafe_view
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L221'>line 221</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L38'>SubArray</a>
+              <br />
+            </div>
             <span class='code'>    SubArray&#40;IndexStyle&#40;viewindexing&#40;indices&#41;, IndexStyle&#40;parent&#41;&#41;, parent, ensure_indexable&#40;indices&#41;, index_dimsum&#40;indices...&#41;&#41;</span>
           </td>
         </tr>
@@ -401,10 +415,24 @@
         <tr id='L38'>
           <td class='lineno'>38</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in SubArray
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from SubArray
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L28'>line 28</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L438'>compute_offset1</a>
+              <br />
+            </div>
             <span class='code'>    SubArray&#123;eltype&#40;P&#41;, N, P, I, true&#125;&#40;parent, indices, compute_offset1&#40;parent, stride1, indices&#41;, stride1&#41;</span>
           </td>
         </tr>
@@ -651,24 +679,10 @@
         <tr id='L63'>
           <td class='lineno'>63</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in size
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from size
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L42'>line 42</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='tuple.jl-c62560d788f21abd7064789060b6999579687d7b.html#L292'>map</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>size&#40;V::SubArray&#41; &#61; &#40;@inline; map&#40;length, axes&#40;V&#41;&#41;&#41;</span>
           </td>
         </tr>
@@ -1075,10 +1089,24 @@
         <tr id='L104'>
           <td class='lineno'>104</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              2 &#40;0 &#37;&#41;
+              samples spent in dataids
+              <br />
+              
+              2 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from mightalias
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1516'>line 1516</a>
+              <br />
+            </div>
+            <div class='callees'>
+              2 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='Base.jl-56e9e26b6cf178dd490a1d5eb42a9f5b4c252076.html#L37'>getproperty</a>
+              <br />
+            </div>
             <span class='code'>dataids&#40;A::SubArray&#41; &#61; &#40;dataids&#40;A.parent&#41;..., _splatmap&#40;dataids, A.indices&#41;...&#41;</span>
           </td>
         </tr>
@@ -1825,20 +1853,20 @@
         <tr id='L179'>
           <td class='lineno'>179</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
+              2 &#40;0 &#37;&#41;
               samples spent in view
               <br />
               
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              2 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from solve_eqs&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L62'>line 62</a>
+              <a href='linear_eqs.jl-a93ba53a04fbab7a09b2c51eb7124bd3c86af2cc.html#L62'>line 62</a>
               <br />
             </div>
             <div class='callees'>
-              1 &#40;100 &#37;&#41;
+              2 &#40;100 &#37;&#41;
               samples spent calling
               <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L700'>checkbounds</a>
               <br />
@@ -1889,10 +1917,24 @@
         <tr id='L184'>
           <td class='lineno'>184</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in view
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from solve_eqs&#33;
+              <a href='linear_eqs.jl-a93ba53a04fbab7a09b2c51eb7124bd3c86af2cc.html#L62'>line 62</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L221'>unsafe_view</a>
+              <br />
+            </div>
             <span class='code'>    unsafe_view&#40;_maybe_reshape_parent&#40;A, index_ndims&#40;J...&#41;&#41;, J...&#41;</span>
           </td>
         </tr>
@@ -2259,10 +2301,24 @@
         <tr id='L221'>
           <td class='lineno'>221</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in unsafe_view
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from view
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L184'>line 184</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L28'>SubArray</a>
+              <br />
+            </div>
             <span class='code'>    SubArray&#40;A, I&#41;</span>
           </td>
         </tr>
@@ -2929,20 +2985,20 @@
         <tr id='L288'>
           <td class='lineno'>288</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>83 &#40;1 &#37;&#41;</td>
+          <td class='tracecount incl'>120 &#40;2 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              83 &#40;1 &#37;&#41;
+              120 &#40;2 &#37;&#41;
               samples spent in getindex
               <br />
               
-              83 &#40;100 &#37;&#41; &#40;incl.&#41;
+              120 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from macro expansion
               <a href='generic.jl-d66517a151efdc7bd6940ca3db33afae5ba7a2ff.html#L934'>line 934</a>
               <br />
             </div>
             <div class='callees'>
-              83 &#40;100 &#37;&#41;
+              120 &#40;100 &#37;&#41;
               samples spent calling
               <a href='essentials.jl-f0c8802a556c409b803937db99f588c9c5999872.html#L14'>getindex</a>
               <br />
@@ -4443,10 +4499,24 @@
         <tr id='L438'>
           <td class='lineno'>438</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in compute_offset1
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from SubArray
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L38'>line 38</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L444'>compute_offset1</a>
+              <br />
+            </div>
             <span class='code'>    &#40;@inline; compute_offset1&#40;parent, stride1, find_extended_dims&#40;1, I...&#41;, find_extended_inds&#40;I...&#41;, I&#41;&#41;</span>
           </td>
         </tr>
@@ -4503,10 +4573,24 @@
         <tr id='L444'>
           <td class='lineno'>444</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in compute_offset1
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from compute_offset1
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L438'>line 438</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='int.jl-f41b4319bbfbc29e12c432d573bda76eb55f06d2.html#L86'>-</a>
+              <br />
+            </div>
             <span class='code'>    &#40;@inline; compute_linindex&#40;parent, I&#41; - stride1&#41;</span>
           </td>
         </tr>
@@ -4763,22 +4847,22 @@
         <tr id='L470'>
           <td class='lineno'>470</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              2 &#40;0 &#37;&#41;
+              1 &#40;0 &#37;&#41;
               samples spent in unsafe_convert
               <br />
               
-              2 &#40;100 &#37;&#41; &#40;incl.&#41;
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from pointer
               <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1237'>line 1237</a>
               <br />
             </div>
             <div class='callees'>
-              2 &#40;100 &#37;&#41;
+              1 &#40;100 &#37;&#41;
               samples spent calling
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1244'>_memory_offset</a>
+              <a href='reinterpretarray.jl-bfd09c861711a3054292b515a56abf5a2b4c642f.html#L353'>unsafe_convert</a>
               <br />
             </div>
             <span class='code'>    return unsafe_convert&#40;Ptr&#123;T&#125;, V.parent&#41; &#43; _memory_offset&#40;V.parent, map&#40;first, V.indices&#41;...&#41;</span>

@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -441,24 +441,10 @@
         <tr id='L42'>
           <td class='lineno'>42</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in size
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from lapack_size
-              <a href='matmul.jl-d13d07f0c5597083b3e5e570440eeac33085645b.html#L656'>line 656</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L63'>size</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>size&#40;t::AbstractArray&#123;T,N&#125;, d&#41; where &#123;T,N&#125; &#61; d::Integer &lt;&#61; N ? size&#40;t&#41;&#91;d&#93; : 1</span>
           </td>
         </tr>
@@ -1015,33 +1001,10 @@
         <tr id='L98'>
           <td class='lineno'>98</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>4 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              4 &#40;0 &#37;&#41;
-              samples spent in axes
-              <br />
-              
-              3 &#40;75 &#37;&#41; &#40;incl.&#41;
-              when called from materialize&#33;
-              <a href='broadcast.jl-9538a2221b315be425e9c47ec7c3883483af8540.html#L914'>line 914</a>
-              <br />
-              
-              1 &#40;25 &#37;&#41; &#40;incl.&#41;
-              when called from _sub2ind
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L2957'>line 2957</a>
-              <br />
-            </div>
-            <div class='callees'>
-              3 &#40;75 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L191'>size</a>
-              <br />
-              1 &#40;25 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L193'>size</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>    map&#40;oneto, size&#40;A&#41;&#41;</span>
           </td>
         </tr>
@@ -2797,15 +2760,15 @@
         </tr>
         <tr id='L274'>
           <td class='lineno'>274</td>
-          <td class='tracecount excl'>9 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>9 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>11 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>11 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              9 &#40;0 &#37;&#41;
+              11 &#40;0 &#37;&#41;
               samples spent in ndims
               <br />
-              9 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              9 &#40;100 &#37;&#41; &#40;incl.&#41;
+              11 &#40;100 &#37;&#41; &#40;ex.&#41;,
+              11 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from tensorpermute&#33;
               <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L148'>line 148</a>
               <br />
@@ -4587,24 +4550,10 @@
         <tr id='L452'>
           <td class='lineno'>452</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in first
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from dot
-              <a href='generic.jl-d66517a151efdc7bd6940ca3db33afae5ba7a2ff.html#L925'>line 925</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='essentials.jl-f0c8802a556c409b803937db99f588c9c5999872.html#L13'>getindex</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>first&#40;a::AbstractArray&#41; &#61; a&#91;first&#40;eachindex&#40;a&#41;&#41;&#93;</span>
           </td>
         </tr>
@@ -6951,10 +6900,24 @@
         <tr id='L687'>
           <td class='lineno'>687</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in checkbounds
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from checkbounds
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L702'>line 702</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L768'>checkindex</a>
+              <br />
+            </div>
             <span class='code'>    checkindex&#40;Bool, eachindex&#40;IndexLinear&#40;&#41;, A&#41;, i&#41;</span>
           </td>
         </tr>
@@ -7080,15 +7043,15 @@
         </tr>
         <tr id='L700'>
           <td class='lineno'>700</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
+              2 &#40;0 &#37;&#41;
               samples spent in checkbounds
               <br />
-              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              2 &#40;100 &#37;&#41; &#40;ex.&#41;,
+              2 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from view
               <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L179'>line 179</a>
               <br />
@@ -7110,10 +7073,24 @@
         <tr id='L702'>
           <td class='lineno'>702</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in checkbounds
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from _copyto_impl&#33;
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L374'>line 374</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L687'>checkbounds</a>
+              <br />
+            </div>
             <span class='code'>    checkbounds&#40;Bool, A, I...&#41; || throw_boundserror&#40;A, I&#41;</span>
           </td>
         </tr>
@@ -7770,10 +7747,24 @@
         <tr id='L768'>
           <td class='lineno'>768</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in checkindex
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from checkbounds
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L687'>line 687</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='range.jl-98f40bce68f1934881ccb1db6e729761ce82d53a.html#L672'>isempty</a>
+              <br />
+            </div>
             <span class='code'>    isempty&#40;r&#41; | &#40;checkindex&#40;Bool, inds, first&#40;r&#41;&#41; &amp; checkindex&#40;Bool, inds, last&#40;r&#41;&#41;&#41;</span>
           </td>
         </tr>
@@ -8380,48 +8371,20 @@
         <tr id='L829'>
           <td class='lineno'>829</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in similar
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from copymutable
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1202'>line 1202</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L830'>similar</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>similar&#40;a::AbstractArray&#123;T&#125;&#41; where &#123;T&#125;                             &#61; similar&#40;a, T&#41;</span>
           </td>
         </tr>
         <tr id='L830'>
           <td class='lineno'>830</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in similar
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from similar
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L829'>line 829</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L842'>similar</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>similar&#40;a::AbstractArray, ::Type&#123;T&#125;&#41; where &#123;T&#125;                     &#61; similar&#40;a, T, to_shape&#40;axes&#40;a&#41;&#41;&#41;</span>
           </td>
         </tr>
@@ -8538,24 +8501,10 @@
         <tr id='L842'>
           <td class='lineno'>842</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in similar
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from similar
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L830'>line 830</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='boot.jl-c1a4eaffc55dd919323c00faf8cf4219d8abdf81.html#L486'>Array</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>similar&#40;a::AbstractArray, ::Type&#123;T&#125;, dims::Dims&#123;N&#125;&#41; where &#123;T,N&#125;    &#61; Array&#123;T,N&#125;&#40;undef, dims&#41;</span>
           </td>
         </tr>
@@ -8892,48 +8841,20 @@
         <tr id='L876'>
           <td class='lineno'>876</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              2 &#40;0 &#37;&#41;
-              samples spent in similar
-              <br />
-              
-              2 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from _array_for
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L723'>line 723</a>
-              <br />
-            </div>
-            <div class='callees'>
-              2 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L877'>similar</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>similar&#40;::Type&#123;T&#125;, shape::Tuple&#123;Union&#123;Integer, OneTo&#125;, Vararg&#123;Union&#123;Integer, OneTo&#125;&#125;&#125;&#41; where &#123;T&lt;:AbstractArray&#125; &#61; similar&#40;T, to_shape&#40;shape&#41;&#41;</span>
           </td>
         </tr>
         <tr id='L877'>
           <td class='lineno'>877</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              2 &#40;0 &#37;&#41;
-              samples spent in similar
-              <br />
-              
-              2 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from similar
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L876'>line 876</a>
-              <br />
-            </div>
-            <div class='callees'>
-              2 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='boot.jl-c1a4eaffc55dd919323c00faf8cf4219d8abdf81.html#L486'>Array</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>similar&#40;::Type&#123;T&#125;, dims::Dims&#41; where &#123;T&lt;:AbstractArray&#125; &#61; T&#40;undef, dims&#41;</span>
           </td>
         </tr>
@@ -12180,24 +12101,10 @@
         <tr id='L1202'>
           <td class='lineno'>1202</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in copymutable
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from #_sortperm#33
-              <a href='sort.jl-012515466f8014602c26304899719aa5a0eeea24.html#L1663'>line 1663</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L829'>similar</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>    copyto&#33;&#40;similar&#40;a&#41;, a&#41;</span>
           </td>
         </tr>
@@ -12551,15 +12458,24 @@
               samples spent in pointer
               <br />
               
-              2 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from gemv&#33;
-              <a href='blas.jl-1f841858d6b4f428cf6dd2d5165a04435f3bc477.html#L659'>line 659</a>
+              1 &#40;50 &#37;&#41; &#40;incl.&#41;
+              when called from dataids
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1540'>line 1540</a>
+              <br />
+              
+              1 &#40;50 &#37;&#41; &#40;incl.&#41;
+              when called from vec_pointer_stride
+              <a href='blas.jl-1f841858d6b4f428cf6dd2d5165a04435f3bc477.html#L178'>line 178</a>
               <br />
             </div>
             <div class='callees'>
-              2 &#40;100 &#37;&#41;
+              1 &#40;50 &#37;&#41;
               samples spent calling
               <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L470'>unsafe_convert</a>
+              <br />
+              1 &#40;50 &#37;&#41;
+              samples spent calling
+              <a href='pointer.jl-24444c84dc19013fbfbddc703ba89a9168abb634.html#L65'>unsafe_convert</a>
               <br />
             </div>
             <span class='code'>pointer&#40;x::AbstractArray&#123;T&#125;&#41; where &#123;T&#125; &#61; unsafe_convert&#40;Ptr&#123;T&#125;, x&#41;</span>
@@ -12628,28 +12544,10 @@
         <tr id='L1244'>
           <td class='lineno'>1244</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              2 &#40;0 &#37;&#41;
-              samples spent in _memory_offset
-              <br />
-              
-              2 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from unsafe_convert
-              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L470'>line 470</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;50 &#37;&#41;
-              samples spent calling
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1330'>_to_linear_index</a>
-              <br />
-              1 &#40;50 &#37;&#41;
-              samples spent calling
-              <a href='int.jl-f41b4319bbfbc29e12c432d573bda76eb55f06d2.html#L88'>*</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>_memory_offset&#40;x::DenseArray, I::Vararg&#123;Any,N&#125;&#41; where &#123;N&#125; &#61; &#40;_to_linear_index&#40;x, I...&#41; - first&#40;LinearIndices&#40;x&#41;&#41;&#41;*elsize&#40;x&#41;</span>
           </td>
         </tr>
@@ -13506,24 +13404,10 @@
         <tr id='L1330'>
           <td class='lineno'>1330</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in _to_linear_index
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from _memory_offset
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1244'>line 1244</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L2957'>_sub2ind</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>_to_linear_index&#40;A::AbstractArray, I::Integer...&#41; &#61; &#40;@inline; _sub2ind&#40;A, I...&#41;&#41;</span>
           </td>
         </tr>
@@ -15030,19 +14914,24 @@
         <tr id='L1481'>
           <td class='lineno'>1481</td>
           <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>4 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
+              4 &#40;0 &#37;&#41;
               samples spent in unalias
               <br />
-              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              1 &#40;25 &#37;&#41; &#40;ex.&#41;,
+              4 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from broadcast_unalias
               <a href='broadcast.jl-9538a2221b315be425e9c47ec7c3883483af8540.html#L977'>line 977</a>
               <br />
             </div>
-            
+            <div class='callees'>
+              3 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1516'>mightalias</a>
+              <br />
+            </div>
             <span class='code'>unalias&#40;dest, A::AbstractArray&#41; &#61; mightalias&#40;dest, A&#41; ? unaliascopy&#40;A&#41; : A</span>
           </td>
         </tr>
@@ -15389,10 +15278,28 @@
         <tr id='L1516'>
           <td class='lineno'>1516</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              3 &#40;0 &#37;&#41;
+              samples spent in mightalias
+              <br />
+              
+              3 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from unalias
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1481'>line 1481</a>
+              <br />
+            </div>
+            <div class='callees'>
+              2 &#40;67 &#37;&#41;
+              samples spent calling
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L104'>dataids</a>
+              <br />
+              1 &#40;33 &#37;&#41;
+              samples spent calling
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1540'>dataids</a>
+              <br />
+            </div>
             <span class='code'>mightalias&#40;A::AbstractArray, B::AbstractArray&#41; &#61; &#33;isbits&#40;A&#41; &amp;&amp; &#33;isbits&#40;B&#41; &amp;&amp; &#33;_isdisjoint&#40;dataids&#40;A&#41;, dataids&#40;B&#41;&#41;</span>
           </td>
         </tr>
@@ -15629,10 +15536,24 @@
         <tr id='L1540'>
           <td class='lineno'>1540</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in dataids
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from mightalias
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1516'>line 1516</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1237'>pointer</a>
+              <br />
+            </div>
             <span class='code'>dataids&#40;A::Array&#41; &#61; &#40;UInt&#40;pointer&#40;A&#41;&#41;,&#41;</span>
           </td>
         </tr>
@@ -29799,24 +29720,10 @@
         <tr id='L2957'>
           <td class='lineno'>2957</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in _sub2ind
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from _to_linear_index
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L1330'>line 1330</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L98'>axes</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>    _sub2ind&#40;axes&#40;A&#41;, I...&#41;</span>
           </td>
         </tr>

@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -3280,17 +3280,22 @@
         </tr>
         <tr id='L326'>
           <td class='lineno'>326</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
+              5 &#40;0 &#37;&#41;
               samples spent in current_logger_for_env
               <br />
               
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              4 &#40;80 &#37;&#41; &#40;incl.&#41;
               when called from macro expansion
               <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L389'>line 389</a>
+              <br />
+              1 &#40;20 &#37;&#41; &#40;ex.&#41;,
+              1 &#40;20 &#37;&#41; &#40;incl.&#41;
+              when called from einsum&#33;
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L38'>line 38</a>
               <br />
             </div>
             
@@ -3300,21 +3305,26 @@
         <tr id='L327'>
           <td class='lineno'>327</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L506'>current_logstate</a>
+              <br />
+            </div>
             <span class='code'>    logstate &#61; @inline current_logstate&#40;&#41;</span>
           </td>
         </tr>
         <tr id='L328'>
           <td class='lineno'>328</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              1 &#40;100 &#37;&#41;
+              3 &#40;100 &#37;&#41;
               samples spent calling
               <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L543'>env_override_minlevel</a>
               <br />
@@ -3895,10 +3905,24 @@
         <tr id='L386'>
           <td class='lineno'>386</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in macro expansion
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from unary_einsum&#33;
+              <a href='unaryrules.jl-a30408916eb0e4eba6de57fd34306310ec02891c.html#L120'>line 120</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='operators.jl-686c6e14b62f7e1edd63eed9861cf94955771a50.html#L425'>&gt;&#61;</a>
+              <br />
+            </div>
             <span class='code'>            if std_level &gt;&#61; &#36;&#40;_min_enabled_level&#41;&#91;&#93;</span>
           </td>
         </tr>
@@ -3925,20 +3949,30 @@
         <tr id='L389'>
           <td class='lineno'>389</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>4 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
+              4 &#40;0 &#37;&#41;
               samples spent in macro expansion
               <br />
               
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              2 &#40;50 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L101'>line 101</a>
               <br />
+              
+              1 &#40;25 &#37;&#41; &#40;incl.&#41;
+              when called from einsum&#33;
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L109'>line 109</a>
+              <br />
+              
+              1 &#40;25 &#37;&#41; &#40;incl.&#41;
+              when called from einsum&#33;
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L79'>line 79</a>
+              <br />
             </div>
             <div class='callees'>
-              1 &#40;100 &#37;&#41;
+              4 &#40;100 &#37;&#41;
               samples spent calling
               <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L326'>current_logger_for_env</a>
               <br />
@@ -5108,10 +5142,19 @@
         </tr>
         <tr id='L506'>
           <td class='lineno'>506</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in current_logstate
+              <br />
+              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from current_logger_for_env
+              <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L327'>line 327</a>
+              <br />
+            </div>
             
             <span class='code'>    return &#40;logstate &#33;&#61;&#61; nothing ? logstate : _global_logstate&#41;::LogState</span>
           </td>
@@ -5482,11 +5525,11 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
+              3 &#40;0 &#37;&#41;
               samples spent in env_override_minlevel
               <br />
-              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              1 &#40;33 &#37;&#41; &#40;ex.&#41;,
+              3 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from current_logger_for_env
               <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L328'>line 328</a>
               <br />
@@ -5498,10 +5541,15 @@
         <tr id='L544'>
           <td class='lineno'>544</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              2 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='env.jl-2ffb3ba256e1fd6c977747e2fa969c9730ef795d.html#L157'>get</a>
+              <br />
+            </div>
             <span class='code'>    debug &#61; get&#40;ENV, &quot;JULIA_DEBUG&quot;, &quot;&quot;&#41;</span>
           </td>
         </tr>

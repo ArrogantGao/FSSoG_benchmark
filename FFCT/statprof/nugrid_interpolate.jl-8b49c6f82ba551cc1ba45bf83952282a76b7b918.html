@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'></meta>
     <link rel='stylesheet' type='text/css' href='statprofiler.css'></link>
-    <title>StatProfilerHTML - ../../.julia/packages/OMEinsum/zZBsQ/src/unaryrules.jl</title>
+    <title>StatProfilerHTML - ../../../.julia/packages/FastSpecSoG/VvHyd/src/FFCT/nugrid_interpolate.jl</title>
   </head>
   <body>
     <div class='report-header'>
@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Tue, 20 Feb 2024 20:23:27
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -35,7 +35,7 @@
           <td>
             
             
-            <span class='code'># A general unary operation uses the following pipeline</span>
+            <span class='code'>@inline function Fourier_k&#40;i::Int, N::Int, L::T&#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L2'>
@@ -45,7 +45,7 @@
           <td>
             
             
-            <span class='code'># 0. special rules &#96;Identity&#96; and &#96;Tr&#96;,</span>
+            <span class='code'>    return T&#40;2π * &#40;i - 1 - N&#41; / L&#41;</span>
           </td>
         </tr>
         <tr id='L3'>
@@ -55,7 +55,7 @@
           <td>
             
             
-            <span class='code'># 1. rules reducing dimensions &#96;Diag&#96; and &#96;Sum&#96;</span>
+            <span class='code'>end</span>
           </td>
         </tr>
         <tr id='L4'>
@@ -65,7 +65,7 @@
           <td>
             
             
-            <span class='code'># 2. &#96;Permutedims&#96;,</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L5'>
@@ -75,7 +75,7 @@
           <td>
             
             
-            <span class='code'># 3. &#96;Repeat&#96; and &#96;Duplicate&#96;,</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L6'>
@@ -83,9 +83,18 @@
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
+            <div class='call-sites'>
+              598 &#40;8 &#37;&#41;
+              samples spent in revise_z_coef&#33;
+              <br />
+              192 &#40;32 &#37;&#41; &#40;ex.&#41;,
+              598 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from interpolate_nu_einsum&#33;
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L41'>line 41</a>
+              <br />
+            </div>
             
-            
-            <span class='code'></span>
+            <span class='code'>@inbounds function revise_z_coef&#33;&#40;z_coef::Array&#123;T, 3&#125;, exp_coef::Array&#123;T, 3&#125;, r_z::Vector&#123;T&#125;, poses::Vector&#123;NTuple&#123;3, T&#125;&#125;, uspara::USeriesPara&#123;T&#125;, M_mid::Int&#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L7'>
@@ -95,7 +104,7 @@
           <td>
             
             
-            <span class='code'># &#96;NT&#96; for number of tensors</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L8'>
@@ -105,7 +114,7 @@
           <td>
             
             
-            <span class='code'>abstract type EinRule&#123;NT&#125; end</span>
+            <span class='code'>    for n in 1:size&#40;poses, 1&#41;</span>
           </td>
         </tr>
         <tr id='L9'>
@@ -115,7 +124,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>        x, y, z &#61; poses&#91;n&#93;</span>
           </td>
         </tr>
         <tr id='L10'>
@@ -125,97 +134,137 @@
           <td>
             
             
-            <span class='code'>struct Tr &lt;: EinRule&#123;1&#125; end</span>
+            <span class='code'>        for k in 1:size&#40;r_z, 1&#41;</span>
           </td>
         </tr>
         <tr id='L11'>
           <td class='lineno'>11</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>struct Sum &lt;: EinRule&#123;1&#125; end</span>
+            <div class='callees'>
+              2 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='essentials.jl-f0c8802a556c409b803937db99f588c9c5999872.html#L13'>getindex</a>
+              <br />
+            </div>
+            <span class='code'>            r_zk &#61; r_z&#91;k&#93;</span>
           </td>
         </tr>
         <tr id='L12'>
           <td class='lineno'>12</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>struct Repeat &lt;: EinRule&#123;1&#125; end</span>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='range.jl-98f40bce68f1934881ccb1db6e729761ce82d53a.html#L5'>Colon</a>
+              <br />
+            </div>
+            <span class='code'>            for l in M_mid &#43; 1:length&#40;uspara.sw&#41;</span>
           </td>
         </tr>
         <tr id='L13'>
           <td class='lineno'>13</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>struct Permutedims &lt;: EinRule&#123;1&#125; end</span>
+            <div class='callees'>
+              3 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='essentials.jl-f0c8802a556c409b803937db99f588c9c5999872.html#L13'>getindex</a>
+              <br />
+            </div>
+            <span class='code'>                sl, wl &#61; uspara.sw&#91;l&#93;</span>
           </td>
         </tr>
         <tr id='L14'>
           <td class='lineno'>14</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>6 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>struct Identity &lt;: EinRule&#123;1&#125; end</span>
+            <div class='callees'>
+              6 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='float.jl-1010c8f5843198c1fef813a37adbfb7ed37edc9a.html#L412'>/</a>
+              <br />
+            </div>
+            <span class='code'>                temp_z &#61; &#40;z - r_zk&#41;^2 / sl^2</span>
           </td>
         </tr>
         <tr id='L15'>
           <td class='lineno'>15</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount excl'>41 &#40;1 &#37;&#41;</td>
+          <td class='tracecount incl'>377 &#40;5 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>struct Duplicate &lt;: EinRule&#123;1&#125; end</span>
+            <div class='callees'>
+              336 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='exp.jl-a8ef204d9f107450c453d53ddf0cca289e6595be.html#L327'>exp</a>
+              <br />
+            </div>
+            <span class='code'>                temp_exp &#61; exp&#40;-temp_z&#41;</span>
           </td>
         </tr>
         <tr id='L16'>
           <td class='lineno'>16</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>14 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>struct Diag &lt;: EinRule&#123;1&#125; end</span>
+            <div class='callees'>
+              14 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L1024'>setindex&#33;</a>
+              <br />
+            </div>
+            <span class='code'>                exp_coef&#91;l - M_mid, k, n&#93; &#61; temp_exp</span>
           </td>
         </tr>
         <tr id='L17'>
           <td class='lineno'>17</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>22 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>struct DefaultRule &lt;: EinRule&#123;Any&#125; end</span>
+            <div class='callees'>
+              22 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L1024'>setindex&#33;</a>
+              <br />
+            </div>
+            <span class='code'>                z_coef&#91;l - M_mid, k, n&#93; &#61; &#40;T&#40;2&#41; - T&#40;4&#41; * temp_z&#41; * temp_exp * sl^2</span>
           </td>
         </tr>
         <tr id='L18'>
           <td class='lineno'>18</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>22 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'></span>
+            <div class='callees'>
+              22 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='range.jl-98f40bce68f1934881ccb1db6e729761ce82d53a.html#L901'>iterate</a>
+              <br />
+            </div>
+            <span class='code'>            end</span>
           </td>
         </tr>
         <tr id='L19'>
           <td class='lineno'>19</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount excl'>3 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
           <td>
             
             
-            <span class='code'># trace</span>
+            <span class='code'>        end</span>
           </td>
         </tr>
         <tr id='L20'>
@@ -225,7 +274,7 @@
           <td>
             
             
-            <span class='code'># overhead ~ 0.07us</span>
+            <span class='code'>    end</span>
           </td>
         </tr>
         <tr id='L21'>
@@ -235,7 +284,7 @@
           <td>
             
             
-            <span class='code'># @benchmark OMEinsum.einsum&#40;Tr&#40;&#41;, &#36;&#40;&#40;&#39;a&#39;, &#39;a&#39;&#41;&#41;, &#36;&#40;&#40;&#41;&#41;, x, &#36;&#40;Dict&#40;&#39;a&#39;&#61;&gt;1, &#39;b&#39;&#61;&gt;1&#41;&#41;&#41; setup&#61;&#40;x&#61;randn&#40;1,1&#41;&#41;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L22'>
@@ -245,7 +294,7 @@
           <td>
             
             
-            <span class='code'>function unary_einsum&#33;&#40;::Tr, ix, iy, x, y::AbstractArray, sx, sy&#41;</span>
+            <span class='code'>    return nothing</span>
           </td>
         </tr>
         <tr id='L23'>
@@ -255,7 +304,7 @@
           <td>
             
             
-            <span class='code'>    @debug &quot;Tr&quot; size&#40;x&#41;</span>
+            <span class='code'>end</span>
           </td>
         </tr>
         <tr id='L24'>
@@ -265,7 +314,7 @@
           <td>
             
             
-            <span class='code'>    y .&#61; sy .* y .&#43; sx * tr&#40;x&#41;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L25'>
@@ -275,7 +324,7 @@
           <td>
             
             
-            <span class='code'>    return y</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L26'>
@@ -285,7 +334,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'>&quot;&quot;&quot;</span>
           </td>
         </tr>
         <tr id='L27'>
@@ -295,7 +344,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>H1&#91;i, j, k&#93; :&#61; phase_xys&#91;i, j, n&#93; * z_coef&#91;l, k, n&#93; * us_mat&#91;i, j, l&#93;</span>
           </td>
         </tr>
         <tr id='L28'>
@@ -305,7 +354,7 @@
           <td>
             
             
-            <span class='code'># overhead ~ 0.55us</span>
+            <span class='code'>H2&#91;i, j, k&#93; :&#61; phase_xys&#91;i, j, n&#93; * exp_coef&#91;l, k, n&#93; * k_mat&#91;i, j&#93; * us_mat&#91;i, j, l&#93;</span>
           </td>
         </tr>
         <tr id='L29'>
@@ -315,7 +364,7 @@
           <td>
             
             
-            <span class='code'># @benchmark OMEinsum.einsum&#40;Sum&#40;&#41;, &#36;&#40;&#40;&#39;a&#39;, &#39;b&#39;&#41;&#41;, &#36;&#40;&#40;&#39;b&#39;,&#41;&#41;, x, &#36;&#40;Dict&#40;&#39;a&#39;&#61;&gt;1, &#39;b&#39;&#61;&gt;1&#41;&#41;&#41; setup&#61;&#40;x&#61;randn&#40;1,1&#41;&#41;</span>
+            <span class='code'>&quot;&quot;&quot;</span>
           </td>
         </tr>
         <tr id='L30'>
@@ -325,7 +374,7 @@
           <td>
             
             
-            <span class='code'>function unary_einsum&#33;&#40;::Sum, ix, iy, x::AbstractArray, y::AbstractArray, sx, sy&#41;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L31'>
@@ -333,9 +382,18 @@
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
+            <div class='call-sites'>
+              2247 &#40;31 &#37;&#41;
+              samples spent in interpolate_nu_einsum&#33;
+              <br />
+              
+              2247 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from energy_long_einsum
+              <a href='energy_long.jl-7a7bb982ef2fa42807770cd492b7e09a2c3d1533.html#L56'>line 56</a>
+              <br />
+            </div>
             
-            
-            <span class='code'>    @debug &quot;Sum&quot; ix &#61;&gt; iy size&#40;x&#41;</span>
+            <span class='code'>@inbounds function interpolate_nu_einsum&#33;&#40;</span>
           </td>
         </tr>
         <tr id='L32'>
@@ -345,7 +403,7 @@
           <td>
             
             
-            <span class='code'>    dims &#61; &#40;findall&#40;i -&gt; i ∉ iy, ix&#41;...,&#41;::NTuple&#123;length&#40;ix&#41;-length&#40;iy&#41;,Int&#125;</span>
+            <span class='code'>    H_r::Array&#123;Complex&#123;T&#125;, 3&#125;,</span>
           </td>
         </tr>
         <tr id='L33'>
@@ -355,7 +413,7 @@
           <td>
             
             
-            <span class='code'>    res &#61; dropdims&#40;sum&#40;x, dims&#61;dims&#41;, dims&#61;dims&#41;</span>
+            <span class='code'>    qs::Vector&#123;T&#125;, poses::Vector&#123;NTuple&#123;3, T&#125;&#125;, </span>
           </td>
         </tr>
         <tr id='L34'>
@@ -365,7 +423,7 @@
           <td>
             
             
-            <span class='code'>    ix1f &#61; filter&#40;i -&gt; i ∈ iy, ix&#41;::typeof&#40;iy&#41;</span>
+            <span class='code'>    k_x::Vector&#123;T&#125;, k_y::Vector&#123;T&#125;, k_mat::Array&#123;T, 2&#125;, </span>
           </td>
         </tr>
         <tr id='L35'>
@@ -375,7 +433,7 @@
           <td>
             
             
-            <span class='code'>    if ix1f &#33;&#61; iy</span>
+            <span class='code'>    phase_xs::Array&#123;Complex&#123;T&#125;, 2&#125;, phase_ys::Array&#123;Complex&#123;T&#125;, 2&#125;, phase_xys::Array&#123;Complex&#123;T&#125;, 3&#125;, </span>
           </td>
         </tr>
         <tr id='L36'>
@@ -385,7 +443,7 @@
           <td>
             
             
-            <span class='code'>        return unary_einsum&#33;&#40;Permutedims&#40;&#41;, &#40;ix1f...,&#41;, iy, res, y, sx, sy&#41;</span>
+            <span class='code'>    z_coef::Array&#123;T, 3&#125;, exp_coef::Array&#123;T, 3&#125;, temp_ijlk::Array&#123;Complex&#123;T&#125;, 4&#125;, temp_ijl::Array&#123;Complex&#123;T&#125;, 3&#125;,</span>
           </td>
         </tr>
         <tr id='L37'>
@@ -395,7 +453,7 @@
           <td>
             
             
-            <span class='code'>    else</span>
+            <span class='code'>    r_z::Vector&#123;T&#125;, us_mat::Array&#123;Complex&#123;T&#125;, 3&#125;, uspara::USeriesPara&#123;T&#125;, M_mid::Int,  </span>
           </td>
         </tr>
         <tr id='L38'>
@@ -405,7 +463,7 @@
           <td>
             
             
-            <span class='code'>        return @flatten_addmul&#33; sy * y &#43; sx * res</span>
+            <span class='code'>    size_dict::Dict&#123;Char, Int64&#125;&#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L39'>
@@ -415,27 +473,41 @@
           <td>
             
             
-            <span class='code'>    end</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L40'>
           <td class='lineno'>40</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>679 &#40;9 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>end</span>
+            <div class='callees'>
+              673 &#40;99 &#37;&#41;
+              samples spent calling
+              <a href='precompute.jl-6cd54421f03848108a172eb3577c601485e1022a.html#L87'>revise_phase_neg_all&#33;</a>
+              <br />
+              6 &#40;1 &#37;&#41;
+              samples spent calling
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L87'>revise_phase_neg_all&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    revise_phase_neg_all&#33;&#40;qs, poses, phase_xs, phase_ys, phase_xys, k_x, k_y&#41;</span>
           </td>
         </tr>
         <tr id='L41'>
           <td class='lineno'>41</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>598 &#40;8 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'></span>
+            <div class='callees'>
+              598 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L6'>revise_z_coef&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    revise_z_coef&#33;&#40;z_coef, exp_coef, r_z, poses, uspara, M_mid&#41;</span>
           </td>
         </tr>
         <tr id='L42'>
@@ -445,7 +517,7 @@
           <td>
             
             
-            <span class='code'># overhead ~ 0.53us</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L43'>
@@ -455,27 +527,37 @@
           <td>
             
             
-            <span class='code'># @benchmark OMEinsum.einsum&#40;OMEinsum.Repeat&#40;&#41;, &#36;&#40;&#40;&#39;a&#39;,&#41;&#41;, &#36;&#40;&#40;&#39;a&#39;, &#39;b&#39;,&#41;&#41;, x, &#36;&#40;Dict&#40;&#39;a&#39;&#61;&gt;1, &#39;b&#39;&#61;&gt;1&#41;&#41;&#41; setup&#61;&#40;x&#61;randn&#40;1&#41;&#41;</span>
+            <span class='code'>    # H1</span>
           </td>
         </tr>
         <tr id='L44'>
           <td class='lineno'>44</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>311 &#40;4 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>function unary_einsum&#33;&#40;::Repeat, ix, iy, x::AbstractArray, y::AbstractArray, sx, sy&#41;</span>
+            <div class='callees'>
+              311 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L38'>einsum&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    einsum&#33;&#40;ein&quot;ijn, lkn -&gt; ijlk&quot;, &#40;phase_xys, z_coef&#41;, temp_ijlk, true, false, size_dict&#41;</span>
           </td>
         </tr>
         <tr id='L45'>
           <td class='lineno'>45</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>167 &#40;2 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>    @debug &quot;Repeat&quot; ix &#61;&gt; iy size&#40;x&#41;</span>
+            <div class='callees'>
+              167 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L38'>einsum&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    einsum&#33;&#40;ein&quot;ijlk, ijl -&gt; ijk&quot;, &#40;temp_ijlk, us_mat&#41;, H_r, true, false, size_dict&#41;</span>
           </td>
         </tr>
         <tr id='L46'>
@@ -485,7 +567,7 @@
           <td>
             
             
-            <span class='code'>    ix1f &#61; filter&#40;i -&gt; i ∈ ix, iy&#41;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L47'>
@@ -495,37 +577,52 @@
           <td>
             
             
-            <span class='code'>    shape1 &#61; &#91;s for &#40;l, s&#41; in zip&#40;iy, size&#40;y&#41;&#41; if l ∈ ix&#93;</span>
+            <span class='code'>    # H2</span>
           </td>
         </tr>
         <tr id='L48'>
           <td class='lineno'>48</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>262 &#40;4 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>    shape2 &#61; &#91;l ∈ ix ? s : 1 for &#40;l, s&#41; in zip&#40;iy, size&#40;y&#41;&#41;&#93;</span>
+            <div class='callees'>
+              262 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L38'>einsum&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    einsum&#33;&#40;ein&quot;ijn, lkn -&gt; ijlk&quot;, &#40;phase_xys, exp_coef&#41;, temp_ijlk, true, false, size_dict&#41;</span>
           </td>
         </tr>
         <tr id='L49'>
           <td class='lineno'>49</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>65 &#40;1 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>    repeat_dims &#61; &#91;l ∈ ix ? 1 : s for &#40;l, s&#41; in zip&#40;iy, size&#40;y&#41;&#41;&#93;</span>
+            <div class='callees'>
+              65 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L38'>einsum&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    einsum&#33;&#40;ein&quot;ij, ijl -&gt; ijl&quot;, &#40;k_mat, us_mat&#41;, temp_ijl, true, false, size_dict&#41;</span>
           </td>
         </tr>
         <tr id='L50'>
           <td class='lineno'>50</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>165 &#40;2 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>    # TODO: avoid copy</span>
+            <div class='callees'>
+              165 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L38'>einsum&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    einsum&#33;&#40;ein&quot;ijlk, ijl -&gt; ijk&quot;, &#40;temp_ijlk, temp_ijl&#41;, H_r, true, true, size_dict&#41;</span>
           </td>
         </tr>
         <tr id='L51'>
@@ -535,7 +632,7 @@
           <td>
             
             
-            <span class='code'>    if ix1f &#33;&#61; ix</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L52'>
@@ -545,7 +642,7 @@
           <td>
             
             
-            <span class='code'>        y1 &#61; similar&#40;x, &#40;shape1...,&#41;&#41;</span>
+            <span class='code'>    H_r .*&#61; π</span>
           </td>
         </tr>
         <tr id='L53'>
@@ -555,7 +652,7 @@
           <td>
             
             
-            <span class='code'>        unary_einsum&#33;&#40;Permutedims&#40;&#41;, ix, ix1f, x, y1, true, false&#41;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L54'>
@@ -565,7 +662,7 @@
           <td>
             
             
-            <span class='code'>    else</span>
+            <span class='code'>    return H_r</span>
           </td>
         </tr>
         <tr id='L55'>
@@ -575,7 +672,7 @@
           <td>
             
             
-            <span class='code'>        y1 &#61; x</span>
+            <span class='code'>end</span>
           </td>
         </tr>
         <tr id='L56'>
@@ -585,7 +682,7 @@
           <td>
             
             
-            <span class='code'>    end</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L57'>
@@ -595,7 +692,7 @@
           <td>
             
             
-            <span class='code'>    @flatten_addmul&#33; sy * y &#43; sx * repeat&#40;reshape&#40;y1, shape2...&#41;, repeat_dims...&#41;</span>
+            <span class='code'>@inbounds function interpolate_nu_loop_single&#33;&#40;</span>
           </td>
         </tr>
         <tr id='L58'>
@@ -605,7 +702,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'>    H_r::Array&#123;Complex&#123;T&#125;, 3&#125;,</span>
           </td>
         </tr>
         <tr id='L59'>
@@ -615,7 +712,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    q::T, pos::NTuple&#123;3, T&#125;, </span>
           </td>
         </tr>
         <tr id='L60'>
@@ -625,7 +722,7 @@
           <td>
             
             
-            <span class='code'># overhead ~ 0.28us</span>
+            <span class='code'>    N::NTuple&#123;3, Int&#125;, L::NTuple&#123;3, T&#125;, k_x::Vector&#123;T&#125;, k_y::Vector&#123;T&#125;, </span>
           </td>
         </tr>
         <tr id='L61'>
@@ -635,7 +732,7 @@
           <td>
             
             
-            <span class='code'># @benchmark OMEinsum.einsum&#40;Diag&#40;&#41;, &#36;&#40;&#40;&#39;a&#39;, &#39;a&#39;&#41;&#41;, &#36;&#40;&#40;&#39;a&#39;,&#41;&#41;, x, &#36;&#40;Dict&#40;&#39;a&#39;&#61;&gt;1, &#39;b&#39;&#61;&gt;1&#41;&#41;&#41; setup&#61;&#40;x&#61;randn&#40;1,1&#41;&#41;</span>
+            <span class='code'>    phase_x::Vector&#123;Complex&#123;T&#125;&#125;, phase_y::Vector&#123;Complex&#123;T&#125;&#125;, </span>
           </td>
         </tr>
         <tr id='L62'>
@@ -645,7 +742,7 @@
           <td>
             
             
-            <span class='code'>function unary_einsum&#33;&#40;::Diag, ix, iy, x::AbstractArray, y::AbstractArray, sx, sy&#41;</span>
+            <span class='code'>    r_z::Vector&#123;T&#125;, us_mat::Array&#123;Complex&#123;T&#125;, 3&#125;, uspara::USeriesPara&#123;T&#125;, M_mid::Int&#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L63'>
@@ -655,7 +752,7 @@
           <td>
             
             
-            <span class='code'>    @debug &quot;Diag&quot; ix &#61;&gt; iy size.&#40;x&#41;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L64'>
@@ -665,7 +762,7 @@
           <td>
             
             
-            <span class='code'>    compactify&#33;&#40;y, x, ix, iy, sx, sy&#41;</span>
+            <span class='code'>    x, y, z &#61; pos</span>
           </td>
         </tr>
         <tr id='L65'>
@@ -675,7 +772,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'>    revise_phase_neg&#33;&#40;phase_x, phase_y, k_x, k_y, x, y&#41;</span>
           </td>
         </tr>
         <tr id='L66'>
@@ -695,7 +792,7 @@
           <td>
             
             
-            <span class='code'>function compactify&#33;&#40;y, x, ix, iy, sx, sy&#41;</span>
+            <span class='code'>    for k in 1:size&#40;H_r, 3&#41;</span>
           </td>
         </tr>
         <tr id='L68'>
@@ -705,7 +802,7 @@
           <td>
             
             
-            <span class='code'>    x_in_y_locs &#61; &#40;Int&#91;findfirst&#40;&#61;&#61;&#40;x&#41;, iy&#41; for x in ix&#93;...,&#41;</span>
+            <span class='code'>        r_zk &#61; r_z&#91;k&#93;</span>
           </td>
         </tr>
         <tr id='L69'>
@@ -715,7 +812,7 @@
           <td>
             
             
-            <span class='code'>    @assert size&#40;x&#41; &#61;&#61; map&#40;loc-&gt;size&#40;y, loc&#41;, x_in_y_locs&#41;</span>
+            <span class='code'>        for l in M_mid &#43; 1:length&#40;uspara.sw&#41;</span>
           </td>
         </tr>
         <tr id='L70'>
@@ -725,7 +822,7 @@
           <td>
             
             
-            <span class='code'>    indexer &#61; dynamic_indexer&#40;x_in_y_locs, size&#40;x&#41;&#41;</span>
+            <span class='code'>            sl, wl &#61; uspara.sw&#91;l&#93;</span>
           </td>
         </tr>
         <tr id='L71'>
@@ -735,7 +832,7 @@
           <td>
             
             
-            <span class='code'>    _compactify&#33;&#40;y, x, indexer, sx, sy&#41;</span>
+            <span class='code'>            exp_temp &#61; exp&#40;- &#40;z - r_zk&#41;^2 / sl^2&#41;</span>
           </td>
         </tr>
         <tr id='L72'>
@@ -745,7 +842,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'>            z_temp &#61; T&#40;2&#41; - T&#40;4&#41; * &#40;z - r_zk&#41;^2 / sl^2</span>
           </td>
         </tr>
         <tr id='L73'>
@@ -765,7 +862,7 @@
           <td>
             
             
-            <span class='code'>function _compactify&#33;&#40;y, x, indexer, sx, sy&#41;</span>
+            <span class='code'>            for j in 1:size&#40;H_r, 2&#41;</span>
           </td>
         </tr>
         <tr id='L75'>
@@ -775,7 +872,7 @@
           <td>
             
             
-            <span class='code'>    if iszero&#40;sy&#41;</span>
+            <span class='code'>                k_yj &#61; Fourier_k&#40;j, N&#91;2&#93;, L&#91;2&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L76'>
@@ -785,7 +882,7 @@
           <td>
             
             
-            <span class='code'>        if isone&#40;sx&#41;</span>
+            <span class='code'>                for i in 1:size&#40;H_r, 1&#41;</span>
           </td>
         </tr>
         <tr id='L77'>
@@ -795,7 +892,7 @@
           <td>
             
             
-            <span class='code'>            @inbounds for ci in CartesianIndices&#40;y&#41;</span>
+            <span class='code'>                    k_xi &#61; Fourier_k&#40;i, N&#91;1&#93;, L&#91;1&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L78'>
@@ -805,7 +902,7 @@
           <td>
             
             
-            <span class='code'>                y&#91;ci&#93; &#61; x&#91;subindex&#40;indexer, ci.I&#41;&#93;</span>
+            <span class='code'>                    phase &#61; phase_x&#91;i&#93; * phase_y&#91;j&#93;</span>
           </td>
         </tr>
         <tr id='L79'>
@@ -815,7 +912,7 @@
           <td>
             
             
-            <span class='code'>            end</span>
+            <span class='code'>                    us &#61; us_mat&#91;i, j, l - M_mid&#93;</span>
           </td>
         </tr>
         <tr id='L80'>
@@ -825,7 +922,7 @@
           <td>
             
             
-            <span class='code'>        else</span>
+            <span class='code'>                    H_r&#91;i, j, k&#93; &#43;&#61; q * π * phase * &#40;z_temp &#43; &#40;k_xi^2 &#43; k_yj^2&#41; * sl^2&#41; * exp_temp * us</span>
           </td>
         </tr>
         <tr id='L81'>
@@ -835,7 +932,7 @@
           <td>
             
             
-            <span class='code'>            @inbounds for ci in CartesianIndices&#40;y&#41;</span>
+            <span class='code'>                end</span>
           </td>
         </tr>
         <tr id='L82'>
@@ -845,7 +942,7 @@
           <td>
             
             
-            <span class='code'>                y&#91;ci&#93; &#61; sx * x&#91;subindex&#40;indexer, ci.I&#41;&#93;</span>
+            <span class='code'>            end</span>
           </td>
         </tr>
         <tr id='L83'>
@@ -855,7 +952,7 @@
           <td>
             
             
-            <span class='code'>            end</span>
+            <span class='code'>        end</span>
           </td>
         </tr>
         <tr id='L84'>
@@ -865,7 +962,7 @@
           <td>
             
             
-            <span class='code'>        end</span>
+            <span class='code'>    end</span>
           </td>
         </tr>
         <tr id='L85'>
@@ -875,7 +972,7 @@
           <td>
             
             
-            <span class='code'>    else</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L86'>
@@ -885,7 +982,7 @@
           <td>
             
             
-            <span class='code'>        @inbounds for ci in CartesianIndices&#40;y&#41;</span>
+            <span class='code'>    return H_r</span>
           </td>
         </tr>
         <tr id='L87'>
@@ -895,7 +992,7 @@
           <td>
             
             
-            <span class='code'>            y&#91;ci&#93; &#61; sy * y&#91;ci&#93; &#43; sx * x&#91;subindex&#40;indexer, ci.I&#41;&#93;</span>
+            <span class='code'>end</span>
           </td>
         </tr>
         <tr id='L88'>
@@ -905,7 +1002,7 @@
           <td>
             
             
-            <span class='code'>        end</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L89'>
@@ -915,7 +1012,7 @@
           <td>
             
             
-            <span class='code'>    end</span>
+            <span class='code'>function interpolate_nu_loop&#33;&#40;</span>
           </td>
         </tr>
         <tr id='L90'>
@@ -925,7 +1022,7 @@
           <td>
             
             
-            <span class='code'>    return y</span>
+            <span class='code'>    H_r::Array&#123;Complex&#123;T&#125;, 3&#125;,</span>
           </td>
         </tr>
         <tr id='L91'>
@@ -935,7 +1032,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'>    qs::Vector&#123;T&#125;, poses::Vector&#123;NTuple&#123;3, T&#125;&#125;, </span>
           </td>
         </tr>
         <tr id='L92'>
@@ -945,7 +1042,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    N::NTuple&#123;3, Int&#125;, L::NTuple&#123;3, T&#125;, k_x::Vector&#123;T&#125;, k_y::Vector&#123;T&#125;, </span>
           </td>
         </tr>
         <tr id='L93'>
@@ -955,7 +1052,7 @@
           <td>
             
             
-            <span class='code'>function duplicate&#33;&#40;y, x, ix, iy, sx, sy&#41;</span>
+            <span class='code'>    phase_x::Vector&#123;Complex&#123;T&#125;&#125;, phase_y::Vector&#123;Complex&#123;T&#125;&#125;, </span>
           </td>
         </tr>
         <tr id='L94'>
@@ -965,7 +1062,7 @@
           <td>
             
             
-            <span class='code'>    # compute same locs</span>
+            <span class='code'>    r_z::Vector&#123;T&#125;, us_mat::Array&#123;Complex&#123;T&#125;, 3&#125;, uspara::USeriesPara&#123;T&#125;, M_mid::Int&#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L95'>
@@ -975,7 +1072,7 @@
           <td>
             
             
-            <span class='code'>    x_in_y_locs &#61; &#40;Int&#91;findfirst&#40;&#61;&#61;&#40;l&#41;, ix&#41; for l in iy&#93;...,&#41;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L96'>
@@ -985,7 +1082,7 @@
           <td>
             
             
-            <span class='code'>    indexer &#61; dynamic_indexer&#40;x_in_y_locs, size&#40;y&#41;&#41;</span>
+            <span class='code'>    set_zeros&#33;&#40;H_r&#41;</span>
           </td>
         </tr>
         <tr id='L97'>
@@ -995,7 +1092,7 @@
           <td>
             
             
-            <span class='code'>    lmul&#33;&#40;sy, y&#41;</span>
+            <span class='code'>    for i in 1:length&#40;qs&#41;</span>
           </td>
         </tr>
         <tr id='L98'>
@@ -1005,7 +1102,7 @@
           <td>
             
             
-            <span class='code'>    _duplicate&#33;&#40;y, x, indexer, sx&#41;</span>
+            <span class='code'>        interpolate_nu_loop_single&#33;&#40;H_r, qs&#91;i&#93;, poses&#91;i&#93;, N, L, k_x, k_y, phase_x, phase_y, r_z, us_mat, uspara, M_mid&#41;</span>
           </td>
         </tr>
         <tr id='L99'>
@@ -1015,7 +1112,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'>    end</span>
           </td>
         </tr>
         <tr id='L100'>
@@ -1035,7 +1132,7 @@
           <td>
             
             
-            <span class='code'>@noinline function _duplicate&#33;&#40;y, x, indexer, sx&#41;</span>
+            <span class='code'>    return H_r</span>
           </td>
         </tr>
         <tr id='L102'>
@@ -1045,7 +1142,7 @@
           <td>
             
             
-            <span class='code'>    map&#40;CartesianIndices&#40;x&#41;&#41; do ci</span>
+            <span class='code'>end</span>
           </td>
         </tr>
         <tr id='L103'>
@@ -1055,7 +1152,7 @@
           <td>
             
             
-            <span class='code'>        @inbounds y&#91;subindex&#40;indexer, ci.I&#41;&#93; &#43;&#61; sx * x&#91;ci&#93;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L104'>
@@ -1063,9 +1160,18 @@
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
+            <div class='call-sites'>
+              23 &#40;0 &#37;&#41;
+              samples spent in real2Cheb&#33;
+              <br />
+              
+              23 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from energy_long_einsum
+              <a href='energy_long.jl-7a7bb982ef2fa42807770cd492b7e09a2c3d1533.html#L57'>line 57</a>
+              <br />
+            </div>
             
-            
-            <span class='code'>    end</span>
+            <span class='code'>@inbounds function real2Cheb&#33;&#40;H_r::Array&#123;Complex&#123;T&#125;, 3&#125;, H_c::Array&#123;Complex&#123;T&#125;, 3&#125;, r_z::Vector&#123;T&#125;, L_z::T&#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L105'>
@@ -1075,17 +1181,22 @@
           <td>
             
             
-            <span class='code'>    return y</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L106'>
           <td class='lineno'>106</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>end</span>
+            <div class='callees'>
+              2 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='precompute.jl-6cd54421f03848108a172eb3577c601485e1022a.html#L4'>set_zeros&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    set_zeros&#33;&#40;H_c&#41;</span>
           </td>
         </tr>
         <tr id='L107'>
@@ -1095,7 +1206,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    N_z &#61; size&#40;H_r, 3&#41;</span>
           </td>
         </tr>
         <tr id='L108'>
@@ -1105,7 +1216,7 @@
           <td>
             
             
-            <span class='code'># e.g. &#39;ij&#39;-&gt;&#39;iij&#39;, left indices are unique, right are not</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L109'>
@@ -1115,17 +1226,22 @@
           <td>
             
             
-            <span class='code'># overhead ~ 0.29us</span>
+            <span class='code'>    for k in 1:N_z, l in 1:N_z</span>
           </td>
         </tr>
         <tr id='L110'>
           <td class='lineno'>110</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'># @benchmark OMEinsum.einsum&#40;Duplicate&#40;&#41;, &#36;&#40;&#40;&#40;&#39;a&#39;, &#41;,&#41;&#41;, &#36;&#40;&#40;&#39;a&#39;,&#39;a&#39;&#41;&#41;, &#40;x,&#41;, &#36;&#40;Dict&#40;&#39;a&#39;&#61;&gt;1, &#39;b&#39;&#61;&gt;1&#41;&#41;&#41; setup&#61;&#40;x&#61;randn&#40;1&#41;&#41;</span>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='precompute.jl-6cd54421f03848108a172eb3577c601485e1022a.html#L8'>chebpoly</a>
+              <br />
+            </div>
+            <span class='code'>        cheb_temp &#61; chebpoly&#40;k - 1, r_z&#91;l&#93; - L_z / T&#40;2&#41;, L_z / T&#40;2&#41;&#41;</span>
           </td>
         </tr>
         <tr id='L111'>
@@ -1135,27 +1251,45 @@
           <td>
             
             
-            <span class='code'>function unary_einsum&#33;&#40;::Duplicate, ix, iy, x::AbstractArray, y::AbstractArray, sx, sy&#41;</span>
+            <span class='code'>        for j in 1:size&#40;H_r, 2&#41;, i in 1:size&#40;H_r, 1&#41;</span>
           </td>
         </tr>
         <tr id='L112'>
           <td class='lineno'>112</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>10 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>    @debug &quot;Duplicate&quot; ix &#61;&gt; iy size&#40;x&#41;</span>
+            <div class='callees'>
+              5 &#40;50 &#37;&#41;
+              samples spent calling
+              <a href='operators.jl-686c6e14b62f7e1edd63eed9861cf94955771a50.html#L587'>*</a>
+              <br />
+              4 &#40;40 &#37;&#41;
+              samples spent calling
+              <a href='complex.jl-758e93f59f1042cc0b16535ee36dbb19a5f5778f.html#L294'>&#43;</a>
+              <br />
+              1 &#40;10 &#37;&#41;
+              samples spent calling
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L1024'>setindex&#33;</a>
+              <br />
+            </div>
+            <span class='code'>            H_c&#91;i, j, k&#93; &#43;&#61; 2 / N_z * H_r&#91;i, j, l&#93; * cheb_temp</span>
           </td>
         </tr>
         <tr id='L113'>
           <td class='lineno'>113</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>10 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>    duplicate&#33;&#40;y, x, ix, iy, sx, sy&#41;</span>
+            <div class='callees'>
+              10 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='range.jl-98f40bce68f1934881ccb1db6e729761ce82d53a.html#L901'>iterate</a>
+              <br />
+            </div>
+            <span class='code'>        end</span>
           </td>
         </tr>
         <tr id='L114'>
@@ -1165,7 +1299,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'>    end</span>
           </td>
         </tr>
         <tr id='L115'>
@@ -1185,150 +1319,11 @@
           <td>
             
             
-            <span class='code'># overhead ~ 0.15us</span>
+            <span class='code'>    return H_c</span>
           </td>
         </tr>
         <tr id='L117'>
           <td class='lineno'>117</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'># @benchmark OMEinsum.einsum&#40;Permutedims&#40;&#41;, &#36;&#40;&#40;&#40;&#39;a&#39;, &#39;b&#39;&#41;,&#41;&#41;, &#36;&#40;&#40;&#39;b&#39;,&#39;a&#39;&#41;&#41;, &#40;x,&#41;, &#36;&#40;Dict&#40;&#39;a&#39;&#61;&gt;1, &#39;b&#39;&#61;&gt;1&#41;&#41;&#41; setup&#61;&#40;x&#61;randn&#40;1,1&#41;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L118'>
-          <td class='lineno'>118</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            <div class='call-sites'>
-              216 &#40;3 &#37;&#41;
-              samples spent in unary_einsum&#33;
-              <br />
-              1 &#40;0 &#37;&#41; &#40;ex.&#41;,
-              216 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from einsum&#33;
-              <a href='einsum.jl-b597a95439f9cc02414bf8d95089cd9e6100fb34.html#L84'>line 84</a>
-              <br />
-            </div>
-            
-            <span class='code'>function unary_einsum&#33;&#40;::Permutedims, ix, iy, x::AbstractArray, y::AbstractArray, sx, sy&#41;</span>
-          </td>
-        </tr>
-        <tr id='L119'>
-          <td class='lineno'>119</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>    perm &#61; ntuple&#40;i -&gt; findfirst&#40;&#61;&#61;&#40;iy&#91;i&#93;&#41;, ix&#41;::Int, length&#40;iy&#41;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L120'>
-          <td class='lineno'>120</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
-          <td>
-            
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='logging.jl-e333e0ce73072926b71b90031111fd9985d8f0fd.html#L389'>macro expansion</a>
-              <br />
-            </div>
-            <span class='code'>    @debug &quot;Permutedims&quot; ix &#61;&gt; iy size&#40;x&#41; perm</span>
-          </td>
-        </tr>
-        <tr id='L121'>
-          <td class='lineno'>121</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>215 &#40;3 &#37;&#41;</td>
-          <td>
-            
-            <div class='callees'>
-              214 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='utils.jl-a85f13c79845ca4421336ca0eb4f5c5ea68164b2.html#L122'>tensorpermute&#33;</a>
-              <br />
-            </div>
-            <span class='code'>    return tensorpermute&#33;&#40;y, x, perm, sx, sy&#41;</span>
-          </td>
-        </tr>
-        <tr id='L122'>
-          <td class='lineno'>122</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>end</span>
-          </td>
-        </tr>
-        <tr id='L123'>
-          <td class='lineno'>123</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'></span>
-          </td>
-        </tr>
-        <tr id='L124'>
-          <td class='lineno'>124</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'># overhead ~0.04us</span>
-          </td>
-        </tr>
-        <tr id='L125'>
-          <td class='lineno'>125</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'># @benchmark OMEinsum.einsum&#40;Identity&#40;&#41;, &#36;&#40;&#40;&#40;&#39;a&#39;, &#39;b&#39;&#41;,&#41;&#41;, &#36;&#40;&#40;&#39;a&#39;,&#39;b&#39;&#41;&#41;, &#40;x,&#41;, &#36;&#40;Dict&#40;&#39;a&#39;&#61;&gt;1, &#39;b&#39;&#61;&gt;1&#41;&#41;&#41; setup&#61;&#40;x&#61;randn&#40;1,1&#41;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L126'>
-          <td class='lineno'>126</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>function unary_einsum&#33;&#40;::Identity, ix, iy, x::AbstractArray, y::AbstractArray, sx, sy&#41;</span>
-          </td>
-        </tr>
-        <tr id='L127'>
-          <td class='lineno'>127</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>    @debug &quot;Identity&quot; ix &#61;&gt; iy size&#40;x&#41;</span>
-          </td>
-        </tr>
-        <tr id='L128'>
-          <td class='lineno'>128</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
-          <td>
-            
-            
-            <span class='code'>    @flatten_addmul&#33; sy * y &#43; sx * x  # NOTE: copy can not be avoided, otherwise AD may fail&#33;</span>
-          </td>
-        </tr>
-        <tr id='L129'>
-          <td class='lineno'>129</td>
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>

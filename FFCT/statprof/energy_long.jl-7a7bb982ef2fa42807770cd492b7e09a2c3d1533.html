@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'></meta>
     <link rel='stylesheet' type='text/css' href='statprofiler.css'></link>
-    <title>StatProfilerHTML - ../../.julia/packages/ChebParticleMesh/ElXWI/src/grid.jl</title>
+    <title>StatProfilerHTML - ../../../.julia/packages/FastSpecSoG/VvHyd/src/energy/energy_long.jl</title>
   </head>
   <body>
     <div class='report-header'>
@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Tue, 20 Feb 2024 21:17:56
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -35,7 +35,7 @@
           <td>
             
             
-            <span class='code'>&quot;&quot;&quot;</span>
+            <span class='code'># N_x, N_y are the uniform grid numbers in the x and y directions</span>
           </td>
         </tr>
         <tr id='L2'>
@@ -45,7 +45,7 @@
           <td>
             
             
-            <span class='code'>function GridInfo&#40;N_real::NTuple&#123;N, Int&#125;, w::NTuple&#123;N, Int&#125;, periodicity::NTuple&#123;N, Bool&#125;, extra_pad::NTuple&#123;N, Int&#125;, L::NTuple&#123;N, T&#125;&#41; where&#123;N, T&lt;:Union&#123;Float32, Float64&#125;&#125;</span>
+            <span class='code'># N_z is the Chebyshev grid number in the z direction</span>
           </td>
         </tr>
         <tr id='L3'>
@@ -55,7 +55,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'># n_atoms is the number of particles</span>
           </td>
         </tr>
         <tr id='L4'>
@@ -65,7 +65,7 @@
           <td>
             
             
-            <span class='code'>    This function creates a GridBox object with two mutable Array.</span>
+            <span class='code'># M_num is the number of Gaussians M_mid&#43;1:M</span>
           </td>
         </tr>
         <tr id='L5'>
@@ -75,7 +75,7 @@
           <td>
             
             
-            <span class='code'>    </span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L6'>
@@ -85,7 +85,7 @@
           <td>
             
             
-            <span class='code'>    N_real: the number of real grid points in each direction</span>
+            <span class='code'># This part will be done in the following steps:</span>
           </td>
         </tr>
         <tr id='L7'>
@@ -95,7 +95,7 @@
           <td>
             
             
-            <span class='code'>    w: the number of grid points in each direction for the window function cutoff</span>
+            <span class='code'># 1. Generate the inverse matrix, k matrix</span>
           </td>
         </tr>
         <tr id='L8'>
@@ -105,7 +105,7 @@
           <td>
             
             
-            <span class='code'>    periodicity: a tuple of three boolean values indicating whether the grid is periodic in each direction, to decide padding or not</span>
+            <span class='code'># 2. interpolate the particles onto the grid &#40;Fourier grids in xy and chebgrid in z&#41;</span>
           </td>
         </tr>
         <tr id='L9'>
@@ -115,7 +115,7 @@
           <td>
             
             
-            <span class='code'>    extra_pad: the number of extra grid points in each direction for padding</span>
+            <span class='code'># 3. Convert the grid in z into the Chebyshev series</span>
           </td>
         </tr>
         <tr id='L10'>
@@ -125,7 +125,7 @@
           <td>
             
             
-            <span class='code'>    L: the length of the box in each direction</span>
+            <span class='code'># 4. solve the equation for the boundary condition</span>
           </td>
         </tr>
         <tr id='L11'>
@@ -135,7 +135,7 @@
           <td>
             
             
-            <span class='code'>    h: the grid spacing in each direction, the first point is at &#91;h/2, 3h/2, ..., L - h/2&#93;</span>
+            <span class='code'># 5. gather the energy</span>
           </td>
         </tr>
         <tr id='L12'>
@@ -145,7 +145,7 @@
           <td>
             
             
-            <span class='code'>    N_image: the number of grid points in each direction for the image grid, given by tuple&#40;&#91;2 * w&#91;i&#93; &#43; 2 for i in 1:N&#93;...&#41; .&#43; N_real</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L13'>
@@ -155,7 +155,7 @@
           <td>
             
             
-            <span class='code'>    N_pad: the numer of padded grid points in each direction, given by tuple&#40;&#91;2 * pad&#91;i&#93; * &#40;periodicity&#91;i&#93; &#61;&#61; false&#41; for i in 1:N&#93;...&#41; .&#43; N_image .&#43; N_real</span>
+            <span class='code'>function energy_long_loop&#40;</span>
           </td>
         </tr>
         <tr id='L14'>
@@ -165,7 +165,7 @@
           <td>
             
             
-            <span class='code'>&quot;&quot;&quot;</span>
+            <span class='code'>    qs::Vector&#123;T&#125;, poses::Vector&#123;NTuple&#123;3, T&#125;&#125;, L::NTuple&#123;3, T&#125;, N_grid::NTuple&#123;3, Int&#125;, M_mid::Int, </span>
           </td>
         </tr>
         <tr id='L15'>
@@ -175,7 +175,7 @@
           <td>
             
             
-            <span class='code'>function GridInfo&#40;N_real::NTuple&#123;N, Int&#125;, w::NTuple&#123;N, Int&#125;, periodicity::NTuple&#123;N, Bool&#125;, extra_pad::NTuple&#123;N, Int&#125;, L::NTuple&#123;N, T&#125;&#41; where&#123;N, T&lt;:Union&#123;Float32, Float64&#125;&#125;</span>
+            <span class='code'>    k_x::Vector&#123;T&#125;, k_y::Vector&#123;T&#125;, r_z::Vector&#123;T&#125;, </span>
           </td>
         </tr>
         <tr id='L16'>
@@ -185,7 +185,7 @@
           <td>
             
             
-            <span class='code'>    N_image &#61; tuple&#40;&#91;2 * w&#91;i&#93; &#43; 2 for i in 1:N&#93;...&#41; .&#43; N_real</span>
+            <span class='code'>    phase_x::Vector&#123;Complex&#123;T&#125;&#125;, phase_y::Vector&#123;Complex&#123;T&#125;&#125;,</span>
           </td>
         </tr>
         <tr id='L17'>
@@ -195,7 +195,7 @@
           <td>
             
             
-            <span class='code'>    image &#61; tuple&#40;&#91;w&#91;i&#93; &#43; 1 for i in 1:N&#93;...&#41;</span>
+            <span class='code'>    z::Vector&#123;T&#125;, sort_z::Vector&#123;Int&#125;, </span>
           </td>
         </tr>
         <tr id='L18'>
@@ -205,7 +205,7 @@
           <td>
             
             
-            <span class='code'>    pad &#61; tuple&#40;&#91;&#40;extra_pad&#91;i&#93; &#43; w&#91;i&#93; &#43; 1&#41; * &#40;periodicity&#91;i&#93; &#61;&#61; false&#41; for i in 1:N&#93;...&#41;</span>
+            <span class='code'>    us_mat::Array&#123;Complex&#123;T&#125;, 3&#125;, b_l::Array&#123;Complex&#123;T&#125;, 2&#125;, b_u::Array&#123;Complex&#123;T&#125;, 2&#125;, </span>
           </td>
         </tr>
         <tr id='L19'>
@@ -215,7 +215,7 @@
           <td>
             
             
-            <span class='code'>    N_pad &#61; tuple&#40;&#91;2 * pad&#91;i&#93; for i in 1:N&#93;...&#41; .&#43; N_real</span>
+            <span class='code'>    rhs::Vector&#123;Complex&#123;T&#125;&#125;, sol::Vector&#123;Complex&#123;T&#125;&#125;, ivsm::Array&#123;T, 4&#125;,</span>
           </td>
         </tr>
         <tr id='L20'>
@@ -225,7 +225,7 @@
           <td>
             
             
-            <span class='code'>    h &#61; tuple&#40;&#91;L&#91;i&#93; / &#40;N_real&#91;i&#93;&#41; for i in 1:N&#93;...&#41;</span>
+            <span class='code'>    H_r::Array&#123;Complex&#123;T&#125;, 3&#125;, H_c::Array&#123;Complex&#123;T&#125;, 3&#125;, H_s::Array&#123;Complex&#123;T&#125;, 3&#125;, </span>
           </td>
         </tr>
         <tr id='L21'>
@@ -235,7 +235,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    uspara::USeriesPara&#123;T&#125;, soepara::SoePara&#123;Complex&#123;T&#125;&#125;</span>
           </td>
         </tr>
         <tr id='L22'>
@@ -245,7 +245,7 @@
           <td>
             
             
-            <span class='code'>    k &#61; Vector&#123;Array&#123;T, 1&#125;&#125;&#40;&#41;</span>
+            <span class='code'>    &#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L23'>
@@ -265,7 +265,7 @@
           <td>
             
             
-            <span class='code'>    for i in 1:N</span>
+            <span class='code'>    @assert M_mid ≤ length&#40;uspara.sw&#41;</span>
           </td>
         </tr>
         <tr id='L25'>
@@ -275,7 +275,7 @@
           <td>
             
             
-            <span class='code'>        ki &#61; &#91;2π * j / &#40;L&#91;i&#93; &#43; h&#91;i&#93; * 2 * pad&#91;i&#93;&#41; for j in 0:&#40;N_pad&#91;i&#93; - 1&#41;&#93;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L26'>
@@ -285,7 +285,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    b_l, b_u &#61; boundaries&#33;&#40;qs, poses, b_l, b_u, k_x, k_y, us_mat, phase_x, phase_y, L&#91;3&#93;, uspara, M_mid&#41;</span>
           </td>
         </tr>
         <tr id='L27'>
@@ -295,7 +295,7 @@
           <td>
             
             
-            <span class='code'>        for j in 1:N_pad&#91;i&#93;</span>
+            <span class='code'>    H_r &#61; interpolate_nu_loop&#33;&#40;H_r, qs, poses, N_grid, L, k_x, k_y, phase_x, phase_y, r_z, us_mat, uspara, M_mid&#41;</span>
           </td>
         </tr>
         <tr id='L28'>
@@ -305,7 +305,7 @@
           <td>
             
             
-            <span class='code'>            if j - 1 &gt; ceil&#40;N_pad&#91;i&#93; / 2&#41;</span>
+            <span class='code'>    H_c &#61; real2Cheb&#33;&#40;H_r, H_c, r_z, L&#91;3&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L29'>
@@ -315,7 +315,7 @@
           <td>
             
             
-            <span class='code'>                ki&#91;j&#93; -&#61; 2π * N_pad&#91;i&#93; / &#40;L&#91;i&#93; &#43; h&#91;i&#93; * 2 * pad&#91;i&#93;&#41;</span>
+            <span class='code'>    H_s &#61; solve_eqs&#33;&#40;rhs, sol, H_c, H_s, b_l, b_u, ivsm, L&#91;3&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L30'>
@@ -325,7 +325,7 @@
           <td>
             
             
-            <span class='code'>            end</span>
+            <span class='code'>    E_k &#61; gather_nu&#40;qs, poses, L, k_x, k_y, phase_x, phase_y, H_s&#41;</span>
           </td>
         </tr>
         <tr id='L31'>
@@ -335,7 +335,7 @@
           <td>
             
             
-            <span class='code'>        end</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L32'>
@@ -345,7 +345,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    revise_z&#33;&#40;z, sort_z, poses&#41;</span>
           </td>
         </tr>
         <tr id='L33'>
@@ -355,7 +355,7 @@
           <td>
             
             
-            <span class='code'>        push&#33;&#40;k, ki&#41;</span>
+            <span class='code'>    E_0 &#61; zeroth_order&#40;qs, z, soepara, uspara, sort_z, L, M_mid&#41;</span>
           </td>
         </tr>
         <tr id='L34'>
@@ -365,7 +365,7 @@
           <td>
             
             
-            <span class='code'>    end</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L35'>
@@ -375,7 +375,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    @debug &quot;long range energy, FFCT&quot; E_k, E_0</span>
           </td>
         </tr>
         <tr id='L36'>
@@ -385,7 +385,7 @@
           <td>
             
             
-            <span class='code'>    index_list &#61; &#91;mod1.&#40;1 &#43; pad&#91;i&#93; - image&#91;i&#93;:pad&#91;i&#93; &#43; N_real&#91;i&#93; &#43; image&#91;i&#93;, N_pad&#91;i&#93;&#41; for i in 1:N&#93;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L37'>
@@ -395,7 +395,7 @@
           <td>
             
             
-            <span class='code'>    iter_list &#61; Iterators.product&#40;&#91;- w&#91;i&#93; : w&#91;i&#93; for i in 1:N&#93;...&#41;</span>
+            <span class='code'>    return E_k &#43; E_0</span>
           </td>
         </tr>
         <tr id='L38'>
@@ -405,7 +405,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>end</span>
           </td>
         </tr>
         <tr id='L39'>
@@ -415,7 +415,7 @@
           <td>
             
             
-            <span class='code'>    return GridInfo&#123;N, T&#125;&#40;N_real, w, periodicity, image, pad, L, h, N_image, N_pad, index_list, iter_list, k&#41;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L40'>
@@ -423,9 +423,18 @@
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
+            <div class='call-sites'>
+              7358 &#40;100 &#37;&#41;
+              samples spent in energy_long_einsum
+              <br />
+              
+              7358 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from macro expansion
+              <a href='FFCT_profile.jl-38db0002a42d860b9e96d2e7e091ddabff2f4974.html#L21'>line 21</a>
+              <br />
+            </div>
             
-            
-            <span class='code'>end</span>
+            <span class='code'>function energy_long_einsum&#40;</span>
           </td>
         </tr>
         <tr id='L41'>
@@ -435,7 +444,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    qs::Vector&#123;T&#125;, poses::Vector&#123;NTuple&#123;3, T&#125;&#125;, L::NTuple&#123;3, T&#125;, M_mid::Int, </span>
           </td>
         </tr>
         <tr id='L42'>
@@ -445,7 +454,7 @@
           <td>
             
             
-            <span class='code'>function GridBox&#40;grid_info::GridInfo&#123;N, T&#125;&#41; where&#123;N, T&lt;:Union&#123;Float32, Float64&#125;&#125;</span>
+            <span class='code'>    k_x::Vector&#123;T&#125;, k_y::Vector&#123;T&#125;, k_mat::Array&#123;T, 2&#125;, r_z::Vector&#123;T&#125;, </span>
           </td>
         </tr>
         <tr id='L43'>
@@ -455,7 +464,7 @@
           <td>
             
             
-            <span class='code'>    pad_grid &#61; zeros&#40;Complex&#123;T&#125;, grid_info.N_pad...&#41;</span>
+            <span class='code'>    phase_x::Vector&#123;Complex&#123;T&#125;&#125;, phase_y::Vector&#123;Complex&#123;T&#125;&#125;,</span>
           </td>
         </tr>
         <tr id='L44'>
@@ -465,7 +474,7 @@
           <td>
             
             
-            <span class='code'>    </span>
+            <span class='code'>    phase_xs::Array&#123;Complex&#123;T&#125;, 2&#125;, phase_ys::Array&#123;Complex&#123;T&#125;, 2&#125;, phase_xys::Array&#123;Complex&#123;T&#125;, 3&#125;,</span>
           </td>
         </tr>
         <tr id='L45'>
@@ -475,7 +484,7 @@
           <td>
             
             
-            <span class='code'>    image_grid &#61; view&#40;pad_grid, grid_info.index_list...&#41;</span>
+            <span class='code'>    temp_ijlk::Array&#123;Complex&#123;T&#125;, 4&#125;, temp_ijl::Array&#123;Complex&#123;T&#125;, 3&#125;, size_dict::Dict&#123;Char, Int64&#125;, z_coef::Array&#123;T, 3&#125;, exp_coef::Array&#123;T, 3&#125;, </span>
           </td>
         </tr>
         <tr id='L46'>
@@ -485,7 +494,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    z::Vector&#123;T&#125;, sort_z::Vector&#123;Int&#125;, </span>
           </td>
         </tr>
         <tr id='L47'>
@@ -495,7 +504,7 @@
           <td>
             
             
-            <span class='code'>    cheb_value &#61; &#91;zeros&#40;T, 2 * grid_info.w&#91;i&#93; &#43; 1&#41; for i in 1:N&#93;</span>
+            <span class='code'>    us_mat::Array&#123;Complex&#123;T&#125;, 3&#125;, b_l::Array&#123;Complex&#123;T&#125;, 2&#125;, b_u::Array&#123;Complex&#123;T&#125;, 2&#125;, </span>
           </td>
         </tr>
         <tr id='L48'>
@@ -505,7 +514,7 @@
           <td>
             
             
-            <span class='code'>    return GridBox&#123;N, T&#125;&#40;pad_grid, image_grid, cheb_value&#41;</span>
+            <span class='code'>    rhs::Vector&#123;Complex&#123;T&#125;&#125;, sol::Vector&#123;Complex&#123;T&#125;&#125;, ivsm::Array&#123;T, 4&#125;,</span>
           </td>
         </tr>
         <tr id='L49'>
@@ -515,7 +524,7 @@
           <td>
             
             
-            <span class='code'>end</span>
+            <span class='code'>    H_r::Array&#123;Complex&#123;T&#125;, 3&#125;, H_c::Array&#123;Complex&#123;T&#125;, 3&#125;, H_s::Array&#123;Complex&#123;T&#125;, 3&#125;, </span>
           </td>
         </tr>
         <tr id='L50'>
@@ -525,7 +534,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    uspara::USeriesPara&#123;T&#125;, soepara::SoePara&#123;Complex&#123;T&#125;&#125;</span>
           </td>
         </tr>
         <tr id='L51'>
@@ -535,7 +544,7 @@
           <td>
             
             
-            <span class='code'></span>
+            <span class='code'>    &#41; where&#123;T&#125;</span>
           </td>
         </tr>
         <tr id='L52'>
@@ -545,7 +554,7 @@
           <td>
             
             
-            <span class='code'>&quot;&quot;&quot;</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L53'>
@@ -555,7 +564,7 @@
           <td>
             
             
-            <span class='code'>function grid_revise_pad&#33;&#40;gridbox::GridBox&#123;N, T&#125;&#41; where&#123;N, T&#125;</span>
+            <span class='code'>    @assert M_mid ≤ length&#40;uspara.sw&#41;</span>
           </td>
         </tr>
         <tr id='L54'>
@@ -571,109 +580,116 @@
         <tr id='L55'>
           <td class='lineno'>55</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>868 &#40;12 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>    set all values of gridbox.pad_grid to 0</span>
+            <div class='callees'>
+              868 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='linear_eqs.jl-a93ba53a04fbab7a09b2c51eb7124bd3c86af2cc.html#L30'>boundaries&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    b_l, b_u &#61; boundaries&#33;&#40;qs, poses, b_l, b_u, k_x, k_y, us_mat, phase_x, phase_y, L&#91;3&#93;, uspara, M_mid&#41;</span>
           </td>
         </tr>
         <tr id='L56'>
           <td class='lineno'>56</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>2247 &#40;31 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>&quot;&quot;&quot;</span>
+            <div class='callees'>
+              2247 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L31'>interpolate_nu_einsum&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    H_r &#61; interpolate_nu_einsum&#33;&#40;H_r, qs, poses, k_x, k_y, k_mat, phase_xs, phase_ys, phase_xys, z_coef, exp_coef, temp_ijlk, temp_ijl, r_z, us_mat, uspara, M_mid, size_dict&#41;</span>
           </td>
         </tr>
         <tr id='L57'>
           <td class='lineno'>57</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>23 &#40;0 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>function grid_revise_pad&#33;&#40;gridbox::GridBox&#123;N, T&#125;&#41; where&#123;N, T&#125;</span>
+            <div class='callees'>
+              23 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L104'>real2Cheb&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    H_c &#61; real2Cheb&#33;&#40;H_r, H_c, r_z, L&#91;3&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L58'>
           <td class='lineno'>58</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>49 &#40;1 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'></span>
+            <div class='callees'>
+              49 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='linear_eqs.jl-a93ba53a04fbab7a09b2c51eb7124bd3c86af2cc.html#L47'>solve_eqs&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    H_s &#61; solve_eqs&#33;&#40;rhs, sol, H_c, H_s, b_l, b_u, ivsm, L&#91;3&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L59'>
           <td class='lineno'>59</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>2416 &#40;33 &#37;&#41;</td>
           <td>
             
-            
-            <span class='code'>    for i in eachindex&#40;gridbox.pad_grid&#41;</span>
+            <div class='callees'>
+              2416 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='nugrid_gather.jl-c20d1ca5fd61decb6dd3f64ff074246383bc916c.html#L19'>gather_nu</a>
+              <br />
+            </div>
+            <span class='code'>    E_k &#61; gather_nu&#40;qs, poses, L, k_x, k_y, phase_x, phase_y, H_s&#41;</span>
           </td>
         </tr>
         <tr id='L60'>
           <td class='lineno'>60</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
-          <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in grid_revise_pad&#33;
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from interpolate&#33;
-              <a href='interpolate.jl-b0ec846d2cc71cdcaa9a085b8e2622a7d73b739d.html#L24'>line 24</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-e95eb3d0ca6bf1bb4d02be7c03e2efbbd16ad22a.html#L1021'>setindex&#33;</a>
-              <br />
-            </div>
-            <span class='code'>        gridbox.pad_grid&#91;i&#93; &#61; zero&#40;Complex&#123;T&#125;&#41;</span>
-          </td>
-        </tr>
-        <tr id='L61'>
-          <td class='lineno'>61</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
-          <td>
-            <div class='call-sites'>
-              3 &#40;0 &#37;&#41;
-              samples spent in grid_revise_pad&#33;
-              <br />
-              
-              3 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from interpolate&#33;
-              <a href='interpolate.jl-b0ec846d2cc71cdcaa9a085b8e2622a7d73b739d.html#L24'>line 24</a>
-              <br />
-            </div>
-            <div class='callees'>
-              3 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='range.jl-13ae9c59d7e63dd2e1ef395b43a819c8535e26f3.html#L901'>iterate</a>
-              <br />
-            </div>
-            <span class='code'>    end</span>
-          </td>
-        </tr>
-        <tr id='L62'>
-          <td class='lineno'>62</td>
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
             
             
             <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L61'>
+          <td class='lineno'>61</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>33 &#40;0 &#37;&#41;</td>
+          <td>
+            
+            <div class='callees'>
+              33 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='zeroth_order.jl-3718dc6e8e3843c127a2ef13bfa05ce9d1380bec.html#L13'>revise_z&#33;</a>
+              <br />
+            </div>
+            <span class='code'>    revise_z&#33;&#40;z, sort_z, poses&#41;</span>
+          </td>
+        </tr>
+        <tr id='L62'>
+          <td class='lineno'>62</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>1722 &#40;23 &#37;&#41;</td>
+          <td>
+            
+            <div class='callees'>
+              1722 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='zeroth_order.jl-3718dc6e8e3843c127a2ef13bfa05ce9d1380bec.html#L1'>zeroth_order</a>
+              <br />
+            </div>
+            <span class='code'>    E_0 &#61; zeroth_order&#40;qs, z, soepara, uspara, sort_z, L, M_mid&#41;</span>
           </td>
         </tr>
         <tr id='L63'>
@@ -683,11 +699,41 @@
           <td>
             
             
-            <span class='code'>    return nothing</span>
+            <span class='code'></span>
           </td>
         </tr>
         <tr id='L64'>
           <td class='lineno'>64</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    @debug &quot;long range energy, FFCT&quot; E_k, E_0</span>
+          </td>
+        </tr>
+        <tr id='L65'>
+          <td class='lineno'>65</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'></span>
+          </td>
+        </tr>
+        <tr id='L66'>
+          <td class='lineno'>66</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
+          <td>
+            
+            
+            <span class='code'>    return E_k &#43; E_0</span>
+          </td>
+        </tr>
+        <tr id='L67'>
+          <td class='lineno'>67</td>
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>

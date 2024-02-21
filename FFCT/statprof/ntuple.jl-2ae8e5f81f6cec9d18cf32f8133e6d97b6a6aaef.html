@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -194,11 +194,11 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              3 &#40;0 &#37;&#41;
+              1 &#40;0 &#37;&#41;
               samples spent in ntuple
               <br />
-              2 &#40;67 &#37;&#41; &#40;ex.&#41;,
-              3 &#40;100 &#37;&#41; &#40;incl.&#41;
+              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from tensorpermute&#33;
               <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L148'>line 148</a>
               <br />
@@ -219,16 +219,11 @@
         </tr>
         <tr id='L19'>
           <td class='lineno'>19</td>
-          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L148'>#34</a>
-              <br />
-            </div>
+            
             <span class='code'>    t &#61; n &#61;&#61; 0  ? &#40;&#41; :</span>
           </td>
         </tr>
@@ -525,20 +520,20 @@
         <tr id='L49'>
           <td class='lineno'>49</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>5 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>6 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              5 &#40;0 &#37;&#41;
+              6 &#40;0 &#37;&#41;
               samples spent in ntuple
               <br />
               
-              5 &#40;100 &#37;&#41; &#40;incl.&#41;
+              6 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from copy
               <a href='broadcast.jl-9538a2221b315be425e9c47ec7c3883483af8540.html#L1118'>line 1118</a>
               <br />
             </div>
             <div class='callees'>
-              5 &#40;100 &#37;&#41;
+              6 &#40;100 &#37;&#41;
               samples spent calling
               <a href='broadcast.jl-9538a2221b315be425e9c47ec7c3883483af8540.html#L1118'>#31</a>
               <br />
@@ -739,24 +734,10 @@
         <tr id='L69'>
           <td class='lineno'>69</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in ntuple
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from size
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L193'>line 193</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='ntuple.jl-2ae8e5f81f6cec9d18cf32f8133e6d97b6a6aaef.html#L72'>macro expansion</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>@inline function ntuple&#40;f::F, ::Val&#123;N&#125;&#41; where &#123;F,N&#125;</span>
           </td>
         </tr>
@@ -783,24 +764,10 @@
         <tr id='L72'>
           <td class='lineno'>72</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in macro expansion
-              <br />
-              
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from ntuple
-              <a href='ntuple.jl-2ae8e5f81f6cec9d18cf32f8133e6d97b6a6aaef.html#L69'>line 69</a>
-              <br />
-            </div>
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L193'>#112</a>
-              <br />
-            </div>
+            
+            
             <span class='code'>    if @generated</span>
           </td>
         </tr>

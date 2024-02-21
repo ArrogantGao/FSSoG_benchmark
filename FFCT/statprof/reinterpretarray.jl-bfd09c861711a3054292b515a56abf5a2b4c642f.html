@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -3551,10 +3551,24 @@
         <tr id='L353'>
           <td class='lineno'>353</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in unsafe_convert
+              <br />
+              
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from unsafe_convert
+              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L470'>line 470</a>
+              <br />
+            </div>
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='Base.jl-56e9e26b6cf178dd490a1d5eb42a9f5b4c252076.html#L37'>getproperty</a>
+              <br />
+            </div>
             <span class='code'>unsafe_convert&#40;::Type&#123;Ptr&#123;T&#125;&#125;, a::ReinterpretArray&#123;T,N,S&#125; where N&#41; where &#123;T,S&#125; &#61; Ptr&#123;T&#125;&#40;unsafe_convert&#40;Ptr&#123;S&#125;,a.parent&#41;&#41;</span>
           </td>
         </tr>
@@ -3691,20 +3705,25 @@
         <tr id='L367'>
           <td class='lineno'>367</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>5 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              3 &#40;0 &#37;&#41;
+              5 &#40;0 &#37;&#41;
               samples spent in getindex
               <br />
               
-              3 &#40;100 &#37;&#41; &#40;incl.&#41;
+              4 &#40;80 &#37;&#41; &#40;incl.&#41;
+              when called from lt
+              <a href='ordering.jl-51568f8434cb3de55b628c90938f48f44b90feb8.html#L124'>line 124</a>
+              <br />
+              
+              1 &#40;20 &#37;&#41; &#40;incl.&#41;
               when called from lt
               <a href='ordering.jl-51568f8434cb3de55b628c90938f48f44b90feb8.html#L123'>line 123</a>
               <br />
             </div>
             <div class='callees'>
-              3 &#40;100 &#37;&#41;
+              5 &#40;100 &#37;&#41;
               samples spent calling
               <a href='reinterpretarray.jl-bfd09c861711a3054292b515a56abf5a2b4c642f.html#L397'>_getindex_ra</a>
               <br />
@@ -4005,20 +4024,20 @@
         <tr id='L397'>
           <td class='lineno'>397</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>5 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              3 &#40;0 &#37;&#41;
+              5 &#40;0 &#37;&#41;
               samples spent in _getindex_ra
               <br />
               
-              3 &#40;100 &#37;&#41; &#40;incl.&#41;
+              5 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from getindex
               <a href='reinterpretarray.jl-bfd09c861711a3054292b515a56abf5a2b4c642f.html#L367'>line 367</a>
               <br />
             </div>
             <div class='callees'>
-              3 &#40;100 &#37;&#41;
+              5 &#40;100 &#37;&#41;
               samples spent calling
               <a href='essentials.jl-f0c8802a556c409b803937db99f588c9c5999872.html#L13'>getindex</a>
               <br />

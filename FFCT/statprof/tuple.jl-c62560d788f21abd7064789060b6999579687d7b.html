@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -330,17 +330,22 @@
         </tr>
         <tr id='L31'>
           <td class='lineno'>31</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
+              2 &#40;0 &#37;&#41;
               samples spent in getindex
               <br />
-              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              1 &#40;50 &#37;&#41; &#40;ex.&#41;,
+              1 &#40;50 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L81'>line 81</a>
+              <br />
+              1 &#40;50 &#37;&#41; &#40;ex.&#41;,
+              1 &#40;50 &#37;&#41; &#40;incl.&#41;
+              when called from _broadcast_getindex
+              <a href='broadcast.jl-9538a2221b315be425e9c47ec7c3883483af8540.html#L660'>line 660</a>
               <br />
             </div>
             
@@ -2949,19 +2954,10 @@
         </tr>
         <tr id='L292'>
           <td class='lineno'>292</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in map
-              <br />
-              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from size
-              <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L63'>line 63</a>
-              <br />
-            </div>
+            
             
             <span class='code'>map&#40;f, t::Tuple&#123;Any, Any&#125;&#41;      &#61; &#40;@inline; &#40;f&#40;t&#91;1&#93;&#41;, f&#40;t&#91;2&#93;&#41;&#41;&#41;</span>
           </td>

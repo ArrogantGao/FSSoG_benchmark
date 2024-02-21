@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -34,13 +34,13 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              9 &#40;0 &#37;&#41;
+              5 &#40;0 &#37;&#41;
               samples spent in boundaries_single&#33;
               <br />
-              9 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              9 &#40;100 &#37;&#41; &#40;incl.&#41;
+              5 &#40;100 &#37;&#41; &#40;ex.&#41;,
+              5 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from boundaries&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L41'>line 41</a>
+              <a href='linear_eqs.jl-a93ba53a04fbab7a09b2c51eb7124bd3c86af2cc.html#L41'>line 41</a>
               <br />
             </div>
             
@@ -113,11 +113,11 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              27 &#40;0 &#37;&#41;
+              50 &#40;1 &#37;&#41;
               samples spent in #FET1d#44
               <br />
-              27 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              27 &#40;100 &#37;&#41; &#40;incl.&#41;
+              50 &#40;100 &#37;&#41; &#40;ex.&#41;,
+              50 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from FET1d
               <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L8'>line 8</a>
               <br />
@@ -138,19 +138,10 @@
         </tr>
         <tr id='L10'>
           <td class='lineno'>10</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
           <td>
-            <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
-              samples spent in length
-              <br />
-              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from gemv&#33;
-              <a href='matmul.jl-d13d07f0c5597083b3e5e570440eeac33085645b.html#L456'>line 456</a>
-              <br />
-            </div>
+            
             
             <span class='code'>length&#40;a::Array&#41; &#61; arraylen&#40;a&#41;</span>
           </td>
@@ -177,132 +168,107 @@
         </tr>
         <tr id='L13'>
           <td class='lineno'>13</td>
-          <td class='tracecount excl'>315 &#40;5 &#37;&#41;</td>
-          <td class='tracecount incl'>315 &#40;5 &#37;&#41;</td>
+          <td class='tracecount excl'>345 &#40;5 &#37;&#41;</td>
+          <td class='tracecount incl'>345 &#40;5 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              315 &#40;5 &#37;&#41;
+              345 &#40;5 &#37;&#41;
               samples spent in getindex
               <br />
-              101 &#40;32 &#37;&#41; &#40;ex.&#41;,
-              101 &#40;32 &#37;&#41; &#40;incl.&#41;
+              108 &#40;31 &#37;&#41; &#40;ex.&#41;,
+              108 &#40;31 &#37;&#41; &#40;incl.&#41;
               when called from macro expansion
               <a href='generic.jl-d66517a151efdc7bd6940ca3db33afae5ba7a2ff.html#L934'>line 934</a>
               <br />
-              75 &#40;24 &#37;&#41; &#40;ex.&#41;,
-              75 &#40;24 &#37;&#41; &#40;incl.&#41;
+              68 &#40;20 &#37;&#41; &#40;ex.&#41;,
+              68 &#40;20 &#37;&#41; &#40;incl.&#41;
               when called from macro expansion
               <a href='multidimensional.jl-5b7ac3c100dd0cf7fb236f439bcf0dfdb58a23bb.html#L1633'>line 1633</a>
               <br />
-              24 &#40;8 &#37;&#41; &#40;ex.&#41;,
-              24 &#40;8 &#37;&#41; &#40;incl.&#41;
-              when called from #FET1d#44
-              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L26'>line 26</a>
-              <br />
-              20 &#40;6 &#37;&#41; &#40;ex.&#41;,
-              20 &#40;6 &#37;&#41; &#40;incl.&#41;
+              40 &#40;12 &#37;&#41; &#40;ex.&#41;,
+              40 &#40;12 &#37;&#41; &#40;incl.&#41;
               when called from #FET1d#44
               <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L35'>line 35</a>
               <br />
-              14 &#40;4 &#37;&#41; &#40;ex.&#41;,
-              14 &#40;4 &#37;&#41; &#40;incl.&#41;
+              22 &#40;6 &#37;&#41; &#40;ex.&#41;,
+              22 &#40;6 &#37;&#41; &#40;incl.&#41;
               when called from #FET1d#44
-              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L25'>line 25</a>
+              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L26'>line 26</a>
               <br />
-              13 &#40;4 &#37;&#41; &#40;ex.&#41;,
-              13 &#40;4 &#37;&#41; &#40;incl.&#41;
+              22 &#40;6 &#37;&#41; &#40;ex.&#41;,
+              22 &#40;6 &#37;&#41; &#40;incl.&#41;
+              when called from boundaries_single&#33;
+              <a href='linear_eqs.jl-a93ba53a04fbab7a09b2c51eb7124bd3c86af2cc.html#L19'>line 19</a>
+              <br />
+              16 &#40;5 &#37;&#41; &#40;ex.&#41;,
+              16 &#40;5 &#37;&#41; &#40;incl.&#41;
               when called from #FET1d#44
               <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L34'>line 34</a>
               <br />
               10 &#40;3 &#37;&#41; &#40;ex.&#41;,
               10 &#40;3 &#37;&#41; &#40;incl.&#41;
-              when called from boundaries_single&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L19'>line 19</a>
-              <br />
-              9 &#40;3 &#37;&#41; &#40;ex.&#41;,
-              9 &#40;3 &#37;&#41; &#40;incl.&#41;
-              when called from revise_z_coef&#33;
-              <a href='nugrid_interpolate.jl-7068346af8c7928f7b11cfa298853087da9c3325.html#L13'>line 13</a>
-              <br />
-              7 &#40;2 &#37;&#41; &#40;ex.&#41;,
-              7 &#40;2 &#37;&#41; &#40;incl.&#41;
-              when called from #FET1d#44
-              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L23'>line 23</a>
-              <br />
-              6 &#40;2 &#37;&#41; &#40;ex.&#41;,
-              6 &#40;2 &#37;&#41; &#40;incl.&#41;
-              when called from gather_nu
-              <a href='nugrid_gather.jl-350ff2f2cfdb46ec6552692c1870d29911a23408.html#L19'>line 19</a>
-              <br />
-              5 &#40;2 &#37;&#41; &#40;ex.&#41;,
-              5 &#40;2 &#37;&#41; &#40;incl.&#41;
-              when called from boundaries_single&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L13'>line 13</a>
-              <br />
-              4 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              4 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from boundaries&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L41'>line 41</a>
-              <br />
-              4 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              4 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from #FET1d#44
-              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L32'>line 32</a>
-              <br />
-              4 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              4 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from #FET1d#44
-              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L16'>line 16</a>
-              <br />
-              4 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              4 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from _broadcast_getindex
-              <a href='broadcast.jl-9538a2221b315be425e9c47ec7c3883483af8540.html#L675'>line 675</a>
-              <br />
-              3 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              3 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from revise_z_coef&#33;
-              <a href='nugrid_interpolate.jl-7068346af8c7928f7b11cfa298853087da9c3325.html#L11'>line 11</a>
-              <br />
-              3 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              3 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from _getindex_ra
-              <a href='reinterpretarray.jl-bfd09c861711a3054292b515a56abf5a2b4c642f.html#L397'>line 397</a>
-              <br />
-              2 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              2 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from partition&#33;
-              <a href='sort.jl-012515466f8014602c26304899719aa5a0eeea24.html#L1038'>line 1038</a>
-              <br />
-              2 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              2 &#40;1 &#37;&#41; &#40;incl.&#41;
               when called from dot
               <a href='generic.jl-d66517a151efdc7bd6940ca3db33afae5ba7a2ff.html#L930'>line 930</a>
               <br />
-              1 &#40;0 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;0 &#37;&#41; &#40;incl.&#41;
-              when called from revise_phase_neg_all&#33;
-              <a href='precompute.jl-3b47d762c9f7f8c3ca21d5192b55596387a51ece.html#L95'>line 95</a>
+              9 &#40;3 &#37;&#41; &#40;ex.&#41;,
+              9 &#40;3 &#37;&#41; &#40;incl.&#41;
+              when called from #FET1d#44
+              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L25'>line 25</a>
+              <br />
+              9 &#40;3 &#37;&#41; &#40;ex.&#41;,
+              9 &#40;3 &#37;&#41; &#40;incl.&#41;
+              when called from #FET1d#44
+              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L23'>line 23</a>
+              <br />
+              9 &#40;3 &#37;&#41; &#40;ex.&#41;,
+              9 &#40;3 &#37;&#41; &#40;incl.&#41;
+              when called from #FET1d#44
+              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L16'>line 16</a>
+              <br />
+              8 &#40;2 &#37;&#41; &#40;ex.&#41;,
+              8 &#40;2 &#37;&#41; &#40;incl.&#41;
+              when called from #FET1d#44
+              <a href='fast_exp_transform.jl-47f4d3694b5726fa8030426fadd6154a4822d412.html#L32'>line 32</a>
+              <br />
+              7 &#40;2 &#37;&#41; &#40;ex.&#41;,
+              7 &#40;2 &#37;&#41; &#40;incl.&#41;
+              when called from _broadcast_getindex
+              <a href='broadcast.jl-9538a2221b315be425e9c47ec7c3883483af8540.html#L675'>line 675</a>
+              <br />
+              5 &#40;1 &#37;&#41; &#40;ex.&#41;,
+              5 &#40;1 &#37;&#41; &#40;incl.&#41;
+              when called from _getindex_ra
+              <a href='reinterpretarray.jl-bfd09c861711a3054292b515a56abf5a2b4c642f.html#L397'>line 397</a>
+              <br />
+              4 &#40;1 &#37;&#41; &#40;ex.&#41;,
+              4 &#40;1 &#37;&#41; &#40;incl.&#41;
+              when called from gather_nu
+              <a href='nugrid_gather.jl-c20d1ca5fd61decb6dd3f64ff074246383bc916c.html#L19'>line 19</a>
+              <br />
+              3 &#40;1 &#37;&#41; &#40;ex.&#41;,
+              3 &#40;1 &#37;&#41; &#40;incl.&#41;
+              when called from revise_z_coef&#33;
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L13'>line 13</a>
+              <br />
+              2 &#40;1 &#37;&#41; &#40;ex.&#41;,
+              2 &#40;1 &#37;&#41; &#40;incl.&#41;
+              when called from revise_z_coef&#33;
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L11'>line 11</a>
               <br />
               1 &#40;0 &#37;&#41; &#40;ex.&#41;,
               1 &#40;0 &#37;&#41; &#40;incl.&#41;
-              when called from solve_eqs&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L65'>line 65</a>
-              <br />
-              1 &#40;0 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;0 &#37;&#41; &#40;incl.&#41;
-              when called from solve_eqs&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L64'>line 64</a>
+              when called from zeroth_order
+              <a href='zeroth_order.jl-3718dc6e8e3843c127a2ef13bfa05ce9d1380bec.html#L6'>line 6</a>
               <br />
               1 &#40;0 &#37;&#41; &#40;ex.&#41;,
               1 &#40;0 &#37;&#41; &#40;incl.&#41;
               when called from partition&#33;
-              <a href='sort.jl-012515466f8014602c26304899719aa5a0eeea24.html#L1045'>line 1045</a>
+              <a href='sort.jl-012515466f8014602c26304899719aa5a0eeea24.html#L1038'>line 1038</a>
               <br />
               1 &#40;0 &#37;&#41; &#40;ex.&#41;,
               1 &#40;0 &#37;&#41; &#40;incl.&#41;
-              when called from first
-              <a href='abstractarray.jl-8958418152a2018f66097b01d6e4cf6750aac038.html#L452'>line 452</a>
+              when called from iterate
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L945'>line 945</a>
               <br />
             </div>
             
@@ -311,42 +277,32 @@
         </tr>
         <tr id='L14'>
           <td class='lineno'>14</td>
-          <td class='tracecount excl'>166 &#40;2 &#37;&#41;</td>
-          <td class='tracecount incl'>166 &#40;2 &#37;&#41;</td>
+          <td class='tracecount excl'>202 &#40;3 &#37;&#41;</td>
+          <td class='tracecount incl'>202 &#40;3 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              166 &#40;2 &#37;&#41;
+              202 &#40;3 &#37;&#41;
               samples spent in getindex
               <br />
-              83 &#40;50 &#37;&#41; &#40;ex.&#41;,
-              83 &#40;50 &#37;&#41; &#40;incl.&#41;
+              120 &#40;59 &#37;&#41; &#40;ex.&#41;,
+              120 &#40;59 &#37;&#41; &#40;incl.&#41;
               when called from getindex
               <a href='subarray.jl-ef5d8ee690124d9c3053f8f96d41d3afaaec23b1.html#L288'>line 288</a>
               <br />
-              32 &#40;19 &#37;&#41; &#40;ex.&#41;,
-              32 &#40;19 &#37;&#41; &#40;incl.&#41;
-              when called from boundaries_single&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L20'>line 20</a>
-              <br />
-              28 &#40;17 &#37;&#41; &#40;ex.&#41;,
-              28 &#40;17 &#37;&#41; &#40;incl.&#41;
+              31 &#40;15 &#37;&#41; &#40;ex.&#41;,
+              31 &#40;15 &#37;&#41; &#40;incl.&#41;
               when called from revise_phase_neg_all&#33;
-              <a href='precompute.jl-3b47d762c9f7f8c3ca21d5192b55596387a51ece.html#L95'>line 95</a>
+              <a href='precompute.jl-6cd54421f03848108a172eb3577c601485e1022a.html#L95'>line 95</a>
               <br />
-              20 &#40;12 &#37;&#41; &#40;ex.&#41;,
-              20 &#40;12 &#37;&#41; &#40;incl.&#41;
+              28 &#40;14 &#37;&#41; &#40;ex.&#41;,
+              28 &#40;14 &#37;&#41; &#40;incl.&#41;
               when called from boundaries_single&#33;
-              <a href='linear_eqs.jl-e692e63ca9c8ca7fc902f71cc70d0f3953e9a072.html#L22'>line 22</a>
+              <a href='linear_eqs.jl-a93ba53a04fbab7a09b2c51eb7124bd3c86af2cc.html#L22'>line 22</a>
               <br />
-              2 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              2 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from getindex
-              <a href='multidimensional.jl-5b7ac3c100dd0cf7fb236f439bcf0dfdb58a23bb.html#L696'>line 696</a>
-              <br />
-              1 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;1 &#37;&#41; &#40;incl.&#41;
-              when called from real2Cheb&#33;
-              <a href='nugrid_interpolate.jl-7068346af8c7928f7b11cfa298853087da9c3325.html#L112'>line 112</a>
+              23 &#40;11 &#37;&#41; &#40;ex.&#41;,
+              23 &#40;11 &#37;&#41; &#40;incl.&#41;
+              when called from boundaries_single&#33;
+              <a href='linear_eqs.jl-a93ba53a04fbab7a09b2c51eb7124bd3c86af2cc.html#L20'>line 20</a>
               <br />
             </div>
             
@@ -6034,35 +5990,35 @@
         </tr>
         <tr id='L581'>
           <td class='lineno'>581</td>
-          <td class='tracecount excl'>272 &#40;4 &#37;&#41;</td>
-          <td class='tracecount incl'>272 &#40;4 &#37;&#41;</td>
+          <td class='tracecount excl'>286 &#40;4 &#37;&#41;</td>
+          <td class='tracecount incl'>286 &#40;4 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              272 &#40;4 &#37;&#41;
+              286 &#40;4 &#37;&#41;
               samples spent in reinterpret
               <br />
-              225 &#40;83 &#37;&#41; &#40;ex.&#41;,
-              225 &#40;83 &#37;&#41; &#40;incl.&#41;
+              236 &#40;83 &#37;&#41; &#40;ex.&#41;,
+              236 &#40;83 &#37;&#41; &#40;incl.&#41;
               when called from exp_impl
               <a href='exp.jl-a8ef204d9f107450c453d53ddf0cca289e6595be.html#L229'>line 229</a>
               <br />
-              27 &#40;10 &#37;&#41; &#40;ex.&#41;,
-              27 &#40;10 &#37;&#41; &#40;incl.&#41;
+              16 &#40;6 &#37;&#41; &#40;ex.&#41;,
+              16 &#40;6 &#37;&#41; &#40;incl.&#41;
               when called from exp_impl
               <a href='exp.jl-a8ef204d9f107450c453d53ddf0cca289e6595be.html#L210'>line 210</a>
               <br />
-              11 &#40;4 &#37;&#41; &#40;ex.&#41;,
-              11 &#40;4 &#37;&#41; &#40;incl.&#41;
+              16 &#40;6 &#37;&#41; &#40;ex.&#41;,
+              16 &#40;6 &#37;&#41; &#40;incl.&#41;
               when called from table_unpack
               <a href='exp.jl-a8ef204d9f107450c453d53ddf0cca289e6595be.html#L182'>line 182</a>
               <br />
-              6 &#40;2 &#37;&#41; &#40;ex.&#41;,
-              6 &#40;2 &#37;&#41; &#40;incl.&#41;
+              13 &#40;5 &#37;&#41; &#40;ex.&#41;,
+              13 &#40;5 &#37;&#41; &#40;incl.&#41;
               when called from table_unpack
               <a href='exp.jl-a8ef204d9f107450c453d53ddf0cca289e6595be.html#L181'>line 181</a>
               <br />
-              3 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              3 &#40;1 &#37;&#41; &#40;incl.&#41;
+              5 &#40;2 &#37;&#41; &#40;ex.&#41;,
+              5 &#40;2 &#37;&#41; &#40;incl.&#41;
               when called from highword
               <a href='math.jl-ae0209b7f5697490680410f61720a3db0e73a3a6.html#L1527'>line 1527</a>
               <br />
@@ -6723,10 +6679,19 @@
         </tr>
         <tr id='L647'>
           <td class='lineno'>647</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
-            
+            <div class='call-sites'>
+              1 &#40;0 &#37;&#41;
+              samples spent in ifelse
+              <br />
+              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from max
+              <a href='promotion.jl-c800900fc9544cd99a152c822b7b321f112f266e.html#L532'>line 532</a>
+              <br />
+            </div>
             
             <span class='code'>ifelse&#40;condition::Bool, x, y&#41; &#61; Core.ifelse&#40;condition, x, y&#41;</span>
           </td>

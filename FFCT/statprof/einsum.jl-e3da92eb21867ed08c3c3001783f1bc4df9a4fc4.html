@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -401,42 +401,46 @@
         <tr id='L38'>
           <td class='lineno'>38</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>534 &#40;8 &#37;&#41;</td>
+          <td class='tracecount incl'>970 &#40;13 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              534 &#40;8 &#37;&#41;
+              970 &#40;13 &#37;&#41;
               samples spent in einsum&#33;
               <br />
               
-              186 &#40;35 &#37;&#41; &#40;incl.&#41;
+              311 &#40;32 &#37;&#41; &#40;incl.&#41;
               when called from interpolate_nu_einsum&#33;
-              <a href='nugrid_interpolate.jl-7068346af8c7928f7b11cfa298853087da9c3325.html#L44'>line 44</a>
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L44'>line 44</a>
               <br />
               
-              139 &#40;26 &#37;&#41; &#40;incl.&#41;
+              262 &#40;27 &#37;&#41; &#40;incl.&#41;
               when called from interpolate_nu_einsum&#33;
-              <a href='nugrid_interpolate.jl-7068346af8c7928f7b11cfa298853087da9c3325.html#L48'>line 48</a>
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L48'>line 48</a>
               <br />
               
-              100 &#40;19 &#37;&#41; &#40;incl.&#41;
+              167 &#40;17 &#37;&#41; &#40;incl.&#41;
               when called from interpolate_nu_einsum&#33;
-              <a href='nugrid_interpolate.jl-7068346af8c7928f7b11cfa298853087da9c3325.html#L45'>line 45</a>
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L45'>line 45</a>
               <br />
               
-              76 &#40;14 &#37;&#41; &#40;incl.&#41;
+              165 &#40;17 &#37;&#41; &#40;incl.&#41;
               when called from interpolate_nu_einsum&#33;
-              <a href='nugrid_interpolate.jl-7068346af8c7928f7b11cfa298853087da9c3325.html#L50'>line 50</a>
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L50'>line 50</a>
               <br />
               
-              33 &#40;6 &#37;&#41; &#40;incl.&#41;
+              65 &#40;7 &#37;&#41; &#40;incl.&#41;
               when called from interpolate_nu_einsum&#33;
-              <a href='nugrid_interpolate.jl-7068346af8c7928f7b11cfa298853087da9c3325.html#L49'>line 49</a>
+              <a href='nugrid_interpolate.jl-8b49c6f82ba551cc1ba45bf83952282a76b7b918.html#L49'>line 49</a>
               <br />
             </div>
             <div class='callees'>
-              534 &#40;100 &#37;&#41;
+              969 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L98'>einsum&#33;</a>
+              <br />
+              1 &#40;0 &#37;&#41;
+              samples spent calling
+              <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L326'>current_logger_for_env</a>
               <br />
             </div>
             <span class='code'>    einsum&#33;&#40;getixs&#40;code&#41;, getiy&#40;code&#41;, xs, y, sx, sy, size_dict&#41;</span>
@@ -594,22 +598,17 @@
         </tr>
         <tr id='L54'>
           <td class='lineno'>54</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              13 &#40;0 &#37;&#41;
+              5 &#40;0 &#37;&#41;
               samples spent in unary_pipeline
               <br />
               
-              12 &#40;92 &#37;&#41; &#40;incl.&#41;
+              5 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L80'>line 80</a>
-              <br />
-              1 &#40;8 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;8 &#37;&#41; &#40;incl.&#41;
-              when called from einsum&#33;
-              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L113'>line 113</a>
               <br />
             </div>
             
@@ -619,11 +618,11 @@
         <tr id='L55'>
           <td class='lineno'>55</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>9 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              9 &#40;100 &#37;&#41;
+              2 &#40;100 &#37;&#41;
               samples spent calling
               <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L106'>_unique</a>
               <br />
@@ -649,15 +648,10 @@
         <tr id='L57'>
           <td class='lineno'>57</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
             
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L2670'>filter</a>
-              <br />
-            </div>
+            
             <span class='code'>    iy_a &#61; filter&#40;i-&gt;i ∈ ix, iy_unique&#41;</span>
           </td>
         </tr>
@@ -744,10 +738,15 @@
         <tr id='L66'>
           <td class='lineno'>66</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L1120'>push&#33;</a>
+              <br />
+            </div>
             <span class='code'>        push&#33;&#40;operations, UnaryOperation&#40;Permutedims&#40;&#41;, ix_unique, iy_a&#41;&#41;</span>
           </td>
         </tr>
@@ -867,16 +866,16 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              230 &#40;3 &#37;&#41;
+              593 &#40;8 &#37;&#41;
               samples spent in einsum&#33;
               <br />
               1 &#40;0 &#37;&#41; &#40;ex.&#41;,
-              218 &#40;95 &#37;&#41; &#40;incl.&#41;
+              583 &#40;98 &#37;&#41; &#40;incl.&#41;
               when called from simplifyto
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L124'>line 124</a>
               <br />
               
-              12 &#40;5 &#37;&#41; &#40;incl.&#41;
+              10 &#40;2 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L113'>line 113</a>
               <br />
@@ -888,27 +887,28 @@
         <tr id='L79'>
           <td class='lineno'>79</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L389'>macro expansion</a>
+              <br />
+            </div>
             <span class='code'>    @debug &quot;compiling unary&quot; ixs&#91;1&#93; &#61;&gt; iy size&#40;xs&#91;1&#93;&#41;</span>
           </td>
         </tr>
         <tr id='L80'>
           <td class='lineno'>80</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>13 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>5 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              12 &#40;92 &#37;&#41;
+              5 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L54'>unary_pipeline</a>
-              <br />
-              1 &#40;8 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L694'>collect</a>
               <br />
             </div>
             <span class='code'>    pipeline &#61; unary_pipeline&#40;collect&#40;LT, ixs&#91;1&#93;&#41;, collect&#40;LT, iy&#41;&#41;</span>
@@ -952,11 +952,11 @@
         <tr id='L84'>
           <td class='lineno'>84</td>
           <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>216 &#40;3 &#37;&#41;</td>
+          <td class='tracecount incl'>586 &#40;8 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              215 &#40;100 &#37;&#41;
+              585 &#40;100 &#37;&#41;
               samples spent calling
               <a href='unaryrules.jl-a30408916eb0e4eba6de57fd34306310ec02891c.html#L118'>unary_einsum&#33;</a>
               <br />
@@ -1100,11 +1100,11 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              534 &#40;8 &#37;&#41;
+              969 &#40;13 &#37;&#41;
               samples spent in einsum&#33;
               <br />
-              8 &#40;1 &#37;&#41; &#40;ex.&#41;,
-              534 &#40;100 &#37;&#41; &#40;incl.&#41;
+              15 &#40;2 &#37;&#41; &#40;ex.&#41;,
+              969 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L38'>line 38</a>
               <br />
@@ -1116,21 +1116,26 @@
         <tr id='L99'>
           <td class='lineno'>99</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>4 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              4 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L54'>_collect</a>
+              <br />
+            </div>
             <span class='code'>    iyv &#61; _collect&#40;LT,iy&#41;</span>
           </td>
         </tr>
         <tr id='L100'>
           <td class='lineno'>100</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>5 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>6 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              5 &#40;100 &#37;&#41;
+              6 &#40;100 &#37;&#41;
               samples spent calling
               <a href='broadcast.jl-9538a2221b315be425e9c47ec7c3883483af8540.html#L903'>materialize</a>
               <br />
@@ -1141,11 +1146,11 @@
         <tr id='L101'>
           <td class='lineno'>101</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              1 &#40;100 &#37;&#41;
+              2 &#40;100 &#37;&#41;
               samples spent calling
               <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L389'>macro expansion</a>
               <br />
@@ -1166,11 +1171,11 @@
         <tr id='L103'>
           <td class='lineno'>103</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>7 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>5 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              7 &#40;100 &#37;&#41;
+              5 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L133'>analyze_binary</a>
               <br />
@@ -1180,8 +1185,8 @@
         </tr>
         <tr id='L104'>
           <td class='lineno'>104</td>
-          <td class='tracecount excl'>5 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>5 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>9 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>9 &#40;0 &#37;&#41;</td>
           <td>
             
             
@@ -1191,11 +1196,11 @@
         <tr id='L105'>
           <td class='lineno'>105</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>77 &#40;1 &#37;&#41;</td>
+          <td class='tracecount incl'>218 &#40;3 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              77 &#40;100 &#37;&#41;
+              218 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L121'>simplifyto</a>
               <br />
@@ -1205,12 +1210,12 @@
         </tr>
         <tr id='L106'>
           <td class='lineno'>106</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'>180 &#40;3 &#37;&#41;</td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>444 &#40;6 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              180 &#40;100 &#37;&#41;
+              443 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L121'>simplifyto</a>
               <br />
@@ -1220,12 +1225,12 @@
         </tr>
         <tr id='L107'>
           <td class='lineno'>107</td>
-          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>4 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              2 &#40;100 &#37;&#41;
+              3 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L119'>safe_reshape</a>
               <br />
@@ -1236,11 +1241,11 @@
         <tr id='L108'>
           <td class='lineno'>108</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              1 &#40;100 &#37;&#41;
+              3 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L119'>safe_reshape</a>
               <br />
@@ -1251,10 +1256,15 @@
         <tr id='L109'>
           <td class='lineno'>109</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='logging.jl-b684d8cb49004825482e0d62366f76d1d4f01bc2.html#L389'>macro expansion</a>
+              <br />
+            </div>
             <span class='code'>    @debug rule size.&#40;&#40;x1_, x2_&#41;&#41;</span>
           </td>
         </tr>
@@ -1270,12 +1280,12 @@
         </tr>
         <tr id='L111'>
           <td class='lineno'>111</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>9 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              2 &#40;100 &#37;&#41;
+              7 &#40;100 &#37;&#41;
               samples spent calling
               <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L421'>similar</a>
               <br />
@@ -1286,13 +1296,21 @@
         <tr id='L112'>
           <td class='lineno'>112</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>65 &#40;1 &#37;&#41;</td>
+          <td class='tracecount incl'>71 &#40;1 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              65 &#40;100 &#37;&#41;
+              66 &#40;93 &#37;&#41;
               samples spent calling
               <a href='binaryrules.jl-9cc4c5013c534aa7acdfb0aa406bb357a4383a5e.html#L112'>binary_einsum&#33;</a>
+              <br />
+              4 &#40;6 &#37;&#41;
+              samples spent calling
+              <a href='binaryrules.jl-9cc4c5013c534aa7acdfb0aa406bb357a4383a5e.html#L84'>binary_einsum&#33;</a>
+              <br />
+              1 &#40;1 &#37;&#41;
+              samples spent calling
+              <a href='reshapedarray.jl-e699fe85bbcca1900e0dbbb16cec4bcbfba5babd.html#L117'>reshape</a>
               <br />
             </div>
             <span class='code'>        y_ &#61; reshape&#40;binary_einsum&#33;&#40;rule, x1_, x2_, y_, true, false&#41;, &#91;size_dict&#91;x&#93; for x in cy&#93;...&#41;</span>
@@ -1300,18 +1318,14 @@
         </tr>
         <tr id='L113'>
           <td class='lineno'>113</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'>13 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>12 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              12 &#40;92 &#37;&#41;
+              10 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L78'>einsum&#33;</a>
-              <br />
-              1 &#40;8 &#37;&#41;
-              samples spent calling
-              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L54'>unary_pipeline</a>
               <br />
             </div>
             <span class='code'>        return einsum&#33;&#40;&#40;cy,&#41;, iyv, &#40;y_,&#41;, y, sx, sy, size_dict&#41;</span>
@@ -1329,14 +1343,18 @@
         </tr>
         <tr id='L115'>
           <td class='lineno'>115</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'>173 &#40;3 &#37;&#41;</td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>182 &#40;2 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              173 &#40;100 &#37;&#41;
+              180 &#40;99 &#37;&#41;
               samples spent calling
               <a href='binaryrules.jl-9cc4c5013c534aa7acdfb0aa406bb357a4383a5e.html#L129'>binary_einsum&#33;</a>
+              <br />
+              1 &#40;1 &#37;&#41;
+              samples spent calling
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L119'>safe_reshape</a>
               <br />
             </div>
             <span class='code'>        binary_einsum&#33;&#40;rule, x1_, x2_, safe_reshape&#40;y, s3&#41;, sx, sy&#41;</span>
@@ -1374,25 +1392,35 @@
         </tr>
         <tr id='L119'>
           <td class='lineno'>119</td>
-          <td class='tracecount excl'>3 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>5 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>7 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              3 &#40;0 &#37;&#41;
+              7 &#40;0 &#37;&#41;
               samples spent in safe_reshape
               <br />
-              2 &#40;67 &#37;&#41; &#40;ex.&#41;,
-              2 &#40;67 &#37;&#41; &#40;incl.&#41;
-              when called from einsum&#33;
-              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L107'>line 107</a>
-              <br />
-              1 &#40;33 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;33 &#37;&#41; &#40;incl.&#41;
+              3 &#40;43 &#37;&#41; &#40;ex.&#41;,
+              3 &#40;43 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L108'>line 108</a>
               <br />
+              2 &#40;29 &#37;&#41; &#40;ex.&#41;,
+              3 &#40;43 &#37;&#41; &#40;incl.&#41;
+              when called from einsum&#33;
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L107'>line 107</a>
+              <br />
+              
+              1 &#40;14 &#37;&#41; &#40;incl.&#41;
+              when called from einsum&#33;
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L115'>line 115</a>
+              <br />
             </div>
-            
+            <div class='callees'>
+              2 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='reshapedarray.jl-e699fe85bbcca1900e0dbbb16cec4bcbfba5babd.html#L40'>reshape</a>
+              <br />
+            </div>
             <span class='code'>safe_reshape&#40;x, sz&#41; &#61; reshape&#40;x, &#40;sz...,&#41;&#41;</span>
           </td>
         </tr>
@@ -1412,16 +1440,16 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              257 &#40;4 &#37;&#41;
+              661 &#40;9 &#37;&#41;
               samples spent in simplifyto
               <br />
-              4 &#40;2 &#37;&#41; &#40;ex.&#41;,
-              180 &#40;70 &#37;&#41; &#40;incl.&#41;
+              2 &#40;0 &#37;&#41; &#40;ex.&#41;,
+              443 &#40;67 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L106'>line 106</a>
               <br />
-              1 &#40;0 &#37;&#41; &#40;ex.&#41;,
-              77 &#40;30 &#37;&#41; &#40;incl.&#41;
+              
+              218 &#40;33 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L105'>line 105</a>
               <br />
@@ -1442,18 +1470,14 @@
         </tr>
         <tr id='L123'>
           <td class='lineno'>123</td>
-          <td class='tracecount excl'>5 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>39 &#40;1 &#37;&#41;</td>
+          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>78 &#40;1 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              33 &#40;97 &#37;&#41;
+              76 &#40;100 &#37;&#41;
               samples spent calling
               <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L421'>similar</a>
-              <br />
-              1 &#40;3 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L827'>collect</a>
               <br />
             </div>
             <span class='code'>        xs1 &#61; similar&#40;x1, &#40;&#91;size_dict&#91;l&#93; for l in c1&#93;...,&#41;&#41;</span>
@@ -1462,11 +1486,11 @@
         <tr id='L124'>
           <td class='lineno'>124</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>218 &#40;3 &#37;&#41;</td>
+          <td class='tracecount incl'>583 &#40;8 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              218 &#40;100 &#37;&#41;
+              583 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L78'>einsum&#33;</a>
               <br />
@@ -1560,11 +1584,11 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              7 &#40;0 &#37;&#41;
+              5 &#40;0 &#37;&#41;
               samples spent in analyze_binary
               <br />
               
-              7 &#40;100 &#37;&#41; &#40;incl.&#41;
+              5 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L103'>line 103</a>
               <br />
@@ -1576,11 +1600,11 @@
         <tr id='L134'>
           <td class='lineno'>134</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>4 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              4 &#40;100 &#37;&#41;
+              1 &#40;100 &#37;&#41;
               samples spent calling
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L181'>_analyze_binary_input</a>
               <br />
@@ -1591,10 +1615,15 @@
         <tr id='L135'>
           <td class='lineno'>135</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              2 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L2031'>vcat</a>
+              <br />
+            </div>
             <span class='code'>    c1 &#61; vcat&#40;ix1_outer, ix_inner, batch&#41;</span>
           </td>
         </tr>
@@ -1611,15 +1640,10 @@
         <tr id='L137'>
           <td class='lineno'>137</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
             
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L2031'>vcat</a>
-              <br />
-            </div>
+            
             <span class='code'>    cy &#61; vcat&#40;ix1_outer, ix2_outer, batch&#41;</span>
           </td>
         </tr>
@@ -1706,11 +1730,11 @@
         <tr id='L146'>
           <td class='lineno'>146</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              2 &#40;100 &#37;&#41;
+              1 &#40;100 &#37;&#41;
               samples spent calling
               <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L448'>getindex</a>
               <br />
@@ -1791,10 +1815,15 @@
         <tr id='L154'>
           <td class='lineno'>154</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              1 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L1119'>push&#33;</a>
+              <br />
+            </div>
             <span class='code'>        push&#33;&#40;iyb, &#39;i&#39;&#41;</span>
           </td>
         </tr>
@@ -2064,11 +2093,11 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              4 &#40;0 &#37;&#41;
+              1 &#40;0 &#37;&#41;
               samples spent in _analyze_binary_input
               <br />
               
-              4 &#40;100 &#37;&#41; &#40;incl.&#41;
+              1 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from analyze_binary
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L134'>line 134</a>
               <br />
@@ -2135,15 +2164,10 @@
         <tr id='L187'>
           <td class='lineno'>187</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
             
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='operators.jl-686c6e14b62f7e1edd63eed9861cf94955771a50.html#L1299'>in</a>
-              <br />
-            </div>
+            
             <span class='code'>            if l1 ∈ iy  # batch</span>
           </td>
         </tr>
@@ -2190,15 +2214,10 @@
         <tr id='L192'>
           <td class='lineno'>192</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
             
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='operators.jl-686c6e14b62f7e1edd63eed9861cf94955771a50.html#L1299'>in</a>
-              <br />
-            </div>
+            
             <span class='code'>        elseif l1 ∈ iy  # outer</span>
           </td>
         </tr>
@@ -2285,15 +2304,10 @@
         <tr id='L201'>
           <td class='lineno'>201</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'></td>
           <td>
             
-            <div class='callees'>
-              1 &#40;100 &#37;&#41;
-              samples spent calling
-              <a href='array.jl-c942a1a6c0d71531a2d9e0c808522cde6be1c218.html#L1119'>push&#33;</a>
-              <br />
-            </div>
+            
             <span class='code'>            push&#33;&#40;ix2_outer, l2&#41;</span>
           </td>
         </tr>

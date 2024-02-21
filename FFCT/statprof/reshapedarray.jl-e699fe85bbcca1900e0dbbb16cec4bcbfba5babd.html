@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -420,17 +420,17 @@
         </tr>
         <tr id='L40'>
           <td class='lineno'>40</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              1 &#40;0 &#37;&#41;
+              2 &#40;0 &#37;&#41;
               samples spent in reshape
               <br />
-              1 &#40;100 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from tensorpermute&#33;
-              <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L150'>line 150</a>
+              2 &#40;100 &#37;&#41; &#40;ex.&#41;,
+              2 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from safe_reshape
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L119'>line 119</a>
               <br />
             </div>
             
@@ -1216,9 +1216,14 @@
               samples spent in reshape
               <br />
               1 &#40;50 &#37;&#41; &#40;ex.&#41;,
-              2 &#40;100 &#37;&#41; &#40;incl.&#41;
-              when called from tensorpermute&#33;
-              <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L147'>line 147</a>
+              1 &#40;50 &#37;&#41; &#40;incl.&#41;
+              when called from einsum&#33;
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L112'>line 112</a>
+              <br />
+              
+              1 &#40;50 &#37;&#41; &#40;incl.&#41;
+              when called from binary_einsum&#33;
+              <a href='binaryrules.jl-9cc4c5013c534aa7acdfb0aa406bb357a4383a5e.html#L113'>line 113</a>
               <br />
             </div>
             <div class='callees'>

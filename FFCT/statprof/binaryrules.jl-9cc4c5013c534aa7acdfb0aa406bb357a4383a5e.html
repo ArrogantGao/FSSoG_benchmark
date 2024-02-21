@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Wed, 21 Feb 2024 11:36:02
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -863,7 +863,16 @@
           <td class='tracecount excl'></td>
           <td class='tracecount incl'></td>
           <td>
-            
+            <div class='call-sites'>
+              4 &#40;0 &#37;&#41;
+              samples spent in binary_einsum&#33;
+              <br />
+              
+              4 &#40;100 &#37;&#41; &#40;incl.&#41;
+              when called from einsum&#33;
+              <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L112'>line 112</a>
+              <br />
+            </div>
             
             <span class='code'>@inline function binary_einsum&#33;&#40;::SimpleBinaryRule&#123;&#40;&#39;l&#39;,&#41;, &#40;&#39;k&#39;,&#39;l&#39;&#41;, &#40;&#39;k&#39;,&#39;l&#39;&#41;&#125;, x1, x2, y, sx, sy&#41;</span>
           </td>
@@ -871,10 +880,15 @@
         <tr id='L85'>
           <td class='lineno'>85</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount incl'>4 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              4 &#40;100 &#37;&#41;
+              samples spent calling
+              <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L29'>macro expansion</a>
+              <br />
+            </div>
             <span class='code'>    @addmul&#33; sy * y &#43; sx * reshape&#40;x1, 1, length&#40;x1&#41;&#41; * x2</span>
           </td>
         </tr>
@@ -1140,15 +1154,15 @@
         </tr>
         <tr id='L112'>
           <td class='lineno'>112</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              65 &#40;1 &#37;&#41;
+              66 &#40;1 &#37;&#41;
               samples spent in binary_einsum&#33;
               <br />
-              1 &#40;2 &#37;&#41; &#40;ex.&#41;,
-              65 &#40;100 &#37;&#41; &#40;incl.&#41;
+              
+              66 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L112'>line 112</a>
               <br />
@@ -1160,13 +1174,17 @@
         <tr id='L113'>
           <td class='lineno'>113</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>64 &#40;1 &#37;&#41;</td>
+          <td class='tracecount incl'>66 &#40;1 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              64 &#40;100 &#37;&#41;
+              65 &#40;98 &#37;&#41;
               samples spent calling
               <a href='utils.jl-3159adf2e1c9c3eb040c5bd493a54451094bc6ca.html#L165'>_batched_gemm&#33;</a>
+              <br />
+              1 &#40;2 &#37;&#41;
+              samples spent calling
+              <a href='reshapedarray.jl-e699fe85bbcca1900e0dbbb16cec4bcbfba5babd.html#L117'>reshape</a>
               <br />
             </div>
             <span class='code'>    _batched_gemm&#33;&#40;&#39;N&#39;, &#39;N&#39;, sx, x1, reshape&#40;x2, size&#40;x2,1&#41;, 1, size&#40;x2,2&#41;&#41;, sy, reshape&#40;y, size&#40;y,1&#41;, 1, size&#40;y,2&#41;&#41;&#41;</span>
@@ -1328,11 +1346,11 @@
           <td class='tracecount incl'></td>
           <td>
             <div class='call-sites'>
-              173 &#40;3 &#37;&#41;
+              180 &#40;2 &#37;&#41;
               samples spent in binary_einsum&#33;
               <br />
               
-              173 &#40;100 &#37;&#41; &#40;incl.&#41;
+              180 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from einsum&#33;
               <a href='einsum.jl-e3da92eb21867ed08c3c3001783f1bc4df9a4fc4.html#L115'>line 115</a>
               <br />
@@ -1344,11 +1362,11 @@
         <tr id='L130'>
           <td class='lineno'>130</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>173 &#40;3 &#37;&#41;</td>
+          <td class='tracecount incl'>180 &#40;2 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              173 &#40;100 &#37;&#41;
+              180 &#40;100 &#37;&#41;
               samples spent calling
               <a href='matmul.jl-d13d07f0c5597083b3e5e570440eeac33085645b.html#L263'>mul&#33;</a>
               <br />

@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'></meta>
     <link rel='stylesheet' type='text/css' href='statprofiler.css'></link>
-    <title>StatProfilerHTML - ../../code/FastSpecSoG.jl/src/FFCT/nugrid_gather.jl</title>
+    <title>StatProfilerHTML - ../../../.julia/packages/FastSpecSoG/VvHyd/src/FFCT/nugrid_gather.jl</title>
   </head>
   <body>
     <div class='report-header'>
@@ -14,7 +14,7 @@
         StatProfilerHTML.jl report
       </div>
       <div class='generated-on'>
-        Generated on Tue, 20 Feb 2024 20:23:27
+        Generated on Wed, 21 Feb 2024 12:22:23
       </div>
     </div>
     <table>
@@ -30,22 +30,17 @@
       <tbody>
         <tr id='L1'>
           <td class='lineno'>1</td>
-          <td class='tracecount excl'></td>
-          <td class='tracecount incl'></td>
+          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              2338 &#40;35 &#37;&#41;
+              2407 &#40;33 &#37;&#41;
               samples spent in gather_nu_single
               <br />
-              6 &#40;0 &#37;&#41; &#40;ex.&#41;,
-              2337 &#40;100 &#37;&#41; &#40;incl.&#41;
+              8 &#40;0 &#37;&#41; &#40;ex.&#41;,
+              2407 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from gather_nu
-              <a href='nugrid_gather.jl-9af5c28b9ab671a3d74a275b89e90f192426d884.html#L19'>line 19</a>
-              <br />
-              1 &#40;0 &#37;&#41; &#40;ex.&#41;,
-              1 &#40;0 &#37;&#41; &#40;incl.&#41;
-              when called from macro expansion
-              <a href='interpolate_nu.jl-ff4b72ca0f2dad80965fb35c48c9714f3c0eebb8.html#L21'>line 21</a>
+              <a href='nugrid_gather.jl-c20d1ca5fd61decb6dd3f64ff074246383bc916c.html#L19'>line 19</a>
               <br />
             </div>
             
@@ -95,17 +90,17 @@
         <tr id='L6'>
           <td class='lineno'>6</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>362 &#40;5 &#37;&#41;</td>
+          <td class='tracecount incl'>399 &#40;5 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              361 &#40;100 &#37;&#41;
+              398 &#40;100 &#37;&#41;
               samples spent calling
-              <a href='precompute.jl-3364aac514816cfcd59ddb70253e78a8e08b3c80.html#L79'>revise_phase_pos&#33;</a>
+              <a href='precompute.jl-6cd54421f03848108a172eb3577c601485e1022a.html#L79'>revise_phase_pos&#33;</a>
               <br />
               1 &#40;0 &#37;&#41;
               samples spent calling
-              <a href='exp.jl-ac5db3c00ad4c8c72092449f68ba0757ce6b8885.html#L327'>exp</a>
+              <a href='exp.jl-a8ef204d9f107450c453d53ddf0cca289e6595be.html#L327'>exp</a>
               <br />
             </div>
             <span class='code'>    revise_phase_pos&#33;&#40;phase_x, phase_y, k_x, k_y, x, y&#41;</span>
@@ -134,17 +129,17 @@
         <tr id='L9'>
           <td class='lineno'>9</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>170 &#40;3 &#37;&#41;</td>
+          <td class='tracecount incl'>198 &#40;3 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              169 &#40;99 &#37;&#41;
+              195 &#40;98 &#37;&#41;
               samples spent calling
-              <a href='precompute.jl-3364aac514816cfcd59ddb70253e78a8e08b3c80.html#L8'>chebpoly</a>
+              <a href='precompute.jl-6cd54421f03848108a172eb3577c601485e1022a.html#L8'>chebpoly</a>
               <br />
-              1 &#40;1 &#37;&#41;
+              3 &#40;2 &#37;&#41;
               samples spent calling
-              <a href='int.jl-7f9f75a92d8c6f74216e9bbdc4b48345bf2279eb.html#L86'>-</a>
+              <a href='int.jl-f41b4319bbfbc29e12c432d573bda76eb55f06d2.html#L86'>-</a>
               <br />
             </div>
             <span class='code'>        cheb_val &#61; k &#61;&#61; 1 ? T&#40;0.5&#41; : chebpoly&#40;k - 1, z - L_z / T&#40;2&#41;, L_z / T&#40;2&#41;&#41;</span>
@@ -152,22 +147,22 @@
         </tr>
         <tr id='L10'>
           <td class='lineno'>10</td>
-          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1801 &#40;27 &#37;&#41;</td>
+          <td class='tracecount excl'>3 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>1802 &#40;24 &#37;&#41;</td>
           <td>
             
             <div class='callees'>
-              1742 &#40;97 &#37;&#41;
+              1754 &#40;97 &#37;&#41;
               samples spent calling
-              <a href='generic.jl-802730dc204098d7927d2910045227681dd71976.html#L923'>dot</a>
+              <a href='generic.jl-d66517a151efdc7bd6940ca3db33afae5ba7a2ff.html#L923'>dot</a>
               <br />
-              52 &#40;3 &#37;&#41;
+              42 &#40;2 &#37;&#41;
               samples spent calling
-              <a href='complex.jl-c34ddccfd71fd59e2d6042f2ac058720eb510edf.html#L294'>&#43;</a>
+              <a href='complex.jl-758e93f59f1042cc0b16535ee36dbb19a5f5778f.html#L294'>&#43;</a>
               <br />
-              5 &#40;0 &#37;&#41;
+              3 &#40;0 &#37;&#41;
               samples spent calling
-              <a href='complex.jl-c34ddccfd71fd59e2d6042f2ac058720eb510edf.html#L340'>*</a>
+              <a href='complex.jl-758e93f59f1042cc0b16535ee36dbb19a5f5778f.html#L340'>*</a>
               <br />
             </div>
             <span class='code'>        ϕ &#43;&#61; dot&#40;phase_x, &#40;@view H_s&#91;:, :, k&#93;&#41;, phase_y&#41;* cheb_val</span>
@@ -175,8 +170,8 @@
         </tr>
         <tr id='L11'>
           <td class='lineno'>11</td>
-          <td class='tracecount excl'>4 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>4 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'>2 &#40;0 &#37;&#41;</td>
+          <td class='tracecount incl'>2 &#40;0 &#37;&#41;</td>
           <td>
             
             
@@ -195,11 +190,24 @@
         </tr>
         <tr id='L13'>
           <td class='lineno'>13</td>
-          <td class='tracecount excl'>1 &#40;0 &#37;&#41;</td>
-          <td class='tracecount incl'>1 &#40;0 &#37;&#41;</td>
+          <td class='tracecount excl'></td>
+          <td class='tracecount incl'>3 &#40;0 &#37;&#41;</td>
           <td>
             
-            
+            <div class='callees'>
+              1 &#40;33 &#37;&#41;
+              samples spent calling
+              <a href='complex.jl-758e93f59f1042cc0b16535ee36dbb19a5f5778f.html#L352'>/</a>
+              <br />
+              1 &#40;33 &#37;&#41;
+              samples spent calling
+              <a href='operators.jl-686c6e14b62f7e1edd63eed9861cf94955771a50.html#L587'>*</a>
+              <br />
+              1 &#40;33 &#37;&#41;
+              samples spent calling
+              <a href='complex.jl-758e93f59f1042cc0b16535ee36dbb19a5f5778f.html#L339'>*</a>
+              <br />
+            </div>
             <span class='code'>    return q * ϕ / &#40;2 * L_x * L_y&#41;</span>
           </td>
         </tr>
@@ -256,38 +264,34 @@
         <tr id='L19'>
           <td class='lineno'>19</td>
           <td class='tracecount excl'></td>
-          <td class='tracecount incl'>2350 &#40;35 &#37;&#41;</td>
+          <td class='tracecount incl'>2416 &#40;33 &#37;&#41;</td>
           <td>
             <div class='call-sites'>
-              2350 &#40;35 &#37;&#41;
+              2416 &#40;33 &#37;&#41;
               samples spent in gather_nu
               <br />
               
-              2350 &#40;100 &#37;&#41; &#40;incl.&#41;
+              2416 &#40;100 &#37;&#41; &#40;incl.&#41;
               when called from energy_long_einsum
-              <a href='energy_long.jl-11fdf3b78c8961cf3315c095b6968a23d800698e.html#L59'>line 59</a>
+              <a href='energy_long.jl-7a7bb982ef2fa42807770cd492b7e09a2c3d1533.html#L59'>line 59</a>
               <br />
             </div>
             <div class='callees'>
-              2337 &#40;99 &#37;&#41;
+              2407 &#40;100 &#37;&#41;
               samples spent calling
-              <a href='nugrid_gather.jl-9af5c28b9ab671a3d74a275b89e90f192426d884.html#L1'>gather_nu_single</a>
-              <br />
-              5 &#40;0 &#37;&#41;
-              samples spent calling
-              <a href='complex.jl-c34ddccfd71fd59e2d6042f2ac058720eb510edf.html#L294'>&#43;</a>
+              <a href='nugrid_gather.jl-c20d1ca5fd61decb6dd3f64ff074246383bc916c.html#L1'>gather_nu_single</a>
               <br />
               4 &#40;0 &#37;&#41;
               samples spent calling
-              <a href='essentials.jl-dca5ff521169103b2c0df51fc60a4cb8f8d56231.html#L13'>getindex</a>
+              <a href='essentials.jl-f0c8802a556c409b803937db99f588c9c5999872.html#L13'>getindex</a>
               <br />
-              2 &#40;0 &#37;&#41;
+              4 &#40;0 &#37;&#41;
               samples spent calling
-              <a href='precompute.jl-3364aac514816cfcd59ddb70253e78a8e08b3c80.html#L79'>revise_phase_pos&#33;</a>
+              <a href='generic.jl-d66517a151efdc7bd6940ca3db33afae5ba7a2ff.html#L923'>dot</a>
               <br />
-              2 &#40;0 &#37;&#41;
+              1 &#40;0 &#37;&#41;
               samples spent calling
-              <a href='generic.jl-802730dc204098d7927d2910045227681dd71976.html#L923'>dot</a>
+              <a href='complex.jl-758e93f59f1042cc0b16535ee36dbb19a5f5778f.html#L294'>&#43;</a>
               <br />
             </div>
             <span class='code'>        E &#43;&#61; gather_nu_single&#40;qs&#91;i&#93;, poses&#91;i&#93;, L, k_x, k_y, phase_x, phase_y, H_s&#41;</span>
