@@ -27,7 +27,7 @@ for N_grid in [(4, 4, 4), (8, 8, 8), (16, 16, 16)]
 
         E_einsum = energy_long_einsum_k(qs, poses, L, M_mid, k_x, k_y, k_mat, r_z, phase_x, phase_y, phase_xs, phase_ys, phase_xys, temp_ijlk, temp_ijl, size_dict, z_coef, exp_coef, us_mat, b_l, b_u, rhs, sol, ivsm, H_r, H_c, H_s, uspara)
 
-        error = abs(E_einsum - E_direct_ks[M_mid])
+        error = abs(E_einsum - E_direct_ks[M_mid]) / abs(E_direct_ks[M_mid])
 
         @show M_mid, error
 
