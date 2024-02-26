@@ -19,10 +19,10 @@ for n_atoms in n_atoms_array
 
     k_x, k_y, k_mat, r_z, us_mat, H_r, H_c, H_s, ivsm, b_l, b_u, phase_x, phase_y, phase_xs, phase_ys, phase_xys, rhs, sol, sort_z, z, size_dict, temp_ijlk, temp_ijl, z_coef, exp_coef = FFCT_precompute(L, N_grid, USeriesPara(2), M_mid, n_atoms)
 
-    time_einsum = @belapsed energy_long_einsum($qs, $poses, $L, $M_mid, $k_x, $k_y, $k_mat, $r_z, $phase_x, $phase_y, $phase_xs, $phase_ys, $phase_xys, $temp_ijlk, $temp_ijl, $size_dict, $z_coef, $exp_coef, $z, $sort_z, $us_mat, $b_l, $b_u, $rhs, $sol, $ivsm, $H_r, $H_c, $H_s, $uspara, $soepara)
+    time_einsum = @belapsed energy_long_einsum_k($qs, $poses, $L, $M_mid, $k_x, $k_y, $k_mat, $r_z, $phase_x, $phase_y, $phase_xs, $phase_ys, $phase_xys, $temp_ijlk, $temp_ijl, $size_dict, $z_coef, $exp_coef, $us_mat, $b_l, $b_u, $rhs, $sol, $ivsm, $H_r, $H_c, $H_s, $uspara)
     push!(t_einsum, time_einsum)
 
-    time_loop = @belapsed energy_long_loop($qs, $poses, $L, $N_grid, $M_mid, $k_x, $k_y, $r_z, $phase_x, $phase_y, $z, $sort_z, $us_mat, $b_l, $b_u, $rhs, $sol, $ivsm, $H_r, $H_c, $H_s, $uspara, $soepara)
+    time_loop = @belapsed energy_long_loop_k($qs, $poses, $L, $N_grid, $M_mid, $k_x, $k_y, $r_z, $phase_x, $phase_y, $us_mat, $b_l, $b_u, $rhs, $sol, $ivsm, $H_r, $H_c, $H_s, $uspara)
     push!(t_loop, time_loop)
 
     @show n_atoms, time_einsum, time_loop
