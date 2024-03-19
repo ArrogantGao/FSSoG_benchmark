@@ -3,7 +3,7 @@
 output_file=$1
 
 touch "$output_file"
-echo 'problem,n_atoms,t_short,t_mid,t_long' >> $output_file
+echo 'n_atoms,t_short,t_mid,t_long' >> $output_file
 
 # Start recording the benchmark execution time
 start_time=$(date +%s)
