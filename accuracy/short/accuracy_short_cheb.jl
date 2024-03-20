@@ -1,4 +1,4 @@
-using FastSpecSoG, Plots
+using FastSpecSoG, Plots, CSV, DataFrames
 
 terms = [1:3:40...]
 errors = [[] for i in 1:5]
@@ -25,4 +25,4 @@ for i in 1:5
 end
 display(plot!())
 
-savefig("Near_field/figs/accuracy_short_cheb.png")
+savefig("figs/accuracy_short_cheb.png")
