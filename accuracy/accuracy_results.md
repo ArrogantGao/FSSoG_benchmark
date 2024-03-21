@@ -22,6 +22,8 @@ In caluculation of the short-range part interaction energy, the following approx
 The following figure shows the decaying rate of short range interaction with different preset parameters.
 For all five cases, the absolute error decay to minimum at $r_c = 10$ as expected, which is a proper short range cutoff.
 
+**we do not care the 0 to rc part**
+
 ![](figs/accuracy_short_naive.png)
 
 To verify that, we take a random system, assume that there are $1000$ particles in the system, we can find that the error of total short-range interaction energy vary as follow.
