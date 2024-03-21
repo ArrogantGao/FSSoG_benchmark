@@ -86,3 +86,12 @@ function long_Nxy()
 end
 
 long_Nxy()
+
+function total_natoms()
+    df = CSV.read("data/accuracy_total_natoms_sog.csv", DataFrame)
+    plot(xlabel = "log10(n_atoms)", ylabel = "log10(Relative error)", legend = :topright, dpi = 500, ylim = [-15, 1.0])
+    plot!(log10.(df.n_atoms), log10.(df.relative_error), marker = :circle, label = "preset = 2")
+    savefig("figs/accuracy_total_natoms.png")
+end
+
+total_natoms()

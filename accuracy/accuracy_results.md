@@ -32,7 +32,7 @@ The results indicate that the error is minimized when $r_c = 10$.
 
 The minimum error corresponding to different sets are listed below:
 
-<p align="center"><font size=2.>Tabel 1, Short range cheb order for different preset parameters</font></p>
+<p align="center"><font size=2.>Tabel 1, minimum error</font></p>
 
 <div class="center">
 
@@ -63,11 +63,11 @@ It is shown that with a low order of Chebyshev polynomial, the error is fine, an
 
 |  preset   | Short-range Cheb Order  |
 |  :----:  | :----:  |
-| 1  | 1e-3 |
-| 2  | 1e-4 |
-| 3  | 1e-6 |
-| 4  | 1e-9 |
-| 5  | 1e-11 |
+| 1  | 6 |
+| 2  | 8 |
+| 3  | 10 |
+| 4  | 20 |
+| 5  | 26 |
 
 </div>
 
@@ -133,7 +133,7 @@ In that case, there are a few important parameters:
 First we check how the $M$-th term of the SoG kernel contribute to the total energy, and the results are shown below.
 The results indicate that as $M$ increases, the contribution of $k$ nonzero terms decreases rapidly to zero, while the contribution of the zeroth term decay slowly, as that of the short-range interaction force.
 
-![](figs/accuracy_long_Mmid.png)
+![](figs/accuracy_long_Mmid_k.png)
 
 ![](figs/accuracy_long_Mmid_0.png)
 
@@ -144,3 +144,22 @@ Then we check the relation between the grid size in periodic directions and the 
 Then we check the relation between the Chebyshev order and the error of the long-range part.
 
 ![](figs/accuracy_long_Nz.png)
+
+
+## Total accuracy
+
+According to the results above, we can set the parameters for the long-range part as below.
+
+<p align="center"><font size=2.>Tabel 4, Parameters for different accuracy</font></p>
+
+<div class="center">
+
+| N | L |  accuracy   | preset  | M | M_mid | N_gird | extra_pad | N_cheb |
+|  :----: |  :----: |  :----:  | :----:  | :----: | :----: | :----: | :----: | :----: |
+|100 | 100 | 1e-4  | 2 | 39 | 5 | (64, 64, 64) | 2 | (4, 4, 16) |
+
+</div>
+
+The corresponding numerical results are shown below
+
+![](figs/accuracy_total_natoms.png)
