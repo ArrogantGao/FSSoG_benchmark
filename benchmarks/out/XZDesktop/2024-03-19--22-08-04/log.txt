@@ -1,4 +1,0 @@
-Starting benchmark...
-(n_atoms, t_short, t_mid, t_long) = (100, 8.5490625e-7, 0.080748298, 0.066850991)
-(n_atoms, t_short, t_mid, t_long) = (1000, 6.4977e-5, 0.402579977, 0.653350476)
-(n_atoms, t_short, t_mid, t_long) = (10000, 0.006610208, 3.506571362, 6.672045482)

@@ -1,0 +1,8 @@
+Starting benchmark...
+[ Info: FSSoG, n_atoms = 100
+[ Info: FSSoG, n_atoms = 284
+[ Info: FSSoG, n_atoms = 800
+[ Info: FSSoG, n_atoms = 2264
+[ Info: FSSoG, n_atoms = 6400
+Benchmark finished
+Benchmark execution time: 00:03:19

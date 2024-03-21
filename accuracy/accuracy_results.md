@@ -163,3 +163,7 @@ According to the results above, we can set the parameters for the long-range par
 The corresponding numerical results are shown below
 
 ![](figs/accuracy_total_natoms.png)
+
+Some benchmark for the runtime
+
+![](figs/time_fssog.png)
