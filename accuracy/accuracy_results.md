@@ -57,17 +57,37 @@ It is shown that with a low order of Chebyshev polynomial, the error is fine, an
 ![](figs/accuracy_short_cheb_total.png)
 
 
-<p align="center"><font size=2.>Tabel 1, Short range cheb order for different preset parameters</font></p>
+<p align="center"><font size=2.>Tabel 2, Short range cheb order for different preset parameters</font></p>
 
 <div class="center">
 
 |  preset   | Short-range Cheb Order  |
 |  :----:  | :----:  |
-| 1  | 6 |
-| 2  | 8 |
-| 3  | 10 |
-| 4  | 20 |
-| 5  | 26 |
+| 1  | 1e-3 |
+| 2  | 1e-4 |
+| 3  | 1e-6 |
+| 4  | 1e-9 |
+| 5  | 1e-11 |
+
+</div>
+
+Additionally, we examine the contribution of the $M$-th term of short-range part to the total energy, and the results are shown below.
+
+![](figs/accuracy_short_M.png)
+
+Thus, we can have to $M$ for different preset parameters as below.
+
+<p align="center"><font size=2.>Tabel 3, M for different preset parameters</font></p>
+
+<div class="center">
+
+|  preset   | accuracy  | M |
+|  :----:  | :----:  | :----:  |
+| 1  | 1e-3 | 10 |
+| 2  | 1e-4 | 18 |
+| 3  | 1e-6 | 30 |
+| 4  | 1e-9 | 70 |
+| 5  | 1e-11 | 120 |
 
 </div>
 
@@ -80,7 +100,6 @@ In that case, there are a few important parameters
 * extra padding ratio in z
 * bandwidth of the kernel
 
-### Relation between padding ratio / bandwidth and error
 
 In the following cases, we set the $L_x = L_y = L_z = 100$, $N_{atoms} = 100$ and $\beta = 5w$.
 
@@ -102,3 +121,26 @@ The following result shows the error of the mid-range part with different system
 The results shows that as the system size increases, the error of the mid-range part is fixed, which is expected.
 
 ![](figs/accuracy_mid_Natoms.png)
+
+## Long-range Part
+
+For the long-range part, we applied Fourier transform on $xy$ directions only, and use Chebyshev interpolation in $z$.
+In that case, there are a few important parameters:
+* size of the compact support of the kernel ($M_{mid}$)
+* Grid size in $xy$
+* Chebyshev order in $z$
+
+First we check how the $M$-th term of the SoG kernel contribute to the total energy, and the results are shown below.
+The results indicate that as $M$ increases, the contribution of $k$ nonzero terms decreases rapidly to zero, while the contribution of the zeroth term decay slowly, as that of the short-range interaction force.
+
+![](figs/accuracy_long_Mmid.png)
+
+![](figs/accuracy_long_Mmid_0.png)
+
+Then we check the relation between the grid size in periodic directions and the error of the long-range part.
+
+![](figs/accuracy_long_Nxy.png)
+
+Then we check the relation between the Chebyshev order and the error of the long-range part.
+
+![](figs/accuracy_long_Nz.png)

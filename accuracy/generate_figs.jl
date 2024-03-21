@@ -37,3 +37,52 @@ function mid_Natoms()
 end
 
 mid_Natoms()
+
+function long_Nz()
+    df0 = CSV.read("data/accuracy_long_Nz.csv", DataFrame)
+    M_mid_array = unique(df0.M_mid)
+    plot(xlabel = "N_z", ylabel = "log10(Relative error)", legend = :topright, dpi = 500)
+    for i in 1:2:length(M_mid_array)
+        M_mid = M_mid_array[i]
+        df = filter(row -> row.M_mid == M_mid, df0)
+        plot!(df.N_z, log10.(df.relative_error), label = "M_mid = $M_mid", marker = :circle)
+    end
+    savefig("figs/accuracy_long_Nz.png")
+end
+
+long_Nz()
+
+function long_Mmid()
+    df = CSV.read("data/accuracy_long_Mmid.csv", DataFrame)
+    plot(xlabel = L"M_{mid}", ylabel = "contribution", title = L"Contribution by $M_{mid}$", dpi = 500, xlim = [0, 30.5], ylim = [-15, 1.0])
+    for i in 1:5
+        dfi = filter(row -> row.preset == i, df)
+        plot!(dfi.M_mid, log10.(abs.(dfi.E_exact)), label = "preset = $(i)", marker = :circle)
+    end
+    plot!(legend = :bottomright)
+    savefig("figs/accuracy_long_Mmid_k.png")
+
+    plot(xlabel = L"M_{mid}", ylabel = "contribution", title = L"Contribution by $M_{mid}$, zeroth order", dpi = 500, xlim = [0, 150], ylim = [-15, 1.0])
+    for i in 1:5
+        dfi = filter(row -> row.preset == i, df)
+        plot!(dfi.M_mid, log10.(abs.(dfi.E_0)), label = "preset = $(i)", marker = :circle)
+    end
+    plot!(legend = :topright)
+    savefig("figs/accuracy_long_Mmid_0.png")
+end
+
+long_Mmid()
+
+function long_Nxy()
+    df0 = CSV.read("data/accuracy_long_Nxy.csv", DataFrame)
+    M_mid_array = unique(df0.M_mid)
+    plot(xlabel = "log2(N_xy)", ylabel = "log10(Relative error)", legend = :topright, dpi = 500)
+    for i in 1:length(M_mid_array)
+        M_mid = M_mid_array[i]
+        df = filter(row -> row.M_mid == M_mid, df0)
+        plot!(log2.(df.N_xy), log10.(df.relative_error), label = "M_mid = $M_mid", marker = :circle)
+    end
+    savefig("figs/accuracy_long_Nxy.png")
+end
+
+long_Nxy()
