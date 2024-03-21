@@ -1,6 +1,7 @@
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+EwaldSummations = "329efeb5-5dc7-45f3-8303-d0bcfeef1c8a"
 ExTinyMD = "fec76197-d59f-46dd-a0ed-76a83c21f7aa"
 FastSpecSoG = "ebb58456-9453-4d17-87e2-7100c1ea036c"
 LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
