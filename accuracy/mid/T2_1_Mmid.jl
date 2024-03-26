@@ -5,8 +5,8 @@ Random.seed!(1234)
 
 n_atoms = 100
 L = (100.0, 100.0, 100.0)
-N_real = (128, 128, 128)
-w = (32, 32, 32)
+N_real = (256, 256, 256)
+w = (16, 16, 16)
 β = 5.0 .* w
 extra_pad_ratios = [2, 3, 4, 8]
 cheb_order = 10
@@ -20,9 +20,9 @@ poses = [tuple(L .* rand(3)...) for i in 1:n_atoms]
 errors = [[] for i in 1:length(extra_pad_ratios)]
 errors_rel = [[] for i in 1:length(extra_pad_ratios)]
 
-E_direct_ks = [long_energy_us_k(qs, poses, 50, L, uspara, 1, M_mid) + long_energy_us_0(qs, poses, L, uspara, 1, M_mid) for M_mid in M_mids]
+E_direct_ks = [long_energy_us_k(qs, poses, 100, L, uspara, 1, M_mid) + long_energy_us_0(qs, poses, L, uspara, 1, M_mid) for M_mid in M_mids]
 
-E_direct_ks_total = long_energy_us_k(qs, poses, 50, L, uspara, 1, length(uspara.sw)) + long_energy_us_0(qs, poses, L, uspara, 1, length(uspara.sw)) 
+E_direct_ks_total = long_energy_us_k(qs, poses, 100, L, uspara, 1, length(uspara.sw)) + long_energy_us_0(qs, poses, L, uspara, 1, length(uspara.sw)) 
 
 for i in 1:length(extra_pad_ratios)
     for j in 1:length(M_mids)
@@ -44,5 +44,5 @@ for i in 1:length(extra_pad_ratios)
 end
 
 df = DataFrame(extra_pad_ratio = repeat(extra_pad_ratios, inner = length(M_mids)), M_mid = repeat(M_mids, outer = length(extra_pad_ratios)), error = vcat(errors...), error_rel = vcat(errors_rel...))
-CSV.write("data/accuracy_mid_smax.csv", df)
+CSV.write("data/Acc_T2_1_Mmid.csv", df)
 

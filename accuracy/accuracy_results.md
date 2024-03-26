@@ -156,9 +156,10 @@ According to the results above, we can set the parameters for the long-range par
 
 <div class="center">
 
-| N | L |  accuracy   | preset  | M | M_mid | N_gird | extra_pad | N_cheb |
-|  :----: |  :----: |  :----:  | :----:  | :----: | :----: | :----: | :----: | :----: |
-|100 | 100 | 1e-4  | 2 | 39 | 5 | (64, 64, 64) | 2 | (4, 4, 16) |
+| N | L |  accuracy   | preset  | M | M_mid | N_gird | extra_pad | N_cheb | w |
+|  :----: |  :----: |  :----:  | :----:  | :----: | :----: | :----: | :----: | :----: |  ------ |
+|100 | 100 | 1e-4  | 2 | 39 | 5 | (64, 64, 64) | 2 | (4, 4, 16) | (16,16,16) |
+|1000 | 20 | 1e-15 | 6 | 233 | 8 | (40, 40, 40) | 2 | (8, 8, 27) | (8, 8, 8) |
 
 </div>
 
