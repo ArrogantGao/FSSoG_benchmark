@@ -1,16 +1,16 @@
 using CSV, DataFrames, Plots, LaTeXStrings
 
 function mid_error_M_mid()
-    df = CSV.read("data/accuracy_mid_smax_w16.csv", DataFrame)
+    df = CSV.read("data/accuracy_mid_smax.csv", DataFrame)
 
     grouped_dfs = groupby(df, :extra_pad_ratio)
 
     # change the df into five arrays
     extra_pad_ratio = unique(df.extra_pad_ratio)
     M_mid = unique(df.M_mid)
-    errors = [dfi[:, 3] for dfi in grouped_dfs]
+    errors = [dfi[:, 4] for dfi in grouped_dfs]
 
-    plot(xlabel = L"M_{mid}", ylabel = "Error", title = L"Accuracy of mid-range part to $M_{mid}$", dpi = 500, xlim = [0, 20.5], ylim = [-15, 1.0])
+    plot(xlabel = L"M_{mid}", ylabel = "log10(Relative Error)", title = L"Accuracy of mid-range part to $M_{mid}$", dpi = 500, xlim = [0, 20.5], ylim = [-15, 1.0])
     for i in 1:length(extra_pad_ratio)
         plot!(M_mid, log10.(errors[i]), label = "λ = $(extra_pad_ratio[i])", marker = :circle)
     end
@@ -19,6 +19,10 @@ function mid_error_M_mid()
 end
 
 mid_error_M_mid()
+
+
+
+
 
 function mid_Natoms()
     df = CSV.read("data/accuracy_mid_Natoms.csv", DataFrame)
@@ -38,6 +42,11 @@ end
 
 mid_Natoms()
 
+
+
+
+
+
 function long_Nz()
     df0 = CSV.read("data/accuracy_long_Nz.csv", DataFrame)
     M_mid_array = unique(df0.M_mid)
@@ -51,6 +60,11 @@ function long_Nz()
 end
 
 long_Nz()
+
+
+
+
+
 
 function long_Mmid()
     df = CSV.read("data/accuracy_long_Mmid.csv", DataFrame)
@@ -73,6 +87,12 @@ end
 
 long_Mmid()
 
+
+
+
+
+
+
 function long_Nxy()
     df0 = CSV.read("data/accuracy_long_Nxy.csv", DataFrame)
     M_mid_array = unique(df0.M_mid)
@@ -86,6 +106,11 @@ function long_Nxy()
 end
 
 long_Nxy()
+
+
+
+
+
 
 function total_natoms()
     df = CSV.read("data/accuracy_total_natoms_sog.csv", DataFrame)
