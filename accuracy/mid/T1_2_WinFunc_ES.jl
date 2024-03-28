@@ -4,7 +4,7 @@ using ChebParticleMesh
 using Random
 Random.seed!(123)
 
-n_atoms = 8
+n_atoms = 100
 L = (100.0, 100.0, 100.0)
 
 qs = rand(n_atoms)
@@ -82,7 +82,7 @@ function mid_paras_gen_diffwindow(N_real::NTuple{3, Int}, w::NTuple{3, Int}, β:
             k3[j] -= 2π * gridinfo.N_pad[3] / (gridinfo.L[3] + gridinfo.h[3] * 2 * gridinfo.pad[3])
         end
     end
-    
+
     id_x = sortperm(k1)
     id_y = sortperm(k2)
     id_z = sortperm(k3)
@@ -90,9 +90,9 @@ function mid_paras_gen_diffwindow(N_real::NTuple{3, Int}, w::NTuple{3, Int}, β:
     sort!(k2)
     sort!(k3)
 
-    DFT_fx_new = DFT_fx[id_x]
-    DFT_fy_new = DFT_fy[id_y]
-    DFT_fz_new = DFT_fz[id_z]
+    DFT_fx_new = (gridinfo.L[1] + gridinfo.h[1] * 2 * gridinfo.pad[1]) / gridinfo.N_pad[1] .* DFT_fx[id_x]
+    DFT_fy_new = (gridinfo.L[2] + gridinfo.h[2] * 2 * gridinfo.pad[2]) / gridinfo.N_pad[2] .* DFT_fy[id_y]
+    DFT_fz_new = (gridinfo.L[3] + gridinfo.h[3] * 2 * gridinfo.pad[3]) / gridinfo.N_pad[3] .* DFT_fz[id_z]
 
     lif_x = linear_interpolation(k1,DFT_fx_new)
     lif_y = linear_interpolation(k2,DFT_fy_new)
@@ -116,11 +116,12 @@ for i in 1:length(w_array)
         E_3DFFT = energy_mid(qs, poses, gridinfo, gridbox, cheb_coefs, scalefactor)
 
         error = abs(E_3DFFT - E_direct_true)
+        ratio = abs(E_3DFFT) / abs(E_direct_true)
         error_rel = error / abs(E_direct_true)
       
-        @show w, error, error_rel
+        @show w, error, error_rel, ratio
 
         df = DataFrame(Window_type = 2, energy_exact = E_direct_true, abs_error = error, relative_error = error_rel, w = w)
         #CSV.write("data/Acc_T1_2_WinFunc_Gaussian.csv", df, append = true)
-        CSV.write("data/Acc_T1_2_WinFunc_temp.csv", df, append = true)
+        CSV.write("data/Acc_T1_2_WinFunc_ES.csv", df, append = true)
 end
