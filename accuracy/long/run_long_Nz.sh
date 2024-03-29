@@ -2,6 +2,7 @@
 
 data_file=data/accuracy_long_Nz.csv
 
+rm $data_file
 touch $data_file
 echo "N_z,M_mid,E_exact,E_FFCT,abs_error,relative_error" >> $data_file
 

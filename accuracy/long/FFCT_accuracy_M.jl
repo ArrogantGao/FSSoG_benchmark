@@ -23,11 +23,11 @@ for N_grid in [(4, 4, 4), (8, 8, 8), (16, 16, 16)]
     error_N = []
     @show N_grid
     for M_mid in 1:16
-        k_x, k_y, k_mat, r_z, us_mat, H_r, H_c, H_s, ivsm, b_l, b_u, phase_x, phase_y, phase_xs, phase_ys, phase_xys, rhs, sol, sort_z, z, size_dict, temp_ijlk, temp_ijl, z_coef, exp_coef = FFCT_precompute(L, N_grid, USeriesPara(2), M_mid, n_atoms)
+        k_x, k_y, r_z, H_r, H_c, phase_x, phase_y,  sort_z, z = long_paras_gen(L, N_grid, n_atoms)
 
-        E_einsum = energy_long_einsum_k(qs, poses, L, M_mid, k_x, k_y, k_mat, r_z, phase_x, phase_y, phase_xs, phase_ys, phase_xys, temp_ijlk, temp_ijl, size_dict, z_coef, exp_coef, us_mat, b_l, b_u, rhs, sol, ivsm, H_r, H_c, H_s, uspara)
+        E_FFCT_loop_k = energy_long_loop_k(qs, poses, L, M_mid, k_x, k_y, r_z, phase_x, phase_y, H_r, H_c, uspara)
 
-        error = abs(E_einsum - E_direct_ks[M_mid]) / abs(E_direct_ks[M_mid])
+        error = abs(E_FFCT_loop_k - E_direct_ks[M_mid]) / abs(E_direct_ks[M_mid])
 
         @show M_mid, error
 
