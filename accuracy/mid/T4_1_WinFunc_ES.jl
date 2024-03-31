@@ -4,28 +4,28 @@ using ChebParticleMesh
 using Random
 Random.seed!(123)
 
-n_atoms = 100
-L = (100.0, 100.0, 100.0)
+n_atoms = 1000
+L = (20.0, 20.0, 20.0)
 
 qs = rand(n_atoms)
 qs .-= sum(qs) ./ n_atoms
 poses = [tuple(L .* rand(3)...) for i in 1:n_atoms]
 
 uspara = USeriesPara(6)
-M_mid = 13
+M_mid = 9
 
-E_direct_true = long_energy_us_k(qs, poses, 100, L, uspara, 1, M_mid) + long_energy_us_0(qs, poses, L, uspara, 1, M_mid)
+E_direct_true = long_energy_us_k(qs, poses, 20, L, uspara, 1, M_mid) + long_energy_us_0(qs, poses, L, uspara, 1, M_mid)
 @show E_direct_true
 
 #n_atoms0 = (256, 256, 256)
 #ratios = [2.0 ^i for i in 0.0:0.5:2.0]
 
-N_real = (256, 256, 256)
-w_array = [(i, i, i) for i in 1:24] 
+N_real = (50, 50, 50)
+w_array = [(i, i, i) for i in 1:12] 
 @show w_array
 
 extra_pad_ratio = 8
-cheb_order = 10
+cheb_order = 20
 E_N_grid=[]
 
 
@@ -109,8 +109,8 @@ end
 
 for i in 1:length(w_array)
         w = w_array[i]
-        β = 5.0 .* w       
-        alpha = 5.0 .* w 
+        β = 2 .* sqrt(2π) .* w       
+        alpha = π.*0.91 .* w 
 
         gridinfo, gridbox, cheb_coefs, scalefactor = mid_paras_gen_diffwindow(N_real, w, β, L, extra_pad_ratio, cheb_order, uspara, M_mid, alpha)
         E_3DFFT = energy_mid(qs, poses, gridinfo, gridbox, cheb_coefs, scalefactor)
@@ -121,7 +121,7 @@ for i in 1:length(w_array)
       
         @show w, error, error_rel, ratio
 
-        df = DataFrame(Window_type = 2, energy_exact = E_direct_true, abs_error = error, relative_error = error_rel, w = w)
+        df = DataFrame(Window_type = 3, energy_exact = E_direct_true, abs_error = error, relative_error = error_rel, w = w)
         #CSV.write("data/Acc_T1_2_WinFunc_Gaussian.csv", df, append = true)
-        CSV.write("data/Acc_T1_2_WinFunc_ES.csv", df, append = true)
+        CSV.write("data/Acc_T4_1_WinFunc_ES.csv", df, append = true)
 end
