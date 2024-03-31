@@ -2,8 +2,7 @@ using FastSpecSoG, ExTinyMD, Plots, LaTeXStrings, CSV, DataFrames
 
 n_array = [2:2:20...]
 
-pm = 3
-Ns = [30, 50, 100]
+pm = 6
 errors = [[] for i in 1:pm]
 
 for preset in 1:pm
@@ -15,13 +14,13 @@ for preset in 1:pm
     poses = [tuple(L .* rand(3)...) for i in 1:n_atoms]
 
     uspara = USeriesPara(preset)
-    E_direct_k = long_energy_us_k(qs, poses, Ns[preset], L, uspara, 1, length(uspara.sw))
+    E_direct_k = long_energy_us_k(qs, poses, 1e-18, L, uspara, 1, length(uspara.sw))
 
     for n in n_array
-        N_real = (128, 128)
+        N_real = (256, 256)
         R_z = n
         w = N_real .÷ 4
-        β = 5.0 .* w
+        β = 8.0 .* w
         cheb_order = 16
         Taylor_Q = 16
 

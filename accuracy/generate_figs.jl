@@ -108,10 +108,6 @@ end
 long_Nxy()
 
 
-
-
-
-
 function total_natoms()
     df = CSV.read("data/accuracy_total_natoms_sog.csv", DataFrame)
     plot(xlabel = "log10(n_atoms)", ylabel = "log10(Relative error)", legend = :topright, dpi = 500, ylim = [-15, 1.0])
@@ -120,3 +116,27 @@ function total_natoms()
 end
 
 total_natoms()
+
+function long_thin_fft_Nxy()
+    df = CSV.read("data/thin_long_Nxy.csv", DataFrame)
+    plot(xlabel = "Nxy", ylabel = "Relative error", title = "Long range energy (thin fft)", dpi = 500)
+    for i in 1:6
+        dfi = filter(row -> row.preset == i, df)
+        plot!(log2.(dfi.Nxy), log10.(dfi.error), label = "set: $i", ylims = (-16, 1), marker = :circle)
+    end
+    savefig("figs/long_range_thin_errors_Nxy.png")
+end
+
+long_thin_fft_Nxy()
+
+function long_thin_loop_Nxy()
+    df = CSV.read("data/thin_long_Nxy_loop.csv", DataFrame)
+    plot(xlabel = "Nxy", ylabel = "Relative error", title = "Long range energy (thin loop)", dpi = 500)
+    for i in 1:6
+        dfi = filter(row -> row.preset == i, df)
+        plot!(log2.(dfi.Nxy), log10.(dfi.error), label = "set: $i", ylims = (-16, 1), marker = :circle)
+    end
+    savefig("figs/long_range_thin_errors_Nxy_loop.png")
+end
+
+long_thin_loop_Nxy()
