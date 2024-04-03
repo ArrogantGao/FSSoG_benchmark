@@ -1,9 +1,9 @@
 using FastSpecSoG, BenchmarkTools, ExTinyMD, Plots, LaTeXStrings
 using Random
-Random.seed!(1234)
+Random.seed!(123)
 
 n_atoms = 1000
-L = 100.0
+L = 40.0
 boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
 atoms = Vector{Atom{Float64}}()
@@ -21,7 +21,11 @@ charge = [atoms[info.particle_info[i].id].charge for i in 1:n_atoms]
 
 energy_short_exact = []
 energy_short_rc = [[] for i in 1:6]
+<<<<<<< HEAD
+r_c = [1.0:0.5:15.0...]
+=======
 r_c = [1.0:0.5:20.0...]
+>>>>>>> main
 for preset in 1:6
     exact_interaction = FSSoG_naive((L, L, L), n_atoms, 49.9, 3.0, preset = preset)
     exact_neighbor = CellList3D(info, exact_interaction.r_c, boundary, 1)
@@ -33,6 +37,8 @@ for preset in 1:6
 
         Es_naive = short_energy_naive(FastSpecSoG_interaction, FastSpecSoG_neighbor, position, charge)
         push!(energy_short_rc[preset], Es_naive)
+        df = DataFrame(uspara = preset, error = Es_naive)
+        CSV.write("data_for_manu/Acc_DiffPara.csv", df, append = true)
     end
     push!(energy_short_exact, Es_exact)
 end

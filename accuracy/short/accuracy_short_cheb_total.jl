@@ -3,7 +3,7 @@ using Random
 Random.seed!(1234)
 
 n_atoms = 1000
-L = 100.0
+L = 40.0
 boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
 atoms = Vector{Atom{Float64}}()
@@ -20,13 +20,13 @@ position = [info.particle_info[i].position.coo for i in 1:n_atoms]
 charge = [atoms[info.particle_info[i].id].charge for i in 1:n_atoms]
 
 energy_short_exact = []
-energy_short_Q = [[] for i in 1:5]
+energy_short_Q = [[] for i in 1:6]
 cheb_orders = [1:3:40...]
 
 # fix r_c = 10.0
 r_c = 10.0
 
-for preset in 1:5
+for preset in 1:6
     exact_interaction = FSSoG_naive((L, L, L), n_atoms, 49.9, 3.0, preset = preset)
     exact_neighbor = CellList3D(info, exact_interaction.r_c, boundary, 1)
     Es_exact = short_energy_naive(exact_interaction, exact_neighbor, position, charge)
