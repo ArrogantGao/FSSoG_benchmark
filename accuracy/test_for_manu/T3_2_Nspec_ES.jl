@@ -106,12 +106,14 @@ function mid_paras_gen_diffwindow(N_real::NTuple{3, Int}, w::NTuple{3, Int}, β:
 end
 
 
-extra_pad_ratio = 8
-cheb_order = 10
-E_N_grid=[]
-N_real_true = (40, 40, 40)
-gridinfo_T, gridbox_T, cheb_coefs_T, scalefactor_T = mid_paras_gen_diffwindow(N_real_true, w, β, L, extra_pad_ratio, cheb_order, uspara, M_mid, alpha)
-E_direct_true = energy_mid(qs, poses, gridinfo_T, gridbox_T, cheb_coefs_T, scalefactor_T)
+# extra_pad_ratio = 8
+# cheb_order = 10
+# E_N_grid=[]
+# N_real_true = (40, 40, 40)
+# gridinfo_T, gridbox_T, cheb_coefs_T, scalefactor_T = mid_paras_gen_diffwindow(N_real_true, w, β, L, extra_pad_ratio, cheb_order, uspara, M_mid, alpha)
+# E_direct_true = energy_mid(qs, poses, gridinfo_T, gridbox_T, cheb_coefs_T, scalefactor_T)
+
+E_direct_true = long_energy_us_k(qs, poses, 1e-16, L, uspara, 1, M_mid)
 @show E_direct_true
 
 
@@ -127,7 +129,7 @@ for N_real in N_real_array
       
         @show N_real, error, error_rel
 
-        df = DataFrame(Window_type = 1, energy_exact = E_direct_true, abs_error = error, relative_error = error_rel, N_real = N_real)
+        df = DataFrame(Window_type = 1, energy_exact = E_direct_true, abs_error = error, relative_error = error_rel, N_real = N_real[1])
         #CSV.write("data/Acc_T1_2_WinFunc_Gaussian.csv", df, append = true)
         CSV.write("data_for_manu/Acc_T3_2_Nspec_ES.csv", df, append = true)
 end
