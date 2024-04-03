@@ -1,9 +1,10 @@
 using FastSpecSoG, BenchmarkTools, ExTinyMD, Plots, LaTeXStrings
+using Plots, CSV, DataFrames
 using Random
-Random.seed!(1234)
+Random.seed!(123)
 
 n_atoms = 1000
-L = 20.0
+L = 40.0
 boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
 atoms = Vector{Atom{Float64}}()
@@ -43,25 +44,8 @@ contribution = [[] for i in 1:6]
 for i in 1:6
     for j in 1:length(energy_short_M[i]) - 1
         push!(contribution[i], abs(energy_short_M[i][end] - energy_short_M[i][j]))
-        df = DataFrame(uspara = i, error = abs(energy_short_M[i][end] - energy_short_M[i][j]))
+        df = DataFrame(uspara = i, error = abs(energy_short_M[i][end] - energy_short_M[i][j]) /abs(energy_short_M[i][end]))
         CSV.write("data_for_manu/Acc_T0_Short.csv", df, append = true)
     end
 end
 
-
-
-
-
-fig = plot(dpi = 500, xlabel = "M", ylabel = "Es", title = "r_c = $r_c, L = $L")
-for i in 1:5
-    plot!(fig, 2:150, log10.(abs.(contribution[i])), label = "preset = $i", marker = :circle)
-end
-fig
-savefig(fig, "figs/accuracy_short_M.png")
-
-fig_2 = plot(dpi = 500, xlabel = "M", ylabel = "log10(Error Es)", title = "r_c = $r_c, L = $L", xlim = [0, 150], legend = :topright)
-for i in 1:5
-    plot!(fig_2, 1:150, log10.(abs.(energy_short_M[i][end] .- energy_short_M[i])), label = "p = $i", marker = :circle)
-end
-fig_2
-savefig(fig_2, "figs/accuracy_short_M_total.png")
