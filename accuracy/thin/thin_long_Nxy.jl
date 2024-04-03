@@ -2,8 +2,12 @@ using FastSpecSoG, ExTinyMD, Plots, LaTeXStrings, CSV, DataFrames
 
 n_array = [8, 16, 32, 64, 128, 256]
 
+<<<<<<< HEAD
 pm = 3
 Ns = [30, 50, 100]
+=======
+pm = 6
+>>>>>>> main
 errors = [[] for i in 1:pm]
 
 for preset in 1:pm
@@ -15,13 +19,21 @@ for preset in 1:pm
     poses = [tuple(L .* rand(3)...) for i in 1:n_atoms]
 
     uspara = USeriesPara(preset)
+<<<<<<< HEAD
     E_direct_k = long_energy_us_k(qs, poses, Ns[preset], L, uspara, 1, length(uspara.sw))
+=======
+    E_direct_k = long_energy_us_k(qs, poses, 1e-18, L, uspara, 1, length(uspara.sw))
+>>>>>>> main
 
     for n in n_array
         N_real = (n, n)
         R_z = 16
         w = N_real .÷ 4
+<<<<<<< HEAD
         β = 5.0 .* w
+=======
+        β = 8.0 .* w
+>>>>>>> main
         cheb_order = 16
         Taylor_Q = 16
 
@@ -36,8 +48,22 @@ for preset in 1:pm
     end
 end
 
+<<<<<<< HEAD
 fig = plot(xlabel = "Nxy", ylabel = "Relative error", title = "Long range energy (thin)", dpi = 500)
 for i in 1:pm
     plot!(log2.(n_array), log10.(errors[i]), label = "set: $i", ylims = (-16, 1), marker = :circle)
 end
 savefig(fig, "figs/long_range_thin_errors_Nxy.png")
+=======
+function long_thin_fft_Nxy()
+    df = CSV.read("data/thin_long_Nxy.csv", DataFrame)
+    plot(xlabel = "Nxy", ylabel = "Relative error", title = "Long range energy (thin fft)", dpi = 500)
+    for i in 1:6
+        dfi = filter(row -> row.preset == i, df)
+        plot!(log2.(dfi.Nxy), log10.(dfi.error), label = "set: $i", ylims = (-16, 1), marker = :circle)
+    end
+    savefig("figs/long_range_thin_errors_Nxy.png")
+end
+
+long_thin_fft_Nxy()
+>>>>>>> main

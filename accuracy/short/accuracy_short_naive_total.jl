@@ -21,7 +21,11 @@ charge = [atoms[info.particle_info[i].id].charge for i in 1:n_atoms]
 
 energy_short_exact = []
 energy_short_rc = [[] for i in 1:6]
+<<<<<<< HEAD
 r_c = [1.0:0.5:15.0...]
+=======
+r_c = [1.0:0.5:20.0...]
+>>>>>>> main
 for preset in 1:6
     exact_interaction = FSSoG_naive((L, L, L), n_atoms, 49.9, 3.0, preset = preset)
     exact_neighbor = CellList3D(info, exact_interaction.r_c, boundary, 1)
@@ -39,16 +43,16 @@ for preset in 1:6
     push!(energy_short_exact, Es_exact)
 end
 
-fig = plot(dpi = 500, xlabel = "r_c", ylabel = "relative error", ylim = [1e-12, 10.0])
-for i in 1:5
-    plot!(fig, r_c, abs.(energy_short_rc[i] .- energy_short_exact[i]) ./ abs(energy_short_exact[i]), label = "preset = $i", yscale = :log10, marker = :circle)
+fig = plot(dpi = 500, xlabel = "r_c", ylabel = "relative error", ylim = [-16, 1.0], title = "Short range energy (cube)", legend = :bottomleft)
+for i in 1:6
+    plot!(fig, r_c, log10.(abs.(energy_short_rc[i] .- energy_short_exact[i]) ./ abs(energy_short_exact[i])), label = "set: $i", marker = :circle)
 end
 
-savefig(fig, "figs/accuracy_short_naive_relative.png")
+savefig(fig, "figs/short_range_cube_error.png")
 
-fig_abs = plot(dpi = 500, xlabel = L"r_c", ylabel = "absolute error", ylim = [1e-12, 10.0])
-for i in 1:5
-    plot!(fig_abs, r_c, abs.(energy_short_rc[i] .- energy_short_exact[i]), label = "preset = $i", yscale = :log10, marker = :circle)
-end
+# fig_abs = plot(dpi = 500, xlabel = L"r_c", ylabel = "absolute error", ylim = [1e-12, 10.0])
+# for i in 1:5
+#     plot!(fig_abs, r_c, abs.(energy_short_rc[i] .- energy_short_exact[i]), label = "preset = $i", yscale = :log10, marker = :circle)
+# end
 
-savefig(fig_abs, "figs/accuracy_short_naive_absolute.png")
+# savefig(fig_abs, "figs/accuracy_short_naive_absolute.png")
