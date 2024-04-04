@@ -1,15 +1,13 @@
-using CSV, DataFrames, CairoMakie, LaTeXStrings
+using CSV, DataFrames, CairoMakie, LaTeXStrings, FastSpecSoG
 
-df_xy = CSV.read("data/Acc_T4_cube_Nxy.csv", DataFrame)
-df_z = CSV.read("data/Acc_T4_cube_Rz.csv", DataFrame)
+df_k = CSV.read("data/Acc_T1_Kspace.csv", DataFrame)
 
-M_mid = unique(df_xy.M_mid)
-N_xy = unique(df_xy.Nxy)
-R_z = unique(df_z.Rz)
+L = 20.0
+km = unique(df_k.k_max) .* π ./ L
 
 marker = [:circle, :diamond, :star5, :utriangle, :hexagon, :xcross]
 
-f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (800, 400), fontsize = 20)
+f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (400, 400), fontsize = 20)
 
 ga = f[1, 1] = GridLayout()
 gb = f[1, 2] = GridLayout()

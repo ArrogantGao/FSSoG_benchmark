@@ -35,11 +35,11 @@ ylims!(axl, (1e-16, 1.0))
 ylims!(axr, (1e-16, 1.0))
 
 for (l, error, m) in zip(labels, [error_ES, error_Gaussian, error_PKB], marker)
-    scatter!(axl, w, error, markersize = 15, label = l, marker = m)
+    scatter!(axl, w, error, markersize = 10, label = l, marker = m)
 end
 
 for (l, error, m) in zip(labels, [error_ESN, error_GaussianN, error_PKBN], marker)
-    scatter!(axr, N, error, markersize = 15, label = l, marker = m)
+    scatter!(axr, N, error, markersize = 10, label = l, marker = m)
 end
 
 axislegend(axl, position = :rt)

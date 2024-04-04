@@ -28,12 +28,12 @@ sms = [uspara.sw[i][1] for i in 1:length(uspara.sw)]
 
 for (i, λ) in enumerate(λ_1)
     mask = df_1.extra_pad_ratio .== λ
-    scatter!(axl, sms[Mmid_1[mask]], df_1.error_rel[mask], markersize = 15, label = L"\lambda = %$λ", marker = marker[i])
+    scatter!(axl, sms[Mmid_1[mask]], df_1.error_rel[mask], markersize = 10, label = L"\lambda = %$λ", marker = marker[i])
 end
 
 for (i, Mmid) in enumerate(Mmid_2)
     mask = df_2.M_mid .== Mmid
-    scatter!(axr, λ_2, df_2.error_rel[mask], markersize = 15, label = L"$M_{\text{mid}}$ = %$Mmid", marker = marker[i])
+    scatter!(axr, λ_2, df_2.error_rel[mask], markersize = 10, label = L"$M_{\text{mid}}$ = %$Mmid", marker = marker[i])
 end
 
 axislegend(axl, position = :lt)
