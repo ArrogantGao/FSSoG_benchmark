@@ -24,7 +24,7 @@ L = (20.0, 20.0, 20.0)
 #qs .-= sum(qs) ./ n_atoms
 qs = [(-1.0)^i for i in 1:n_atoms]
 poses = [tuple(L .* rand(3)...) for i in 1:n_atoms]
-r_c = 0.9999999
+r_c = 9.9999999
 
 neighbors = []
 boundary = ExTinyMD.Q2dBoundary(L...)
@@ -61,7 +61,7 @@ near_sw = zeros(6, M_max)
 for preset in 1:6
     b, σ, ω, M0 = FastSpecSoG.preset_parameters[preset]
     uspara = USeriesPara(b, σ, ω, M_max)
-    Threads.@threads for i in 1:5:M_max
+    Threads.@threads for i in 1:8:M_max
         s, w = uspara.sw[i]
         km = sqrt(-4 * log(accuracy) / s^2)
         cutoff = ceil(Int, km * maximum(L) / 2π) + 1
@@ -73,7 +73,7 @@ for preset in 1:6
 end
 
 for preset in 1:6
-    for i in 1:5:M_max
+    for i in 1:8:M_max
         df = DataFrame(preset = preset, M = i, total = total_contribution[preset, i], near_sw = near_sw[preset, i], error_rel = abs(total_contribution[preset, i] - near_sw[preset, i]) / abs(energy_totals[preset]))
         CSV.write("data/Acc_T0_short.csv", df, append = true)
     end

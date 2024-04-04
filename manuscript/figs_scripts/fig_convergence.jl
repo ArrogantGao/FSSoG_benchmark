@@ -18,7 +18,7 @@ axr = Axis(gb[1, 1], xlabel = L"k_{\text{max}}", yscale = log10)
 axl = Axis(ga[1, 1], xlabel = L"M", ylabel = L"\mathcal{E}_r", yscale = log10)
 
 xlims!(axr, (0, 1.1 * π))
-xlims!(axl, (0, 250))
+xlims!(axl, (5, 250))
 ylims!(axr, (1e-16, 1))
 ylims!(axl, (1e-16, 1))
 
