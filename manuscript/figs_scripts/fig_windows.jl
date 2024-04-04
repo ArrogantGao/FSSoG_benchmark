@@ -48,3 +48,4 @@ text!(axl, (3, 1e-14), text = "(a)", fontsize = 30, align = (:right, :baseline),
 text!(axr, (22.5, 1e-14), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
 save("figs/mid_windows.pdf", f)
+save("figs/mid_windows.png", f)

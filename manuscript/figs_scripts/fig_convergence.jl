@@ -36,6 +36,7 @@ text!(axl, (35, 1e-14), text = "(a)", fontsize = 30, align = (:right, :baseline)
 text!(axr, (0.5, 1e-14), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
 save("figs/convergence.pdf", f)
+save("figs/convergence.png", f)
 
 
 

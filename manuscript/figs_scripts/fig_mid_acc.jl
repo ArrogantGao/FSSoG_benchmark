@@ -44,3 +44,4 @@ text!(axr, (30, 1e-13), text = "(b)", fontsize = 30, align = (:right, :baseline)
 f
 
 save("figs/mid_acc.pdf", f)
+save("figs/mid_acc.png", f)

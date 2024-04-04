@@ -40,5 +40,5 @@ text!(axl, (3, 1e-13), text = "(a)", fontsize = 30, align = (:right, :baseline),
 text!(axr, (13, 1e-13), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
 save("figs/long_Nxyz.pdf", f)
-
+save("figs/long_Nxyz.png", f)
 f
