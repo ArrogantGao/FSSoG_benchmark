@@ -1,51 +1,80 @@
-using FastSpecSoG, BenchmarkTools, ExTinyMD, Plots, LaTeXStrings
+using FastSpecSoG, BenchmarkTools, ExTinyMD
 using Plots, CSV, DataFrames
 using Random
 Random.seed!(123)
 
+@show Threads.nthreads(), nprocs()
+
+U(q1, q2, r_sq, s, w) = w * exp(- r_sq / s^2) * q1 * q2
+function U_total(qs, neighbors, s, w)
+    U_total = 0.0
+    for (i, j, r_sq) in neighbors
+        U_total += U(qs[i], qs[j], r_sq, s, w)
+    end
+    for q in qs
+        U_total += w * q^2 / 2
+    end
+    return U_total
+end
+
 n_atoms = 1000
-L = 20.0
-boundary = ExTinyMD.Q2dBoundary(L, L, L)
+L = (20.0, 20.0, 20.0)
 
-atoms = Vector{Atom{Float64}}()
-for i in 1:n_atoms÷2
-    push!(atoms, Atom(type = 1, mass = 1.0, charge = 1.0))
-end
+#qs = rand(n_atoms)
+#qs .-= sum(qs) ./ n_atoms
+qs = [(-1.0)^i for i in 1:n_atoms]
+poses = [tuple(L .* rand(3)...) for i in 1:n_atoms]
+r_c = 0.9999999
 
-for i in n_atoms÷2 + 1 : n_atoms
-    push!(atoms, Atom(type = 2, mass = 1.0, charge = - 1.0))
-end
-
-info = SimulationInfo(n_atoms, atoms, (0.0, L, 0.0, L, 0.0, L), boundary; min_r = 1.0, temp = 1.0)
-position = [info.particle_info[i].position.coo for i in 1:n_atoms]
-charge = [atoms[info.particle_info[i].id].charge for i in 1:n_atoms]
-
-# charge = rand(n_atoms)
-# charge .-= sum(charge) ./ n_atoms
-
-energy_short_M = [[] for i in 1:6]
-cheb_orders = [1:3:40...]
-
-# fix r_c = 10.0
-r_c = 9.999
-
-neighbor = CellList3D(info, r_c, boundary, 1)
-
-for preset in 1:6
-    b, σ, ω, M0 = FastSpecSoG.preset_parameters[preset]
-    for M in 1:250
-        interaction_short = FSSoG_naive((L, L, L), n_atoms, r_c, 3.0, b, σ, ω, M)
-        Es = short_energy_naive(interaction_short, neighbor, position, charge)
-        push!(energy_short_M[preset], Es)
+neighbors = []
+boundary = ExTinyMD.Q2dBoundary(L...)
+for i in 1:n_atoms - 1
+    for j in i + 1:n_atoms
+        if i != j
+            pos_1, pos_2, r_sq = position_check3D(poses[i], poses[j], boundary, r_c)
+            if r_sq != 0.0
+                push!(neighbors, (i, j, r_sq))
+            end
+        end
     end
 end
 
-contribution = [[] for i in 1:6]
-for i in 1:6
-    for j in 1:length(energy_short_M[i]) - 1
-        push!(contribution[i], abs(energy_short_M[i][end] - energy_short_M[i][j]))
-        df = DataFrame(uspara = i, error = abs(energy_short_M[i][end] - energy_short_M[i][j]) /abs(energy_short_M[i][end]))
+M_max = 250
+
+accuracy = 1e-16
+
+# energy_totals = []
+
+# for preset in 1:6
+#     uspara0 = USeriesPara(preset)
+#     M_t = length(uspara0.sw)
+#     energy_total = long_energy_us_k(qs, poses, 1e-16, L, uspara0, 1, M_t) + long_energy_us_0(qs, poses, L, uspara0, 1, M_t)
+#     push!(energy_totals, energy_total)
+#     @show preset, energy_total
+# end
+# @show energy_totals
+
+energy_totals = [96.63438269437341, 124.4380320000621, 164.66320580651364, 183.8203574798731, 229.872932462265, 293.043105394439]
+
+total_contribution = zeros(6, M_max)
+near_sw = zeros(6, M_max)
+for preset in 1:6
+    b, σ, ω, M0 = FastSpecSoG.preset_parameters[preset]
+    uspara = USeriesPara(b, σ, ω, M_max)
+    Threads.@threads for i in 1:5:M_max
+        s, w = uspara.sw[i]
+        km = sqrt(-4 * log(accuracy) / s^2)
+        cutoff = ceil(Int, km * maximum(L) / 2π) + 1
+        total_contribution[preset, i] = long_energy_sw_k(qs, poses, cutoff, L, s, w) + long_energy_sw_0(qs, poses, L, s, w)
+        near_sw[preset, i] = U_total(qs, neighbors, s, w)
+        error_rel = abs(total_contribution[preset, i] - near_sw[preset, i]) / abs(energy_totals[preset])
+        @show preset, i, total_contribution[preset, i], near_sw[preset, i], error_rel
+    end
+end
+
+for preset in 1:6
+    for i in 1:5:M_max
+        df = DataFrame(preset = preset, M = i, total = total_contribution[preset, i], near_sw = near_sw[preset, i], error_rel = abs(total_contribution[preset, i] - near_sw[preset, i]) / abs(energy_totals[preset]))
         CSV.write("data/Acc_T0_short.csv", df, append = true)
     end
 end
-
