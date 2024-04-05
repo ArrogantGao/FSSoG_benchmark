@@ -8,7 +8,7 @@ df_ESN = CSV.read("data/Acc_T3_2_Nspec_ES.csv", DataFrame)
 df_GaussianN = CSV.read("data/Acc_T3_2_Nspec_Gaussian.csv", DataFrame)
 df_PKBN = CSV.read("data/Acc_T3_2_Nspec_PKB.csv", DataFrame)
 
-labels = ["ES", "Gaussian", "PKB"]
+labels = ["PKB", "ES", "Gaussian"]
 marker = [:circle, :diamond, :star5]
 
 w = df_ES.w
@@ -34,11 +34,11 @@ xlims!(axr, (8, 68))
 ylims!(axl, (1e-16, 1.0))
 ylims!(axr, (1e-16, 1.0))
 
-for (l, error, m) in zip(labels, [error_ES, error_Gaussian, error_PKB], marker)
+for (l, error, m) in zip(labels, [error_PKB, error_ES, error_Gaussian], marker)
     scatter!(axl, w, error, markersize = 10, label = l, marker = m)
 end
 
-for (l, error, m) in zip(labels, [error_ESN, error_GaussianN, error_PKBN], marker)
+for (l, error, m) in zip(labels, [error_PKBN, error_ESN, error_GaussianN], marker)
     scatter!(axr, N, error, markersize = 10, label = l, marker = m)
 end
 
