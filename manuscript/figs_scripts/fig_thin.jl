@@ -34,12 +34,24 @@ ylims!(ax_Rz, (1e-16, 1))
 for i in 1:3
     gamma = gammas[i]
     mask_w = df_w.gamma .== gamma
-    mask_Taylor = df_Taylor.gamma .== gamma
-    mask_Nxy = df_Nxy.gamma .== gamma
-    mask_Rz = df_Rz.gamma .== gamma
     scatter!(ax_w, df_w.w[mask_w], df_w.error_rel[mask_w], markersize = 10, label = L"\gamma = %$gamma", marker = markers[i])
+end
+
+for i in 1:3
+    gamma = gammas[i]
+    mask_Taylor = df_Taylor.gamma .== gamma
     scatter!(ax_Taylor, df_Taylor.TaylorQ[mask_Taylor], df_Taylor.error_rel[mask_Taylor], markersize = 10, marker = markers[i])
+end
+
+for i in 1:3
+    gamma = gammas[i]
+    mask_Nxy = df_Nxy.gamma .== gamma
     scatter!(ax_Nxy, df_Nxy.Nxy[mask_Nxy], df_Nxy.error_rel[mask_Nxy], markersize = 10, marker = markers[i])
+end
+
+for i in 1:3
+    gamma = gammas[i]
+    mask_Rz = df_Rz.gamma .== gamma
     scatter!(ax_Rz, df_Rz.R_z[mask_Rz], df_Rz.error_rel[mask_Rz], markersize = 10, marker = markers[i])
 end
 
