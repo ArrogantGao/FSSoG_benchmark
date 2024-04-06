@@ -1,4 +1,4 @@
-using CSV, DataFrames, CairoMakie, LaTeXStrings
+using CSV, DataFrames, CairoMakie, LaTeXStrings, LsqFit
 
 df_w = CSV.read("data/Acc_T5_thin_w.csv", DataFrame)
 df_Taylor = CSV.read("data/Acc_T5_thin_TaylorQ.csv", DataFrame)

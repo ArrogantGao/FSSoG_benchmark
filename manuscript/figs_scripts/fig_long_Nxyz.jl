@@ -1,4 +1,4 @@
-using CSV, DataFrames, CairoMakie, LaTeXStrings
+using CSV, DataFrames, CairoMakie, LaTeXStrings, LsqFit, FastSpecSoG
 
 df_xy = CSV.read("data/Acc_T4_cube_Nxy.csv", DataFrame)
 df_z = CSV.read("data/Acc_T4_cube_Rz.csv", DataFrame)
@@ -71,7 +71,7 @@ text!(axl, (3, 1e-13), text = "(a)", fontsize = 30, align = (:right, :baseline),
 text!(axr, (13, 1e-13), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
 text!(axl, (15, 10^(-7.8)), text = L"O(e^{- C_1 N_{xy}^2})", fontsize = 20, align = (:right, :baseline),)
-text!(axr, (60, 10^(-7.8)), text = L"O(C_2^{-P} / \sqrt{P !})", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (63, 10^(-7.8)), text = L"O(C_2^{-R_z} / \sqrt{R_z !})", fontsize = 20, align = (:right, :baseline),)
 
 save("figs/long_Nxyz.pdf", f)
 save("figs/long_Nxyz.png", f)

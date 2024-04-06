@@ -1,4 +1,4 @@
-using CSV, DataFrames, CairoMakie, LaTeXStrings, FastSpecSoG
+using CSV, DataFrames, CairoMakie, LaTeXStrings, FastSpecSoG, LsqFit
 
 df_k = CSV.read("data/Acc_T1_Kspace.csv", DataFrame)
 df_r = CSV.read("data/Acc_T0_short.csv", DataFrame)
