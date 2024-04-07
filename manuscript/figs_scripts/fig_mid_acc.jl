@@ -19,9 +19,10 @@ ga = f[1, 1] = GridLayout()
 gb = f[1, 2] = GridLayout()
 
 axl = Axis(ga[1, 1], xlabel = L"s_{M}", ylabel = L"\mathcal{E}_r", yscale = log10, xscale = log10)
-axr = Axis(gb[1, 1], xlabel = L"\lambda", yscale = log10)
+axr = Axis(gb[1, 1], xlabel = L"\lambda_z", yscale = log10)
 
 ylims!(axl, (1e-16, 1))
+xlims!(axr, (0, 10))
 ylims!(axr, (1e-16, 1))
 
 sms = [uspara.sw[i][1] for i in 1:length(uspara.sw)]
@@ -77,7 +78,7 @@ text!(axl, (100, 1e-13), text = "(a)", fontsize = 30, align = (:right, :baseline
 text!(axr, (9.3, 1e-13), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
 text!(axl, (100, 10^(-9.5)), text = L"O(\text{erfc}(C_1 s_M^{-1}))", fontsize = 20, align = (:right, :baseline),)
-text!(axr, (9.3, 10^(-9.5)), text = L"O(\text{erfc}(C_2 \lambda))", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (9.6, 10^(-9.5)), text = L"O(\text{erfc}(C_2 \lambda_z))", fontsize = 20, align = (:right, :baseline),)
 
 save("figs/mid_acc.pdf", f)
 save("figs/mid_acc.png", f)
