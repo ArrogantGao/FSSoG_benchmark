@@ -22,7 +22,6 @@ axl = Axis(ga[1, 1], xlabel = L"s_{M}", ylabel = L"\mathcal{E}_r", yscale = log1
 axr = Axis(gb[1, 1], xlabel = L"\lambda_z", yscale = log10)
 
 ylims!(axl, (1e-16, 1))
-xlims!(axr, (0, 10))
 ylims!(axr, (1e-16, 1))
 
 sms = [uspara.sw[i][1] for i in 1:length(uspara.sw)]
