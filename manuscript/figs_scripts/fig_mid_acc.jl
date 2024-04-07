@@ -1,4 +1,4 @@
-using CSV, DataFrames, CairoMakie, LaTeXStrings, FastSpecSoG, SpecialFunctions
+using CSV, DataFrames, CairoMakie, LaTeXStrings, FastSpecSoG, SpecialFunctions, LsqFit
 
 df_1 = CSV.read("data/Acc_T2_1_Mmid.csv", DataFrame)
 df_2 = CSV.read("data/Acc_T2_2_Extrapadding.csv", DataFrame)
