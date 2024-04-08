@@ -94,8 +94,11 @@ run_T5_w:
 	echo "w,gamma,E_exact,E_thin,error_rel" >> data/Acc_T5_thin_w.csv
 	julia --project=. data_scripts/T5_thin_w.jl
 
-run_Ewald2D:
-	julia --project=. -t 256 reference/reference_results.jl
+run_Ewald2D_cube:
+	julia --project=. -t 256 reference/cube_results.jl
+
+run_Ewald2D_thin:
+	julia --project=. -t 256 reference/thin_results.jl
 
 plot:
 	julia --project=. figs_scripts/fig_convergence.jl
