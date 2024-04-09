@@ -10,13 +10,13 @@ run_T0:
 	rm data/Acc_T0_short.csv
 	touch data/Acc_T0_short.csv
 	echo "preset,M_mid,total,near,error_rel" >> data/Acc_T0_short.csv
-	julia --project=. -p 127 -t 256 data_scripts/T0_Short.jl
+	julia --project=. -t 256 data_scripts/T0_Short.jl
 
 run_T1:
 	rm data/Acc_T1_Kspace.csv
 	touch data/Acc_T1_Kspace.csv
 	echo "preset,k_max,energy_exact,energy_k,error,error_rel" >> data/Acc_T1_Kspace.csv
-	julia --project=. -p 127 -t 256 data_scripts/T1_1_Kspace.jl
+	julia --project=. -t 256 data_scripts/T1_1_Kspace.jl
 
 run_T2_1:
 	rm data/Acc_T2_1_Mmid.csv
@@ -62,13 +62,19 @@ run_T4_1:
 	rm data/Acc_T4_cube_Nxy.csv
 	touch data/Acc_T4_cube_Nxy.csv
 	echo "Nxy,M_mid,energy_exact,energy_ffct,error,error_rel" >> data/Acc_T4_cube_Nxy.csv
-	julia --project=. -p 32 data_scripts/T4_cube_Nxy.jl
+	julia --project=. -t 32 data_scripts/T4_cube_Nxy.jl
 
 run_T4_2:
 	rm data/Acc_T4_cube_Rz.csv
 	touch data/Acc_T4_cube_Rz.csv
 	echo "Rz,M_mid,energy_exact,energy_ffct,error,error_rel" >> data/Acc_T4_cube_Rz.csv
-	julia --project=. -p 32 data_scripts/T4_cube_Rz.jl
+	julia --project=. -t 32 data_scripts/T4_cube_Rz.jl
+
+run_T4_zeroth:
+	rm data/Acc_T4_cube_zeroth.csv
+	touch data/Acc_T4_cube_zeroth.csv
+	echo "Q_0,M_mid,energy_exact,energy_fgt,error_rel" >> data/Acc_T4_cube_zeroth.csv
+	julia --project=. -t 256 data_scripts/T4_cube_zeroth.jl
 
 run_T5_Nxy:
 	rm data/Acc_T5_thin_Nxy.csv
@@ -94,11 +100,23 @@ run_T5_w:
 	echo "w,gamma,E_exact,E_thin,error_rel" >> data/Acc_T5_thin_w.csv
 	julia --project=. data_scripts/T5_thin_w.jl
 
+run_T5_zeroth:
+	rm data/Acc_T5_thin_zeroth.csv
+	touch data/Acc_T5_thin_zeroth.csv
+	echo "Q_0,gamma,E_exact,E_fgt,error_rel" >> data/Acc_T5_thin_zeroth.csv
+	julia --project=. -t 256 data_scripts/T5_thin_zeroth.jl
+
 run_Ewald2D_cube:
 	julia --project=. -t 256 reference/cube_results.jl
 
 run_Ewald2D_thin:
 	julia --project=. -t 256 reference/thin_results.jl
+
+run_cube_total:
+	rm data/Acc_T6_cube_total.csv
+	touch data/Acc_T6_cube_total.csv
+	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_cube_total.csv
+	julia --project=. -t 256 data_scripts/T6_cube_total.jl
 
 plot:
 	julia --project=. figs_scripts/fig_convergence.jl
@@ -106,3 +124,4 @@ plot:
 	julia --project=. figs_scripts/fig_long_Nxyz.jl
 	julia --project=. figs_scripts/fig_windows.jl
 	julia --project=. figs_scripts/fig_thin.jl
+	julia --project=. figs_scripts/fig_zeroth.jl
