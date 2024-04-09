@@ -116,7 +116,7 @@ run_cube_total:
 	rm data/Acc_T6_cube_total.csv
 	touch data/Acc_T6_cube_total.csv
 	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_cube_total.csv
-	julia --project=. -t 256 data_scripts/T6_cube_total.jl
+	julia --project=. data_scripts/T6_cube_total.jl
 
 plot:
 	julia --project=. figs_scripts/fig_convergence.jl
