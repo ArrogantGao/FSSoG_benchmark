@@ -1,4 +1,4 @@
-using CSV, DataFrames, CairoMakie, LaTeXStrings, SpecialFunctions
+using CSV, DataFrames, CairoMakie, LaTeXStrings, SpecialFunctions, LsqFit
 
 df_ES = CSV.read("data/Acc_T3_1_WinFunc_ES.csv", DataFrame)
 df_Gaussian = CSV.read("data/Acc_T3_1_WinFunc_Gaussian.csv", DataFrame)

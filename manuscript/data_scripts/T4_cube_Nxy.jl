@@ -30,7 +30,7 @@ for i in 1:length(M_mid_array)
     for N_xy in N_xy_array
         N_grid = (N_xy, N_xy, 64)
 
-        k_x, k_y, r_z, H_r, H_c, phase_x, phase_y,  sort_z, z = long_paras_gen(L, N_grid, n_atoms)
+        k_x, k_y, r_z, H_r, H_c, phase_x, phase_y = long_paras_gen(L, N_grid)
         cheb_mat = ChebUSeries(k_x, k_y, L[3], uspara, M_mid, 64)
         E_FFCT_loop_k = energy_long_cheb_k(qs, poses, L, k_x, k_y, r_z, phase_x, phase_y, H_r, H_c, cheb_mat)
 
