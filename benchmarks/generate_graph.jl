@@ -20,7 +20,7 @@ function runtime(data_file)
     t_short = df.t_short
     t_mid = df.t_mid
     t_long = df.t_long
-    plot(xlabel = "n_atoms", ylabel = "time (s)", title = "accuracy ~ 1e-4", legend = :topleft, xscale = :log10, yscale = :log10, dpi = 500, xlim = [10^(1.8), 10^(3.9)])
+    plot(xlabel = "n_atoms", ylabel = "time (s)", title = "accuracy ~ 1e-4", legend = :topleft, xscale = :log10, yscale = :log10, dpi = 500, xlim = [10^(2.8), 10^(5.2)])
     plot!(n_atoms, 10^(-6) .* n_atoms, label = "linear", linestyle = :dash, color = :black)
     plot!(n_atoms, t_short, label = "short", marker = :circle)
     plot!(n_atoms, t_mid, label = "mid", marker = :circle)

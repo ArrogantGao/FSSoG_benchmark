@@ -18,6 +18,6 @@ execution_time=$((end_time - start_time))
 formatted_time=$(date -u -d @"$execution_time" +%H:%M:%S)
 echo "Benchmark execution time: $formatted_time"
 
-# echo -e "Generating plots..."
-# julia --project=@. generate-graph.jl $output_file $complexity_file
-# echo -e "Plot generated"
+echo -e "Generating plots..."
+julia --project=@. generate-graph.jl --date-file $output_file
+echo -e "Plot generated"

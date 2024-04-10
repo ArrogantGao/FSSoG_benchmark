@@ -33,7 +33,7 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 	@show M_mid
 
 	@info "FSSoG, n_atoms = $n_atoms"
-	fssog_interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, 64; preset = preset, ϵ = 1.0)
+	fssog_interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, 32; preset = preset, ϵ = 1.0)
 	fssog_neighbor = CellList3D(info, fssog_interaction.r_c, boundary, 1)
 	@time energy_sog = ExTinyMD.energy(fssog_interaction, fssog_neighbor, info, atoms)
 
