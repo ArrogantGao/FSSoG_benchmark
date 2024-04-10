@@ -6,10 +6,12 @@ L0 = 20.0
 N_real0 = (32, 32, 32)
 w = (16, 16, 16)
 β = 5.0 .* w
-extra_pad_ratio = 2
+extra_pad_ratio_intial = 2
 cheb_order = 10
 preset = 4
-M_mid = 6
+uspara = USeriesPara(preset) 
+M_mid_initial = 6
+eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
 N_grid = (16, 16, 16)
 Q = 16
 r_c = 9.99
@@ -25,6 +27,10 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 
     ratio = (n_atoms / 1000)^(1/3)
 	N_real = Int.(ceil.(ratio .* N_real0))
+	extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
+
+	M_mid = proper_M(eta, L, uspara)
+	@show M_mid
 
 	@info "FSSoG, n_atoms = $n_atoms"
 	fssog_interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, 64; preset = preset, ϵ = 1.0)
