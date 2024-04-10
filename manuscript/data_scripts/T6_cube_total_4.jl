@@ -4,14 +4,14 @@ using CSV, DataFrames
 L0 = 20.0
 
 N_real0 = (32, 32, 32)
-w = (12, 12, 12)
+w = (16, 16, 16)
 β = 5.0 .* w
 extra_pad_ratio = 2
 cheb_order = 10
-preset = 2
-M_mid = 4
-N_grid = (8, 8, 6)
-Q = 10
+preset = 4
+M_mid = 6
+N_grid = (16, 16, 16)
+Q = 16
 r_c = 9.99
 
 for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
@@ -37,5 +37,5 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 	@show energy_sog, abs_error, relative_error
 
 	df = DataFrame(n_atoms = n_atoms, E_exact = energy_ewald, E_fssog = energy_sog, abs_error = abs_error, relative_error = relative_error)
-	CSV.write("data/Acc_T6_cube_total.csv", df, append = true)
+	CSV.write("data/Acc_T6_cube_total_4.csv", df, append = true)
 end
