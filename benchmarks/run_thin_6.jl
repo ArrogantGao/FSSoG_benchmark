@@ -31,17 +31,13 @@ function main()
 
 	for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
-		path = "../manuscript/thin/$data" 
+		path = "../manuscript/reference/thin/$data" 
 		@load path n_atoms Lx Lz atoms info energy_ewald
-
-		@show n_atoms, Lx, Lz, energy_ewald
 
 		boundary = ExTinyMD.Q2dBoundary(Lx, Lx, Lz)
 
 		ratio = (n_atoms / 1000)^(1/2)
 		N_real = Int.(ceil.(ratio .* N_real0))
-
-		@info "FSSoG, n_atoms = $n_atoms"
 		interaction = FSSoGThinInteraction((Lx, Lx, Lz), n_atoms, r_c, Q, 0.5, N_real, R_z, w, β, cheb_order, Taylor_Q, Q_0; preset = preset, ϵ = 1.0)
 		neighbor = CellList3D(info, interaction.r_c, boundary, 1)
 
