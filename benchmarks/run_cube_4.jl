@@ -19,20 +19,20 @@ function main()
     output_file = parsed_args["output-file"]
 
     L0 = 20.0
-    N_real0 = (64, 64, 64)
 
+    N_real0 = (32, 32, 32)
     w = (16, 16, 16)
     β = 5.0 .* w
     extra_pad_ratio_intial = 2
-    cheb_order = 16
-    preset = 6
+    cheb_order = 10
+    preset = 4
     uspara = USeriesPara(preset) 
-    M_mid_initial = 8
+    M_mid_initial = 6
     eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-    N_grid = (16, 16, 32) .* 2
-    Q = 32
-    r_c = 9.99999999999999
-    
+    N_grid = (12, 12, 8)
+    Q = 16
+    r_c = 9.999999
+
     for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
         path = "../manuscript/reference/cube/$data" 
@@ -45,7 +45,7 @@ function main()
         extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
 
         M_mid = proper_M(eta, L, uspara)
-        interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, 64; preset = preset, ϵ = 1.0)
+        interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, 32; preset = preset, ϵ = 1.0)
         neighbor = CellList3D(info, interaction.r_c, boundary, 1)
         
         for i in 1:interaction.n_atoms

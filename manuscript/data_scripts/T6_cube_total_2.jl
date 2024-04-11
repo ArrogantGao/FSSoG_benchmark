@@ -3,17 +3,18 @@ using CSV, DataFrames
 
 L0 = 20.0
 
-N_real0 = (32, 32, 32)
-w = (16, 16, 16)
+N_real0 = (16, 16, 16)
+w = (8, 8, 8)
 β = 5.0 .* w
 extra_pad_ratio_intial = 2
-cheb_order = 10
+cheb_order = 4
 preset = 2
 uspara = USeriesPara(preset) 
 M_mid_initial = 4
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-N_grid = (8, 8, 6)
-Q = 16
+N_grid = (4, 4, 4)
+Q = 8
+Q_0 = 4
 r_c = 9.99
 
 for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
@@ -33,7 +34,7 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 	@show M_mid
 
 	@info "FSSoG, n_atoms = $n_atoms"
-	fssog_interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, 32; preset = preset, ϵ = 1.0)
+	fssog_interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, Q_0; preset = preset, ϵ = 1.0)
 	fssog_neighbor = CellList3D(info, fssog_interaction.r_c, boundary, 1)
 	@time energy_sog = ExTinyMD.energy(fssog_interaction, fssog_neighbor, info, atoms)
 

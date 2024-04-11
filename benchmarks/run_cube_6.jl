@@ -19,20 +19,20 @@ function main()
     output_file = parsed_args["output-file"]
 
     L0 = 20.0
-
-    N_real0 = (32, 32, 32)
-    w = (16, 16, 16)
+    N_real0 = (36, 36, 36)
+    
+    w = (8, 8, 8)
     β = 5.0 .* w
-    extra_pad_ratio_intial = 2
+    extra_pad_ratio_intial = 8
     cheb_order = 10
-    preset = 2
-    uspara = USeriesPara(preset) 
-    M_mid_initial = 4
+    preset = 6
+    uspara = USeriesPara(preset)
+    M_mid_initial = 15
     eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-    N_grid = (8, 8, 6)
-    Q = 16
+    N_grid = (2, 2, 15)
+    Q = 28
     r_c = 9.99
-
+    
     for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
         path = "../manuscript/reference/cube/$data" 

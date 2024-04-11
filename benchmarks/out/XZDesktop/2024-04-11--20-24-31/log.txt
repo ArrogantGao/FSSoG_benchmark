@@ -1,0 +1,7 @@
+./out/XZDesktop/2024-04-11--20-24-31/out_cube.csv
+./out/XZDesktop/2024-04-11--20-24-31/out_thin.csv
+Starting benchmark...
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 1000, 0.003962627, 0.045224646, 0.006232992)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 3164, 0.013451366, 0.141793757, 0.021874718)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 10000, 0.04532129, 0.445885706, 0.068319584)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 31624, 0.14981485, 1.446839064, 0.355475396)

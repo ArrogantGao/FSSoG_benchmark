@@ -130,6 +130,24 @@ run_cube_total_6:
 	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_cube_total_6.csv
 	julia --project=. data_scripts/T6_cube_total_6.jl
 
+run_thin_total_2:
+	rm data/Acc_T6_thin_total_2.csv
+	touch data/Acc_T6_thin_total_2.csv
+	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_thin_total_2.csv
+	julia --project=. data_scripts/T6_thin_total_2.jl
+
+run_thin_total_4:
+	rm data/Acc_T6_thin_total_4.csv
+	touch data/Acc_T6_thin_total_4.csv
+	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_thin_total_4.csv
+	julia --project=. data_scripts/T6_thin_total_4.jl
+
+run_thin_total_6:
+	rm data/Acc_T6_thin_total_6.csv
+	touch data/Acc_T6_thin_total_6.csv
+	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_thin_total_6.csv
+	julia --project=. data_scripts/T6_thin_total_6.jl
+
 plot:
 	julia --project=. figs_scripts/fig_convergence.jl
 	julia --project=. figs_scripts/fig_mid_acc.jl
