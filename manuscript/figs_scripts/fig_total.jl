@@ -22,8 +22,8 @@ gb = f[1, 2] = GridLayout()
 axr = Axis(gb[1, 1], xlabel = L"N_\text{atoms}", yscale = log10, xscale = log10)
 axl = Axis(ga[1, 1], xlabel = L"N_\text{atoms}", ylabel = L"\mathcal{E}_r", yscale = log10, xscale = log10)
 
-ylims!(axr, (1e-14, 1))
-ylims!(axl, (1e-14, 1))
+ylims!(axr, (1e-14, 1e2))
+ylims!(axl, (1e-14, 1e2))
 
 ks = range(0, 1.1 * π, length = 1000)
 
