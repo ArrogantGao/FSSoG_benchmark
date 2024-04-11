@@ -1,0 +1,23 @@
+Starting benchmark...
+(n_atoms, L, energy_ewald) = (1000, 20.0, -9.562614063504487)
+M_mid = 4
+[ Info: FSSoG, n_atoms = 1000
+(n_atoms, t_short, t_mid, t_long) = (1000, 0.010664596, 0.524955647, 0.139807296)
+(n_atoms, L, energy_ewald) = (3164, 29.35598535244139, 4.907563256236145)
+M_mid = 4
+[ Info: FSSoG, n_atoms = 3164
+(n_atoms, t_short, t_mid, t_long) = (3164, 0.036563823, 1.554689922, 0.473155233)
+(n_atoms, L, energy_ewald) = (10000, 43.08869380063768, -45.93702871007848)
+M_mid = 5
+[ Info: FSSoG, n_atoms = 10000
+(n_atoms, t_short, t_mid, t_long) = (10000, 0.123674044, 4.984944328, 1.448789389)
+(n_atoms, L, energy_ewald) = (31624, 63.24555320336758, 24.46954538787901)
+M_mid = 6
+[ Info: FSSoG, n_atoms = 31624
+(n_atoms, t_short, t_mid, t_long) = (31624, 0.408156964, 20.157951893, 4.448809787)
+(n_atoms, L, energy_ewald) = (100000, 92.83177667225557, -223.76328241182813)
+M_mid = 7
+[ Info: FSSoG, n_atoms = 100000
+(n_atoms, t_short, t_mid, t_long) = (100000, 1.355496012, 82.353447328, 13.650918779)
+Benchmark finished
+Benchmark execution time: 00:09:49
