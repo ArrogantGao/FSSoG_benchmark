@@ -19,20 +19,20 @@ function main()
     output_file = parsed_args["output-file"]
 
     L0 = 20.0
+    N_real0 = (64, 64, 64)
 
-    N_real0 = (32, 32, 32)
     w = (16, 16, 16)
     β = 5.0 .* w
     extra_pad_ratio_intial = 2
-    cheb_order = 10
-    preset = 2
+    cheb_order = 16
+    preset = 6
     uspara = USeriesPara(preset) 
-    M_mid_initial = 4
+    M_mid_initial = 8
     eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-    N_grid = (8, 8, 6)
-    Q = 16
-    r_c = 9.99
-
+    N_grid = (16, 16, 32) .* 2
+    Q = 32
+    r_c = 9.99999999999999
+    
     for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
         path = "../manuscript/reference/cube/$data" 
@@ -57,9 +57,9 @@ function main()
         t_mid = @belapsed energy_mid($interaction)
         t_long = @belapsed energy_long($interaction)
 
-        @show n_atoms, t_short, t_mid, t_long
+        @show preset, n_atoms, t_short, t_mid, t_long
 
-        df = DataFrame(n_atoms = n_atoms, t_short = t_short, t_mid = t_mid, t_long = t_long)
+        df = DataFrame(preset = preset, n_atoms = n_atoms, t_short = t_short, t_mid = t_mid, t_long = t_long, t_total = t_short + t_mid + t_long)
         CSV.write(output_file, df, append = true)
     end
 end

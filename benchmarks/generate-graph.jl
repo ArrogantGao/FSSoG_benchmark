@@ -5,7 +5,7 @@ function parse_commandline()
     s = ArgParseSettings()
   
     @add_arg_table s begin
-      "--data_file"
+      "--data-file"
       help = "relative file path of the output file"
     end
   
@@ -29,5 +29,5 @@ function runtime(data_file)
     savefig(file_path)
 end
 
-data_file = parse_commandline()["data_file"]
+data_file = parse_commandline()["data-file"]
 runtime(data_file)

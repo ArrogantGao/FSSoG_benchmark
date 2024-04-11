@@ -1,0 +1,12 @@
+Starting benchmark...
+(n_atoms, t_short, t_mid, t_long) = (1000, 0.005555649, 0.30685202, 0.084893322)
+(n_atoms, t_short, t_mid, t_long) = (3164, 0.018785076, 1.002975731, 0.315337013)
+(n_atoms, t_short, t_mid, t_long) = (10000, 0.062941363, 3.204400989, 1.021688156)
+(n_atoms, t_short, t_mid, t_long) = (31624, 0.207087164, 10.38539219, 2.895653753)
+(n_atoms, t_short, t_mid, t_long) = (100000, 0.673487932, 37.284639238, 11.32773179)
+Benchmark finished
+Benchmark execution time: 00:06:12
+Generating plots...
+unrecognized option --date-file
+usage: generate-graph.jl [--data-file DATA-FILE]
+Plot generated
