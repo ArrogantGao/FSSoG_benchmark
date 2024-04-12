@@ -12,6 +12,13 @@ run_T0:
 	echo "preset,M_mid,total,near,error_rel" >> data/Acc_T0_short.csv
 	julia --project=. -t 256 data_scripts/T0_Short.jl
 
+run_T0_total:
+	touch data/Acc_T0_total.csv
+	rm data/Acc_T0_total.csv
+	touch data/Acc_T0_total.csv
+	echo "preset,E_ewald,E_fssog,abs_err,rel_err" >> data/Acc_T0_total.csv
+	julia --project=. data_scripts/T0_total.jl
+
 run_T1:
 	rm data/Acc_T1_Kspace.csv
 	touch data/Acc_T1_Kspace.csv

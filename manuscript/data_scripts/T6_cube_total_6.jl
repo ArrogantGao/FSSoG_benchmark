@@ -22,9 +22,9 @@ Rz_0 = 16
 for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
     path = "./reference/cube/$data" 
-	@load path n_atoms L atoms info energy_ewald
+	@load path n_atoms L atoms info energy_ewald energy_fssog
 
-	@show n_atoms, L, energy_ewald
+	@show n_atoms, L, energy_ewald, energy_fssog
 
 	boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
@@ -40,10 +40,15 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 	fssog_neighbor = CellList3D(info, fssog_interaction.r_c, boundary, 1)
 	@time energy_sog = ExTinyMD.energy(fssog_interaction, fssog_neighbor, info, atoms)
 
-	abs_error = abs(energy_ewald - energy_sog)
-	relative_error = abs(energy_ewald - energy_sog) / abs(energy_ewald)
+	abs_error = abs(energy_fssog - energy_sog)
+	relative_error = abs(energy_fssog - energy_sog) / abs(energy_fssog)
 
 	@show energy_sog, abs_error, relative_error
+
+	# abs_error = abs(energy_ewald - energy_sog)
+	# relative_error = abs(energy_ewald - energy_sog) / abs(energy_ewald)
+
+	# @show energy_sog, abs_error, relative_error
 
 	df = DataFrame(n_atoms = n_atoms, E_exact = energy_ewald, E_fssog = energy_sog, abs_error = abs_error, relative_error = relative_error)
 	CSV.write("data/Acc_T6_cube_total_6.csv", df, append = true)
