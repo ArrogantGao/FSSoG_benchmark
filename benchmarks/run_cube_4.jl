@@ -31,6 +31,8 @@ function main()
     eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
     N_grid = (12, 12, 8)
     Q = 16
+    Rz_0 = 8
+    Q_0 = 8
     r_c = 9.999999
 
     for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
@@ -45,7 +47,7 @@ function main()
         extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
 
         M_mid = proper_M(eta, L, uspara)
-        interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, 32; preset = preset, ϵ = 1.0)
+        interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)
         neighbor = CellList3D(info, interaction.r_c, boundary, 1)
         
         for i in 1:interaction.n_atoms
