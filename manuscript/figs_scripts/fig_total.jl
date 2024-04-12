@@ -28,15 +28,15 @@ ylims!(axl, (1e-14, 1e2))
 ks = range(0, 1.1 * π, length = 1000)
 
 for i in 1:3
-    b = round(FastSpecSoG.preset_parameters[i][1], digits = 2)
+    b = round(FastSpecSoG.preset_parameters[2 * i][1], digits = 2)
     scatter!(axr, n_atoms, df_cube[i].error_rel, markersize = 10, label = L"b = %$b", marker = marker[i])
     scatter!(axl, n_atoms, df_thin[i].error_rel, markersize = 10, label = L"b = %$b", marker = marker[i])
 end
 
-axislegend(axr, position = :lt)
+axislegend(axl, position = :rt)
 
-text!(axl, (2000, 1e-12), text = "(a)", fontsize = 30, align = (:right, :baseline),)
-text!(axr, (2000, 1e-12), text = "(b)", fontsize = 30, align = (:right, :baseline),)
+text!(axl, (2000, 1e0), text = "(a)", fontsize = 30, align = (:right, :baseline),)
+text!(axr, (2000, 1e0), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
 save("figs/total_error.pdf", f)
 save("figs/total_error.png", f)
