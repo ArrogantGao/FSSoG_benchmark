@@ -2,18 +2,18 @@ using ExTinyMD, FastSpecSoG, EwaldSummations, JLD2
 using CSV, DataFrames
 
 L0 = 20.0
-N_real0 = (64, 64, 64)
+N_real0 = (36, 36, 36)
 
-w = (16, 16, 16)
+w = (8, 8, 8)
 β = 5.0 .* w
-extra_pad_ratio_intial = 2
-cheb_order = 16
+extra_pad_ratio_intial = 8
+cheb_order = 10
 preset = 6
 uspara = USeriesPara(preset) 
-M_mid_initial = 8
+M_mid_initial = 15
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-N_grid = (16, 16, 32) .* 2
-Q = 32
+N_grid = (2, 2, 15)
+Q = 28
 r_c = 9.99
 
 for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
@@ -43,5 +43,5 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 	@show energy_sog, abs_error, relative_error
 
 	df = DataFrame(n_atoms = n_atoms, E_exact = energy_ewald, E_fssog = energy_sog, abs_error = abs_error, relative_error = relative_error)
-	CSV.write("data/Acc_T6_cube_total_6.csv", df, append = true)
+	CSV.write("data/Acc_T6_cube_total_6_new_lambda8.csv", df, append = true)
 end
