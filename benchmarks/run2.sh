@@ -1,15 +1,24 @@
 #!/bin/bash
 
-output_file=$1
+output_file_cube=$1
+output_file_thin=$2
 
-touch "$output_file"
-echo 'n_atoms,t_short,t_mid,t_long' >> $output_file
+touch "$output_file_cube"
+echo 'preset,n_atoms,t_short,t_mid,t_long,t_total' >> $output_file_cube
+
+touch "$output_file_thin"
+echo 'preset,n_atoms,t_short,t_long,t_total' >> $output_file_thin
 
 # Start recording the benchmark execution time
 start_time=$(date +%s)
 
 echo -e "Starting benchmark..."
-julia --threads 1 --project=@. run_energy.jl --output-file "$output_file"
+julia --threads 1 --project=@. run_cube_2.jl --output-file "$output_file_cube"
+julia --threads 1 --project=@. run_cube_4.jl --output-file "$output_file_cube"
+julia --threads 1 --project=@. run_cube_6.jl --output-file "$output_file_cube"
+julia --threads 1 --project=@. run_thin_2.jl --output-file "$output_file_thin"
+julia --threads 1 --project=@. run_thin_4.jl --output-file "$output_file_thin"
+julia --threads 1 --project=@. run_thin_6.jl --output-file "$output_file_thin"
 echo -e "Benchmark finished"
 
 # Log the benchmark execution time
@@ -18,6 +27,7 @@ execution_time=$((end_time - start_time))
 formatted_time=$(date -u -d @"$execution_time" +%H:%M:%S)
 echo "Benchmark execution time: $formatted_time"
 
-# echo -e "Generating plots..."
-# julia --project=@. generate-graph.jl $output_file $complexity_file
-# echo -e "Plot generated"
+echo -e "Generating plots..."
+julia --project=@. generate-graph-cube.jl --data-file $output_file_cube
+julia --project=@. generate-graph-thin.jl --data-file $output_file_thin
+echo -e "Plot generated"
