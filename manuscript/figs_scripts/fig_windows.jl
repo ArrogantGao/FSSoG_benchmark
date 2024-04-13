@@ -34,7 +34,7 @@ xlims!(axr, (8, 68))
 ylims!(axl, (1e-16, 1.0))
 ylims!(axr, (1e-16, 1.0))
 
-for (l, error, m) in zip(labels, [error_PKB, error_ES, error_Gaussian], marker)
+for (i, (l, error, m)) in enumerate(zip(labels, [error_PKB, error_ES, error_Gaussian], marker))
     scatter!(axl, w, error, markersize = 10, label = l, marker = m)
 
     @. model(x, p) = log.(abs.(p[1] * erfc(p[2] * sqrt(x))))
@@ -48,11 +48,14 @@ for (l, error, m) in zip(labels, [error_PKB, error_ES, error_Gaussian], marker)
     y_data = raw_y_data[mask_2]
     p0 = [1.0, 1.0]
     fit = curve_fit(model, x_data, log.(y_data), p0)
+
+    @info "(a) $i $(fit.param[1]) erfc($(fit.param[2]) * sqrt(x))"
+
     g = x -> model(x, fit.param)
     lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
 end
 
-for (l, error, m) in zip(labels, [error_PKBN, error_ESN, error_GaussianN], marker)
+for (i, (l, error, m)) in enumerate(zip(labels, [error_PKBN, error_ESN, error_GaussianN], marker))
     scatter!(axr, N, error, markersize = 10, label = l, marker = m)
 
     @. model(x, p) = p[1] * x + p[2]
@@ -66,6 +69,9 @@ for (l, error, m) in zip(labels, [error_PKBN, error_ESN, error_GaussianN], marke
     y_data = raw_y_data[mask_2]
     p0 = [1.0, 1.0]
     fit = curve_fit(model, x_data, log.(y_data), p0)
+
+    @info "(b) $i $(fit.param[1]) x + $(fit.param[2])"
+
     g = x -> model(x, fit.param)
     lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
 end

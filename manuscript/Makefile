@@ -162,3 +162,4 @@ plot:
 	julia --project=. figs_scripts/fig_windows.jl
 	julia --project=. figs_scripts/fig_thin.jl
 	julia --project=. figs_scripts/fig_zeroth.jl
+	julia --project=. figs_scripts/fig_total.jl

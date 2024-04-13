@@ -45,6 +45,9 @@ for (i, λ) in enumerate(λ_1)
     y_data = raw_y_data[mask_2]
     p0 = [1.0, 1.0]
     fit = curve_fit(model, x_data, log.(y_data), p0)
+
+    @info "(a) $i $(fit.param[1]) erfc($(fit.param[2]) / x)"
+
     g = x -> model(x, fit.param)
     lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
 end
@@ -66,6 +69,9 @@ for (i, Mmid) in enumerate(Mmid_2)
     y_data = raw_y_data[mask_2]
     p0 = [1.0, 1.0]
     fit = curve_fit(model, x_data, log.(y_data), p0)
+
+    @info "(b) $i $(fit.param[1]) erfc($(fit.param[2]) x)"
+
     g = x -> model(x, fit.param)
     lines!(axr, f_pad.(xs), exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
 end

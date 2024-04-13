@@ -41,6 +41,9 @@ for i in 1:6
     y_data = raw_y_data[i:n - 1]
     p0 = [1.0]
     fit = curve_fit(model, x_data, log.(abs.(y_data)), p0)
+
+    @info "(a) $i $(fit.param[1]) x exp(-x^2 $(s0^2))"
+
     g = x -> model(x, fit.param)
     lines!(axr, ks, exp.(g.(ks)), linestyle = :dash, linewidth = 0.7)
 end
