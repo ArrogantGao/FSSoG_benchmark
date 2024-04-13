@@ -1,0 +1,23 @@
+Starting benchmark...
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 1000, 0.003969039, 0.007465075, 0.002849862)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 3164, 0.013345887, 0.020439114, 0.009010478)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 10000, 0.045008887, 0.061160773, 0.028452076)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 31624, 0.148735272, 0.192248021, 0.234347419)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 100000, 0.486159348, 0.609123141, 0.675827501)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 1000, 0.004733497, 0.04727876, 0.001962264)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 3164, 0.016036718, 0.143084738, 0.006259101)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 10000, 0.053945433, 0.450929738, 0.01977922)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 31624, 0.177904355, 1.475257528, 0.062694255)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 100000, 0.57821601, 4.762415042, 0.213632046)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 1000, 0.008144781, 0.04578909, 0.004505479)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 3164, 0.027420915, 0.165280757, 0.014433703)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 10000, 0.092359633, 0.497019932, 0.046958174)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 31624, 0.303976138, 1.870224509, 0.154395734)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 100000, 0.983440925, 7.319267739, 0.493486734)
+Benchmark finished
+Benchmark execution time: 00:10:49
+Generating plots...
+file_path = "./out/XZDesktop/2024-04-13--21-12-19/time_cube_2.png"
+]1337;ReportCellSizefile_path = "./out/XZDesktop/2024-04-13--21-12-19/time_cube_4.png"
+file_path = "./out/XZDesktop/2024-04-13--21-12-19/time_cube_6.png"
+Plot generated
