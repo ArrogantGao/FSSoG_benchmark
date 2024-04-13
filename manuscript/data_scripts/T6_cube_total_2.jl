@@ -13,9 +13,10 @@ uspara = USeriesPara(preset)
 M_mid_initial = 4
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
 N_grid = (4, 4, 4)
-Q = 8
-Rz_0 = 4
 Q_0 = 4
+Rz_0 = 4
+Ql = 4
+Qs = 6
 r_c = 9.99
 
 for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
@@ -35,7 +36,7 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 	@show M_mid
 
 	@info "FSSoG, n_atoms = $n_atoms"
-	fssog_interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Q, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)
+	fssog_interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Qs, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Ql, Rz_0, Q_0; preset = preset, ϵ = 1.0)
 	fssog_neighbor = CellList3D(info, fssog_interaction.r_c, boundary, 1)
 	@time energy_sog = ExTinyMD.energy(fssog_interaction, fssog_neighbor, info, atoms)
 

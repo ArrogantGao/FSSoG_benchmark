@@ -20,13 +20,13 @@ function main()
 
 	L0 = 20.0
 
-	N_real0 = (16, 16, 16)
-	w = (8, 8, 8)
+	N_real0 = (8, 8, 8)
+	w = (4, 4, 4)
 	β = 5.0 .* w
 	extra_pad_ratio_intial = 2
 	cheb_order = 4
 	preset = 2
-	uspara = USeriesPara(preset)
+	uspara = USeriesPara(preset) 
 	M_mid_initial = 4
 	eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
 	N_grid = (4, 4, 4)

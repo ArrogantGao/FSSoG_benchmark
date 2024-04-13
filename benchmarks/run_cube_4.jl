@@ -20,20 +20,20 @@ function main()
 
     L0 = 20.0
 
-    N_real0 = (32, 32, 32)
-    w = (16, 16, 16)
+    N_real0 = (16, 16, 16)
+    w = (8, 8, 8)
     β = 5.0 .* w
-    extra_pad_ratio_intial = 2
-    cheb_order = 10
+    extra_pad_ratio_intial = 6
+    cheb_order = 16
     preset = 4
     uspara = USeriesPara(preset) 
-    M_mid_initial = 6
+    M_mid_initial = 10
     eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-    N_grid = (12, 12, 8)
-    Q = 16
+    N_grid = (2, 2, 6)
+    Q = 12
+    r_c = 9.99
     Rz_0 = 8
     Q_0 = 8
-    r_c = 9.999999
 
     for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
