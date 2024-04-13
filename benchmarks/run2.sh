@@ -16,9 +16,9 @@ echo -e "Starting benchmark..."
 julia --threads 1 --project=@. run_cube_2.jl --output-file "$output_file_cube"
 julia --threads 1 --project=@. run_cube_4.jl --output-file "$output_file_cube"
 julia --threads 1 --project=@. run_cube_6.jl --output-file "$output_file_cube"
-# julia --threads 1 --project=@. run_thin_2.jl --output-file "$output_file_thin"
-# julia --threads 1 --project=@. run_thin_4.jl --output-file "$output_file_thin"
-# julia --threads 1 --project=@. run_thin_6.jl --output-file "$output_file_thin"
+julia --threads 1 --project=@. run_thin_2.jl --output-file "$output_file_thin"
+julia --threads 1 --project=@. run_thin_4.jl --output-file "$output_file_thin"
+julia --threads 1 --project=@. run_thin_6.jl --output-file "$output_file_thin"
 echo -e "Benchmark finished"
 
 # Log the benchmark execution time
@@ -29,5 +29,5 @@ echo "Benchmark execution time: $formatted_time"
 
 echo -e "Generating plots..."
 julia --project=@. generate-graph-cube.jl --data-file $output_file_cube
-# julia --project=@. generate-graph-thin.jl --data-file $output_file_thin
+julia --project=@. generate-graph-thin.jl --data-file $output_file_thin
 echo -e "Plot generated"
