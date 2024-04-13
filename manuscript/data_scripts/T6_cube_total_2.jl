@@ -3,8 +3,8 @@ using CSV, DataFrames
 
 L0 = 20.0
 
-N_real0 = (16, 16, 16)
-w = (8, 8, 8)
+N_real0 = (8, 8, 8)
+w = (4, 4, 4)
 β = 5.0 .* w
 extra_pad_ratio_intial = 2
 cheb_order = 4
