@@ -57,7 +57,7 @@ for ratio in ratios
     energy_ewald = 0.0
 
 
-	N_real = Int.(ceil.(ratio .* N_real0))
+	N_real = Int.(ceil.(ratio^(1/2) .* N_real0))
 
 	@info "FSSoG, n_atoms = $n_atoms"
 	fssog_interaction = FSSoGThinInteraction((Lx, Lx, Lz), n_atoms, r_c, Q, 0.3, N_real, R_z, w, β, cheb_order, Taylor_Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)

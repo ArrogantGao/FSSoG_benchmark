@@ -1,9 +1,6 @@
 using ExTinyMD, FastSpecSoG, EwaldSummations, JLD2, BenchmarkTools
 using CSV, DataFrames
 
-Lxy0 = 100.0
-Lz0 = 1.0
-
 N_real0 = (16, 16)
 R_z = 2
 w = (4, 4)
@@ -16,11 +13,12 @@ Taylor_Q = 2
 r_c = 10.0
 Rz_0 = 4
 
-# for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
-for data in ["n_1000.jld2", "n_3164.jld2"]
+for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
     path = "./reference/thin/$data" 
-	@load path n_atoms Lx Lz atoms info energy_ewald 
+	@load path n_atoms Lx Lz atoms info energy_ewald energy_sog
+
+	energy_exact = energy_sog
 
 	@show n_atoms, Lx, Lz, energy_ewald
 
@@ -34,16 +32,16 @@ for data in ["n_1000.jld2", "n_3164.jld2"]
 	fssog_neighbor = CellList3D(info, fssog_interaction.r_c, boundary, 1)
 	@time energy_sog = ExTinyMD.energy(fssog_interaction, fssog_neighbor, info, atoms)
 
-	abs_error = abs(energy_ewald - energy_sog)
-	relative_error = abs(energy_ewald - energy_sog) / abs(energy_ewald)
+	abs_error = abs(energy_exact - energy_sog)
+	relative_error = abs(energy_exact - energy_sog) / abs(energy_exact)
 
 	@show energy_sog, abs_error, relative_error
 
-	# t_short = @belapsed energy_short($fssog_interaction, $fssog_neighbor)
-	# t_long = @belapsed energy_long($fssog_interaction)
+	t_short = @elapsed energy_short(fssog_interaction, fssog_neighbor)
+	t_long = @elapsed energy_long(fssog_interaction)
 
-	# @show preset, n_atoms, t_short, t_long
+	@show preset, n_atoms, t_short, t_long
 
-	df = DataFrame(n_atoms = n_atoms, E_exact = energy_ewald, E_fssog = energy_sog, abs_error = abs_error, relative_error = relative_error)
+	df = DataFrame(n_atoms = n_atoms, E_exact = energy_exact, E_fssog = energy_sog, abs_error = abs_error, relative_error = relative_error)
 	CSV.write("data/Acc_T6_thin_total_2.csv", df, append = true)
 end

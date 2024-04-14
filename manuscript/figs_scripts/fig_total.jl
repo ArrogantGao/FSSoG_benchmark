@@ -38,7 +38,7 @@ for i in 1:3
     push!(scrs, scr)
 end
 
-axislegend(axr, scrs, bs, position = :rb, nbanks = 2)
+axislegend(axl, scrs, bs, position = :cb, nbanks = 2)
 
 text!(axl, (2000, 1e-2), text = "(a)", fontsize = 30, align = (:right, :baseline),)
 text!(axr, (2000, 1e-2), text = "(b)", fontsize = 30, align = (:right, :baseline),)
