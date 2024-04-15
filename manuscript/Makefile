@@ -19,6 +19,13 @@ run_T0_total:
 	echo "preset,E_ewald,E_fssog,abs_err,rel_err" >> data/Acc_T0_total.csv
 	julia --project=. data_scripts/T0_total.jl
 
+run_T0_force:
+	touch data/Acc_T0_force.csv
+	rm data/Acc_T0_force.csv
+	touch data/Acc_T0_force.csv
+	echo "preset,M,error" >> data/Acc_T0_force.csv
+	julia --project=. -t 32 data_scripts/T0_force.jl
+
 run_T1:
 	rm data/Acc_T1_Kspace.csv
 	touch data/Acc_T1_Kspace.csv
