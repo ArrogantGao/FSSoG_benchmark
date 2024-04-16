@@ -74,8 +74,8 @@ axislegend(axl, position = :lb, nbanks = 2)
 text!(axl, (50, 1e-11), text = "(a)", fontsize = 30, align = (:right, :baseline),)
 text!(axr, (20, 1e-11), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
-text!(axl, (150, 1e-11), text = L"O(b^{-M})", fontsize = 20, align = (:right, :baseline),)
-text!(axr, (60, 1e-11), text = L"O(b^{-3M})", fontsize = 20, align = (:right, :baseline),)
+text!(axl, (180, 1e-11), text = L"O(b^{-M} + C_1)", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (72, 1e-11), text = L"O(b^{-3M} + C_2)", fontsize = 20, align = (:right, :baseline),)
 
 f
 
