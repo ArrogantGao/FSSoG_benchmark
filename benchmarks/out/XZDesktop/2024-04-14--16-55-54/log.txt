@@ -1,0 +1,43 @@
+Starting benchmark...
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 1000, 0.00358285, 0.007390971, 0.002180275)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 3164, 0.012192967, 0.021928783, 0.006947601)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 10000, 0.041097003, 0.061448098, 0.021947919)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 31624, 0.137000592, 0.1908967, 0.171269586)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 100000, 0.445514353, 0.620396724, 0.233451085)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 1000, 0.005557255, 0.047165799, 0.00162166)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 3164, 0.018861931, 0.142595553, 0.00519759)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 10000, 0.062981077, 0.456374611, 0.016410518)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 31624, 0.207412204, 1.470837591, 0.052052043)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 100000, 0.674727038, 4.776217454, 0.176580579)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 1000, 0.008150754, 0.045500491, 0.004511984)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 3164, 0.02739723, 0.162027888, 0.01441572)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 10000, 0.091647326, 0.474907729, 0.047092042)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 31624, 0.301920505, 1.83102929, 0.154461241)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 100000, 0.981718151, 7.279827935, 0.494234107)
+(preset, n_atoms, t_short, t_long) = (2, 1000, 0.002622226, 0.002956361)
+(preset, n_atoms, t_short, t_long) = (2, 3164, 0.008505608, 0.008770403)
+(preset, n_atoms, t_short, t_long) = (2, 10000, 0.027322312, 0.028091982)
+(preset, n_atoms, t_short, t_long) = (2, 31624, 0.08764675, 0.084926962)
+(preset, n_atoms, t_short, t_long) = (2, 100000, 0.280115952, 0.262652445)
+(preset, n_atoms, t_short, t_long) = (4, 1000, 0.004542553, 0.026175921)
+(preset, n_atoms, t_short, t_long) = (4, 3164, 0.014655448, 0.060849116)
+(preset, n_atoms, t_short, t_long) = (4, 10000, 0.046670308, 0.19064908)
+(preset, n_atoms, t_short, t_long) = (4, 31624, 0.148815882, 0.597165973)
+(preset, n_atoms, t_short, t_long) = (4, 100000, 0.473390098, 2.138263926)
+(preset, n_atoms, t_short, t_long) = (6, 1000, 0.007327351, 0.137454097)
+(preset, n_atoms, t_short, t_long) = (6, 3164, 0.023478798, 0.515495302)
+(preset, n_atoms, t_short, t_long) = (6, 10000, 0.074797593, 1.522033471)
+(preset, n_atoms, t_short, t_long) = (6, 31624, 0.237143102, 5.174979385)
+(preset, n_atoms, t_short, t_long) = (6, 100000, 0.752680039, 20.605826586)
+Benchmark finished
+Benchmark execution time: 00:18:21
+Generating plots...
+file_path = "./out/XZDesktop/2024-04-14--16-55-54/time_cube_2.png"
+]1337;ReportCellSizeGKS: cannot open display - headless operation mode active
+file_path = "./out/XZDesktop/2024-04-14--16-55-54/time_cube_4.png"
+file_path = "./out/XZDesktop/2024-04-14--16-55-54/time_cube_6.png"
+file_path = "./out/XZDesktop/2024-04-14--16-55-54/time_thin_2.png"
+]1337;ReportCellSizeGKS: cannot open display - headless operation mode active
+file_path = "./out/XZDesktop/2024-04-14--16-55-54/time_thin_4.png"
+file_path = "./out/XZDesktop/2024-04-14--16-55-54/time_thin_6.png"
+Plot generated

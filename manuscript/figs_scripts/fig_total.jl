@@ -22,21 +22,26 @@ gb = f[1, 2] = GridLayout()
 axr = Axis(gb[1, 1], xlabel = L"N_\text{atoms}", yscale = log10, xscale = log10)
 axl = Axis(ga[1, 1], xlabel = L"N_\text{atoms}", ylabel = L"\mathcal{E}_r", yscale = log10, xscale = log10)
 
-ylims!(axr, (1e-14, 1e2))
-ylims!(axl, (1e-14, 1e2))
+ylims!(axr, (1e-16, 1))
+ylims!(axl, (1e-16, 1))
 
 ks = range(0, 1.1 * π, length = 1000)
 
+scrs = []
+bs = []
+
 for i in 1:3
     b = round(FastSpecSoG.preset_parameters[2 * i][1], digits = 2)
-    scatter!(axr, n_atoms, df_cube[i].error_rel, markersize = 10, label = L"b = %$b", marker = marker[i])
-    scatter!(axl, n_atoms, df_thin[i].error_rel, markersize = 10, label = L"b = %$b", marker = marker[i])
+    scatter!(axl, n_atoms, df_cube[i].error_rel, markersize = 10, marker = marker[i])
+    scr = scatter!(axr, n_atoms, df_thin[i].error_rel, markersize = 10, marker = marker[i])
+    push!(bs, L"b = %$b")
+    push!(scrs, scr)
 end
 
-axislegend(axl, position = :rt)
+axislegend(axl, scrs, bs, position = :cb, nbanks = 2)
 
-text!(axl, (2000, 1e0), text = "(a)", fontsize = 30, align = (:right, :baseline),)
-text!(axr, (2000, 1e0), text = "(b)", fontsize = 30, align = (:right, :baseline),)
+text!(axl, (2000, 1e-2), text = "(a)", fontsize = 30, align = (:right, :baseline),)
+text!(axr, (2000, 1e-2), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
 save("figs/total_error.pdf", f)
 save("figs/total_error.png", f)

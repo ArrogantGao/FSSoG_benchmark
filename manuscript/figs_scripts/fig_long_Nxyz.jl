@@ -40,6 +40,9 @@ for i in 1:4
     y_data = raw_y_data[n0:n]
     p0 = [1.0, 0.01]
     fit = curve_fit(model, x_data, log.(y_data), p0)
+
+    @info "(a) $i $(fit.param[1] * w) exp(-x^2 $(s^2 * fit.param[2]))"
+
     g = x -> model(x, fit.param)
     lines!(axl, ks, exp.(g.(ks)), linestyle = :dash, linewidth = 0.7)
 end
@@ -61,6 +64,9 @@ for i in 1:4
     y_data = raw_y_data[n0:n]
     p0 = [1.0, 1.0]
     fit = curve_fit(model, x_data, log.(y_data), p0)
+
+    @info "(b) $i $(fit.param[1]) / ( $(fit.param[2])^x * sqrt(x!))"
+
     g = x -> model(x, fit.param)
     lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
 end

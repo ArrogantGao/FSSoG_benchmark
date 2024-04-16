@@ -18,17 +18,18 @@ function main()
 	parsed_args = parse_commandline()
 	output_file = parsed_args["output-file"]
 
-	N_real0 = (160, 160)
-	R_z = 12
-	w = (16, 16)
+	N_real0 = (64, 64)
+	R_z = 8
+	w = (12, 12)
 	β = 7.5 .* w
-	cheb_order = 12
+	cheb_order = 8
 	preset = 6
 	Q = 32
 	Q_0 = 16
 	Rz_0 = 12
-	Taylor_Q = 8
+	Taylor_Q = 6
 	r_c = 10.0
+	
 
 	for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
@@ -39,7 +40,7 @@ function main()
 
 		ratio = (n_atoms / 1000)^(1/2)
 		N_real = Int.(ceil.(ratio .* N_real0))
-		interaction = FSSoGThinInteraction((Lx, Lx, Lz), n_atoms, r_c, Q, 0.5, N_real, R_z, w, β, cheb_order, Taylor_Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)
+		interaction = FSSoGThinInteraction((Lx, Lx, Lz), n_atoms, r_c, Q, 0.3, N_real, R_z, w, β, cheb_order, Taylor_Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)
 		neighbor = CellList3D(info, interaction.r_c, boundary, 1)
 
 		for i in 1:interaction.n_atoms
