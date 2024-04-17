@@ -23,6 +23,18 @@ xlims!(axr, (0, 120))
 ylims!(axl, (1e-16, 1))
 ylims!(axr, (1e-16, 1))
 
+global ss1 = 0.0
+for preset in presets
+    b0 = FastSpecSoG.preset_parameters[preset][1]
+    c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
+    mask_energy = df_energy.preset .== preset
+    cr1 = df_energy.error[mask_energy][end]
+    ss1 += cr1 / c
+end
+global as1 = ss1 / 6
+@show as1
+
+
 for preset in presets
     mask_energy = df_energy.preset .== preset
     b0 = FastSpecSoG.preset_parameters[preset][1]
@@ -31,12 +43,12 @@ for preset in presets
 
     c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
 
-    @. model(x, p) = log((c + 1 / b0^(x + p[2]))) + p[1]
+    @. model(x, p) = log((c * as1 + 1 / b0^(x + p[1])))
     raw_y_data = df_energy.error[mask_energy]
     raw_x_data = Mse
 
-    x_data = raw_x_data[5:end]
-    y_data = raw_y_data[5:end]
+    x_data = raw_x_data[1:end]
+    y_data = raw_y_data[1:end]
     p0 = [1.0, 1.0]
     fit = curve_fit(model, x_data, log.(abs.(y_data)), p0)
 
@@ -46,6 +58,17 @@ for preset in presets
     lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
 end
 
+global ss = 0.0
+for preset in presets
+    b0 = FastSpecSoG.preset_parameters[preset][1]
+    c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
+    mask_force = df_force.preset .== preset
+    cr = df_force.error[mask_force][end]
+    ss += cr / c
+end
+global as = ss / 6
+@show as
+
 for preset in presets
     mask_force = df_force.preset .== preset
     b0 = FastSpecSoG.preset_parameters[preset][1]
@@ -54,14 +77,16 @@ for preset in presets
 
     c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
 
-    @. model(x, p) = log((c + 1 / b0^(3 * x + p[2]))) + p[1]
+    @. model(x, p) = log((c * as + 1 / b0^(3 * x + p[1])))
     raw_y_data = df_force.error[mask_force]
     raw_x_data = Ms
 
     x_data = raw_x_data[preset:end]
     y_data = raw_y_data[preset:end]
-    p0 = [1.0, 1.0]
+    p0 = [1.0]
     fit = curve_fit(model, x_data, log.(abs.(y_data)), p0)
+
+    @show preset b0^fit.param[1]
 
     # @info "(b) $preset $(df_force.error[mask_force][end]) + $(fit.param[1]) / $b0^3x"
     g = x -> model(x, fit.param)
@@ -74,8 +99,8 @@ axislegend(axl, position = :lb, nbanks = 2)
 text!(axl, (50, 1e-11), text = "(a)", fontsize = 30, align = (:right, :baseline),)
 text!(axr, (20, 1e-11), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
-text!(axl, (180, 1e-11), text = L"O(b^{-M} + C_1)", fontsize = 20, align = (:right, :baseline),)
-text!(axr, (72, 1e-11), text = L"O(b^{-3M} + C_2)", fontsize = 20, align = (:right, :baseline),)
+# text!(axl, (180, 1e-11), text = L"O(b^{-M} + C_1)", fontsize = 20, align = (:right, :baseline),)
+# text!(axr, (72, 1e-11), text = L"O(b^{-3M} + C_2)", fontsize = 20, align = (:right, :baseline),)
 
 f
 
