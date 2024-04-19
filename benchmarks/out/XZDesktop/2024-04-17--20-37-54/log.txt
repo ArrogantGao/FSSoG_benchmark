@@ -1,0 +1,12 @@
+Starting benchmark...
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 1000, 0.008152601, 0.06365464, 0.004515825)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 3164, 0.027371227, 0.221355616, 0.01443892)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 10000, 0.091641563, 0.678928691, 0.047051051)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 31624, 0.30087032, 2.377664182, 0.157567807)
+(preset, n_atoms, t_short, t_mid, t_long) = (6, 100000, 0.976831165, 9.560982467, 0.497301483)
+Benchmark finished
+Benchmark execution time: 00:04:23
+Generating plots...
+file_path = "./out/XZDesktop/2024-04-17--20-37-54/time_cube_6.png"
+]1337;ReportCellSizeGKS: cannot open display - headless operation mode active
+Plot generated

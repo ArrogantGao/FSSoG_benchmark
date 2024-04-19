@@ -24,7 +24,7 @@ function main()
     w = (8, 8, 8)
     β = 5.0 .* w
     extra_pad_ratio_intial = 8
-    cheb_order = 16
+    cheb_order = 8
     preset = 4
     uspara = USeriesPara(preset) 
     M_mid_initial = 10

@@ -29,7 +29,7 @@ function main()
 	uspara = USeriesPara(preset) 
 	M_mid_initial = 4
 	eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-	N_grid = (4, 4, 4)
+	N_grid = (1, 1, 1)
 	Ql = 4
 	Qs = 6
 	Rz_0 = 4
