@@ -15,12 +15,12 @@ gb = f[1, 2] = GridLayout()
 gc = f[2, 1] = GridLayout()
 gd = f[2, 2] = GridLayout()
 
-ax_w = Axis(ga[1, 1], xlabel = L"w", ylabel = L"\mathcal{E}_r", yscale = log10)
-ax_Nxy = Axis(gb[1, 1], xlabel = L"N_{xy}", yscale = log10, xscale = log2)
-ax_Taylor = Axis(gc[1, 1], xlabel = L"Q_{\text{Taylor}}", ylabel = L"\mathcal{E}_r", yscale = log10)
-ax_Rz = Axis(gd[1, 1], xlabel = L"R_z", yscale = log10)
+ax_w = Axis(ga[1, 1], xlabel = L"\mathcal{P}", ylabel = L"\mathcal{E}_r", yscale = log10)
+ax_Nxy = Axis(gb[1, 1], xlabel = L"N_{d}", yscale = log10, xscale = log2)
+ax_Taylor = Axis(gc[1, 1], xlabel = L"Q", ylabel = L"\mathcal{E}_r", yscale = log10)
+ax_Rz = Axis(gd[1, 1], xlabel = L"P", yscale = log10)
 
-xlims!(ax_w, (0, 17))
+xlims!(ax_w, (0, 34))
 xlims!(ax_Taylor, (0, 17))
 xlims!(ax_Nxy, (2^3.5, 2^10.5))
 xlims!(ax_Rz, (0, 17))
@@ -38,7 +38,7 @@ for i in 1:3
 
     @. model(x, p) = log.(abs.(p[1] * erfc(p[2] * sqrt(x))))
 
-    xs = [0.1:0.1:16.0...]
+    xs = [0.1:0.1:34.0...]
 
     raw_x_data = df_w.w[mask_w]
     raw_y_data = df_w.error_rel[mask_w]
@@ -71,7 +71,7 @@ for i in 1:3
     p0 = [1.0, 1.0]
     fit = curve_fit(model, (x_data), log.(y_data), p0)
 
-    @info "(b) $i $(fit.param[2]) / (x! * (fit.param[1])^(2x) ))"
+    @info "(b) $i $(fit.param[2]) / (x! * $(fit.param[1])^(2x) ))"
 
     g = x -> model(x, fit.param)
     lines!(ax_Taylor, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
@@ -123,12 +123,12 @@ for i in 1:3
     lines!(ax_Rz, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
 end
 
-text!(ax_w, (15.5, 10^(-7.8)), text = L"O(\text{erfc}(C_1 w^{-0.5}))", fontsize = 20, align = (:right, :baseline),)
-text!(ax_Nxy, (2^10, 10^(-5.8)), text = L"O(\exp( - C_2 N_{xy}))", fontsize = 20, align = (:right, :baseline),)
+text!(ax_w, (31.0, 10^(-7.8)), text = L"O(\text{erfc}(C_1 \mathcal{P}^{-0.5}))", fontsize = 20, align = (:right, :baseline),)
+text!(ax_Nxy, (2^10, 10^(-5.8)), text = L"O(\exp( - C_2 N_{d}))", fontsize = 20, align = (:right, :baseline),)
 text!(ax_Taylor, (12, 10^(-7.8)), text = L"O((Q! C_3^{2Q})^{-1})", fontsize = 20, align = (:right, :baseline),)
-text!(ax_Rz, (16, 10^(-7.8)), text = L"O(C_4^{-R_z} / \sqrt{R_z !})", fontsize = 20, align = (:right, :baseline),)
+text!(ax_Rz, (16, 10^(-7.8)), text = L"O(C_4^{-P} / \sqrt{P !})", fontsize = 20, align = (:right, :baseline),)
 
-text!(ax_w, (2.5, 1e-13), text = "(a)", fontsize = 30, align = (:right, :baseline),)
+text!(ax_w, (5.0, 1e-13), text = "(a)", fontsize = 30, align = (:right, :baseline),)
 text!(ax_Nxy, (2^4.5, 1e-13), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 text!(ax_Taylor, (2.5, 1e-13), text = "(c)", fontsize = 30, align = (:right, :baseline),)
 text!(ax_Rz, (2.5, 1e-13), text = "(d)", fontsize = 30, align = (:right, :baseline),)
