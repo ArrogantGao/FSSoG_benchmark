@@ -1,36 +1,43 @@
 using ExTinyMD, FastSpecSoG, EwaldSummations, JLD2
 using CSV, DataFrames
 
-L0 = 20.0
-N_real0 = (36, 36, 36)
+L0 = 1.0
+N_real0 = (100, 100, 100)
 
-w = (9, 9, 9)
+w = (22, 22, 22)
 β = 5.0 .* w
-extra_pad_ratio_intial = 8
+target = 1.8
+extra_pad_ratio_intial = ((target-1.0)*N_real0[1]+6.8*(target-1.0)*w[1]+2.4*target-4.4)/(2*w[1]) 
+@show extra_pad_ratio_intial
 cheb_order = 10
 preset = 6
 uspara = USeriesPara(preset)
-M_mid_initial = 15
+M_mid_initial = 12
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-N_grid = (2, 2, 15)
-Qs = 28
-Ql = 12
-r_c = 9.99
+@show eta
+N_grid = (3, 3, 18)
+Qs = 32
+Ql = 20
+r_c = 0.499
 Q_0 = 32
-Rz_0 = 16
+Rz_0 = 25
 
-for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
+
+for data in ["n_100.jld2","n_318.jld2","n_1000.jld2", "n_3164.jld2", "n_10000.jld2"]
 
     path = "./reference/cube/$data" 
-	@load path n_atoms L atoms info energy_ewald energy_fssog
+	@load path n_atoms L atoms info energy_ewald 
 
-	@show n_atoms, L, energy_ewald, energy_fssog
+	@show n_atoms, L, energy_ewald
 
 	boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
-    ratio = (n_atoms / 1000)^(1/3)
+    ratio = (n_atoms / 100)^(1/3)
 	N_real = Int.(ceil.(ratio .* N_real0))
-	extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
+	extra_pad_ratio = Int(ceil((extra_pad_ratio_intial.*ratio)))
+	#extra_pad_ratio = Int(ceil(((target-1.0)*N_real[1]+6.8*(target-1.0)*w[1]+2.4*target-4.4)/(2*w[1])))
+
+	@show N_real, extra_pad_ratio
 
 	M_mid = proper_M(eta, L, uspara)
 	@show M_mid
@@ -40,8 +47,12 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 	fssog_neighbor = CellList3D(info, fssog_interaction.r_c, boundary, 1)
 	@time energy_sog = ExTinyMD.energy(fssog_interaction, fssog_neighbor, info, atoms)
 
-	abs_error = abs(energy_fssog - energy_sog)
-	relative_error = abs(energy_fssog - energy_sog) / abs(energy_fssog)
+	λ = fssog_interaction.gridinfo.N_pad[3] / fssog_interaction.gridinfo.N_image[3]
+	@show λ
+
+
+	abs_error = abs(energy_ewald - energy_sog)
+	relative_error = abs(energy_ewald - energy_sog) / abs(energy_ewald)
 
 	@show energy_sog, abs_error, relative_error
 
