@@ -1,29 +1,29 @@
 using ExTinyMD, FastSpecSoG, EwaldSummations, JLD2
 using CSV, DataFrames
 
-L0 = 1.0
-N_real0 = (100, 100, 100)
+L0 = 10.0
+N_real0 = (90, 90, 90)
 
-w = (22, 22, 22)
+w = (13, 13, 13)
 β = 5.0 .* w
-target = 1.8
+target = 1.5
 extra_pad_ratio_intial = ((target-1.0)*N_real0[1]+6.8*(target-1.0)*w[1]+2.4*target-4.4)/(2*w[1]) 
-@show extra_pad_ratio_intial
 cheb_order = 10
 preset = 6
-uspara = USeriesPara(preset)
-M_mid_initial = 12
+uspara = USeriesPara(preset, r_c=1.799918355128706)
+M_mid_initial = 15
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
 @show eta
-N_grid = (3, 3, 18)
+N_grid = (6, 6, 25)
 Qs = 32
-Ql = 20
-r_c = 0.499
-Q_0 = 32
-Rz_0 = 25
+Ql = 25
+r_c = 1.799918355128706
+Q_0 = 50
+Rz_0 = 60
 
 
-for data in ["n_100.jld2","n_318.jld2","n_1000.jld2", "n_3164.jld2", "n_10000.jld2"]
+#for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2","n_31624.jld2","n_100000.jld2"]
+for data in ["n_100000.jld2"]
 
     path = "./reference/cube/$data" 
 	@load path n_atoms L atoms info energy_ewald 
@@ -32,7 +32,8 @@ for data in ["n_100.jld2","n_318.jld2","n_1000.jld2", "n_3164.jld2", "n_10000.jl
 
 	boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
-    ratio = (n_atoms / 100)^(1/3)
+	@show L
+    ratio = (n_atoms / 100000)^(1/3)
 	N_real = Int.(ceil.(ratio .* N_real0))
 	extra_pad_ratio = Int(ceil((extra_pad_ratio_intial.*ratio)))
 	#extra_pad_ratio = Int(ceil(((target-1.0)*N_real[1]+6.8*(target-1.0)*w[1]+2.4*target-4.4)/(2*w[1])))
@@ -47,8 +48,6 @@ for data in ["n_100.jld2","n_318.jld2","n_1000.jld2", "n_3164.jld2", "n_10000.jl
 	fssog_neighbor = CellList3D(info, fssog_interaction.r_c, boundary, 1)
 	@time energy_sog = ExTinyMD.energy(fssog_interaction, fssog_neighbor, info, atoms)
 
-	λ = fssog_interaction.gridinfo.N_pad[3] / fssog_interaction.gridinfo.N_image[3]
-	@show λ
 
 
 	abs_error = abs(energy_ewald - energy_sog)
