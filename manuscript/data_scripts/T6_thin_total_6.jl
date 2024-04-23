@@ -3,7 +3,7 @@ using CSV, DataFrames
 
 N_real0 = (64, 64)
 R_z = 8
-w = (12, 12)
+w = (9, 9)
 β = 7.5 .* w
 cheb_order = 8
 preset = 6

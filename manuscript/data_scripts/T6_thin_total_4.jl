@@ -10,7 +10,7 @@ preset = 4
 Q = 16
 Q_0 = 8
 Rz_0 = 6
-Taylor_Q = 6
+Taylor_Q = 4
 r_c = 10.0
 
 for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
