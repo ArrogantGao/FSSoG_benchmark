@@ -18,31 +18,37 @@ function main()
     parsed_args = parse_commandline()
     output_file = parsed_args["output-file"]
 
-    L0 = 20.0
-    N_real0 = (36, 36, 36)
-    w = (9, 9, 9)
-    β = 5.0 .* w
-    extra_pad_ratio_intial = 8
-    cheb_order = 10
-    preset = 6
-    uspara = USeriesPara(preset)
-    M_mid_initial = 15
-    eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-    N_grid = (2, 2, 15)
-    Qs = 28
-    Ql = 12
-    r_c = 9.99
-    Q_0 = 32
-    Rz_0 = 16
+    L0 = 10.0
+N_real0 = (94, 94, 94)
+
+w = (7, 7, 7)
+β = 5.0 .* w
+target = 1.5
+#extra_pad_ratio_intial = ((target-1.0)*N_real0[1]+6.8*(target-1.0)*w[1]+2.4*target-4.4)/(2*w[1])
+extra_pad_ratio_intial = 10
+lambda_true = (2*extra_pad_ratio_intial*w[1]+N_real0[1]+6.8*w[1]+4.4)/(N_real0[1]+6.8*w[1]+2.4)
+@show lambda_true
+cheb_order = 10
+preset = 6
+uspara = USeriesPara(preset, r_c=1.799918355128706)
+M_mid_initial = 18
+eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
+@show eta
+N_grid = (3, 3, 20)
+Qs = 25
+Ql = 18
+r_c = 1.799918355128706
+Q_0 = 20
+Rz_0 = 20
     
-    for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
+    for data in ["n_100000.jld2"]
 
         path = "../manuscript/reference/cube/$data" 
         @load path n_atoms L atoms info energy_ewald
 
         boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
-        ratio = (n_atoms / 1000)^(1/3)
+        ratio = (n_atoms / 100000)^(1/3)
         N_real = Int.(ceil.(ratio .* N_real0))
         extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
 
