@@ -155,6 +155,12 @@ run_thin_total_6:
 	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_thin_total_6.csv
 	julia --project=. data_scripts/T6_thin_total_6.jl
 
+run_w_M:
+	rm data/cube_w_M.csv
+	touch data/cube_w_M.csv
+	echo "w,M_mid,abs_error,rel_error" >> data/cube_w_M.csv
+	julia --project=. -t 8 data_scripts/cube_w_M.jl
+
 plot:
 	julia --project=. figs_scripts/fig_convergence.jl
 	julia --project=. figs_scripts/fig_mid_acc.jl
