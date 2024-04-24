@@ -33,7 +33,7 @@ uspara = USeriesPara(preset)
 M_mid_initial = 3 
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
 @show eta
-N_grid = (1, 1, 1)
+N_grid = (0, 0, 1)
 Q_0 = 4
 Rz_0 = 4
 Ql = 4

@@ -15,7 +15,7 @@ uspara = USeriesPara(preset)
 M_mid_initial = 15
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
 @show eta
-N_grid = (3, 3, 14)
+N_grid = (2, 2, 14)
 Qs = 32
 Ql = 16
 r_c = 9.99

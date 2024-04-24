@@ -32,7 +32,7 @@ function main()
     M_mid_initial = 6
     eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
     @show eta
-    N_grid = (2, 2, 9)
+    N_grid = (1, 1, 9)
     Qs = 16
     Ql = 8
     r_c = 9.99
