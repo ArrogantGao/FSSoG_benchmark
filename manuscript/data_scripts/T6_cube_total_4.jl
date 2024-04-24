@@ -6,11 +6,12 @@ L0 = 20.0
 N_real0 = (16, 16, 16)
 w = (8, 8, 8)
 β = 5.0 .* w
-extra_pad_ratio_intial = 8
-cheb_order = 8
+
+extra_pad_ratio_intial = 4
+cheb_order = 16
 preset = 4
 uspara = USeriesPara(preset) 
-M_mid_initial = 10
+M_mid_initial = 8
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
 N_grid = (2, 2, 6)
 Qs = 16
