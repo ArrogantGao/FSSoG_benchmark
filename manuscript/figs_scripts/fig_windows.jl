@@ -8,7 +8,7 @@ df_ESN = CSV.read("data/Acc_T3_2_Nspec_ES.csv", DataFrame)
 df_GaussianN = CSV.read("data/Acc_T3_2_Nspec_Gaussian.csv", DataFrame)
 df_PKBN = CSV.read("data/Acc_T3_2_Nspec_PKB.csv", DataFrame)
 
-labels = ["PKB", "ES", "Gaussian"]
+labels = ["KB", "ES", "Gaussian"]
 marker = [:circle, :diamond, :star5]
 
 w = df_ES.w
@@ -26,10 +26,10 @@ f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (800, 400), fontsize = 
 ga = f[1, 1] = GridLayout()
 gb = f[1, 2] = GridLayout()
 
-axl = Axis(ga[1, 1], xlabel = L"w", ylabel = L"\mathcal{E}_r", yscale = log10)
-axr = Axis(gb[1, 1], xlabel = L"N_{\text{real}}", yscale = log10)
+axl = Axis(ga[1, 1], xlabel = L"\mathcal{P}", ylabel = L"\mathcal{E}_r", yscale = log10)
+axr = Axis(gb[1, 1], xlabel = L"I", yscale = log10)
 
-xlims!(axl, (0, 13))
+xlims!(axl, (0, 30))
 xlims!(axr, (8, 68))
 ylims!(axl, (1e-16, 1.0))
 ylims!(axr, (1e-16, 1.0))
@@ -39,7 +39,7 @@ for (i, (l, error, m)) in enumerate(zip(labels, [error_PKB, error_ES, error_Gaus
 
     @. model(x, p) = log.(abs.(p[1] * erfc(p[2] * sqrt(x))))
 
-    xs = [0.1:0.1:13.0...]
+    xs = [0.1:0.1:28.0...]
 
     raw_x_data = w
     raw_y_data = error
@@ -78,11 +78,11 @@ end
 
 axislegend(axl, position = :rt)
 
-text!(axl, (3, 1e-14), text = "(a)", fontsize = 30, align = (:right, :baseline),)
+text!(axl, (7, 1e-14), text = "(a)", fontsize = 30, align = (:right, :baseline),)
 text!(axr, (22.5, 1e-14), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
-text!(axl, (12.5, 10^(-7.8)), text = L"O(\text{erfc}(C_1 w^{-0.5}))", fontsize = 20, align = (:right, :baseline),)
-text!(axr, (63, 10^(-7.8)), text = L"O(\exp(-C_2 N_{\text{real}}))", fontsize = 20, align = (:right, :baseline),)
+text!(axl, (30, 10^(-7.8)), text = L"O(\text{erfc}(C_1 \mathcal{P}^{-0.5}))", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (63, 10^(-7.8)), text = L"O(\exp(-C_2 I))", fontsize = 20, align = (:right, :baseline),)
 
 save("figs/mid_windows.pdf", f)
 save("figs/mid_windows.png", f)

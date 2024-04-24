@@ -18,6 +18,7 @@ function main()
     parsed_args = parse_commandline()
     output_file = parsed_args["output-file"]
 
+
     L0 = 20.0
 
     N_real0 = (36, 36, 36)
@@ -48,12 +49,13 @@ function main()
 
         ratio = (n_atoms / 100000)^(1/3)
         N_real = Int.(ceil.(ratio .* N_real0))
-        extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
+        extra_pad_ratio = Int(ceil(extra_pad_ratio_intial.*ratio))
 
         M_mid = proper_M(eta, L, uspara)
         interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Qs, 0.1, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Ql, Rz_0, Q_0; preset = preset, ϵ = 1.0)
         neighbor = CellList3D(info, interaction.r_c, boundary, 1)
         
+
         for i in 1:interaction.n_atoms
             interaction.charge[i] = atoms[info.particle_info[i].id].charge
             interaction.position[i] = info.particle_info[i].position.coo

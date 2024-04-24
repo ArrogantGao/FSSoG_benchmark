@@ -133,6 +133,9 @@ run_Ewald2D_cube:
 run_Ewald2D_thin:
 	julia --project=. -t 256 reference/thin_results.jl
 
+run_Ewald2D_thin_hr:
+	julia --project=. -t 128 reference/thin_high_rho.jl
+
 run_cube_total_2:
 	rm data/Acc_T6_cube_total_2.csv
 	touch data/Acc_T6_cube_total_2.csv

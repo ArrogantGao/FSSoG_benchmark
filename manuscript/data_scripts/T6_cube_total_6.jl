@@ -33,7 +33,9 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 
     ratio = (n_atoms / 1000)^(1/3)
 	N_real = Int.(ceil.(ratio .* N_real0))
-	extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
+	extra_pad_ratio = Int(ceil((extra_pad_ratio_intial.*ratio)))
+
+	@show N_real, extra_pad_ratio
 
 	M_mid = proper_M(eta, L, uspara)
 	@show M_mid
@@ -45,6 +47,7 @@ for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_10
 
 	abs_error = abs(energy_ewald - energy_sog)
 	relative_error = abs(energy_ewald - energy_sog) / abs(energy_ewald)
+
 
 	@show energy_sog, abs_error, relative_error
 
