@@ -40,7 +40,7 @@ r_c = 1.799918355128706
 
 		ratio = (n_atoms / 1000)^(1/2)
 		N_real = Int.(ceil.(ratio .* N_real0))
-		interaction = FSSoGThinInteraction((Lx, Lx, Lz), n_atoms, r_c, Q, 0.3, N_real, R_z, w, β, cheb_order, Taylor_Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)
+		interaction = FSSoGThinInteraction((Lx, Lx, Lz), n_atoms, r_c, Q, 0.05, N_real, R_z, w, β, cheb_order, Taylor_Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)
 		neighbor = CellList3D(info, interaction.r_c, boundary, 1)
 
 		for i in 1:interaction.n_atoms
