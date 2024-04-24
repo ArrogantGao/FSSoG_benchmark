@@ -7,12 +7,15 @@ N_real0 = (8, 8, 8)
 w = (4, 4, 4)
 β = 5.0 .* w
 extra_pad_ratio_intial = 2
+lambda_true = (2*extra_pad_ratio_intial*w[1]+N_real0[1]+6.8*w[1]+4.4)/(N_real0[1]+6.8*w[1]+2.4)
+@show lambda_true
 cheb_order = 4
 preset = 2
 uspara = USeriesPara(preset) 
-M_mid_initial = 4
+M_mid_initial = 3 
 eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-N_grid = (1, 1, 1)
+@show eta
+N_grid = (0, 0, 1)
 Q_0 = 4
 Rz_0 = 4
 Ql = 4

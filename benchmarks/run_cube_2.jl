@@ -18,23 +18,28 @@ function main()
 	parsed_args = parse_commandline()
 	output_file = parsed_args["output-file"]
 
-	L0 = 20.0
+	
+L0 = 20.0
 
-	N_real0 = (8, 8, 8)
-	w = (4, 4, 4)
-	β = 5.0 .* w
-	extra_pad_ratio_intial = 2
-	cheb_order = 4
-	preset = 2
-	uspara = USeriesPara(preset) 
-	M_mid_initial = 4
-	eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-	N_grid = (1, 1, 1)
-	Ql = 4
-	Qs = 6
-	Rz_0 = 4
-	Q_0 = 4
-	r_c = 9.99
+N_real0 = (8, 8, 8)
+w = (4, 4, 4)
+β = 5.0 .* w
+extra_pad_ratio_intial = 2
+lambda_true = (2*extra_pad_ratio_intial*w[1]+N_real0[1]+2*w[1]+2)/(N_real0[1]+2*w[1])
+@show lambda_true
+cheb_order = 4
+preset = 2
+uspara = USeriesPara(preset) 
+M_mid_initial = 3 
+eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
+@show eta
+N_grid = (0, 0, 1)
+Q_0 = 4
+Rz_0 = 4
+Ql = 4
+Qs = 6
+r_c = 9.99
+
 
 	for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 
