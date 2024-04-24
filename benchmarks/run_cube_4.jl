@@ -24,7 +24,7 @@ function main()
     w = (8, 8, 8)
     β = 5.0 .* w
     extra_pad_ratio_intial = 8
-    cheb_order = 16
+    cheb_order = 8
     preset = 4
     uspara = USeriesPara(preset) 
     M_mid_initial = 10
@@ -48,7 +48,7 @@ function main()
         extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
 
         M_mid = proper_M(eta, L, uspara)
-        interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Qs, 0.5, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Ql, Rz_0, Q_0; preset = preset, ϵ = 1.0)
+        interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Qs, 0.1, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Ql, Rz_0, Q_0; preset = preset, ϵ = 1.0)
         neighbor = CellList3D(info, interaction.r_c, boundary, 1)
         
         for i in 1:interaction.n_atoms
