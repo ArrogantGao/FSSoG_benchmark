@@ -1,0 +1,5 @@
+touch: cannot touch '': No such file or directory
+./run2.sh: line 12: $output_file_cube_highdense: ambiguous redirect
+touch: cannot touch '': No such file or directory
+./run2.sh: line 18: $output_file_thin_highdense: ambiguous redirect
+Starting benchmark...
