@@ -172,6 +172,12 @@ run_thin_total_6:
 	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_thin_total_6.csv
 	julia --project=. data_scripts/T6_thin_total_6.jl
 
+run_thin_hd:
+	rm data/Acc_T7_thin_total_6_highdense.csv
+	touch data/Acc_T7_thin_total_6_highdense.csv
+	echo "n_atoms,energy_exact,energy_fssog,error,error_rel" >> data/Acc_T7_thin_total_6_highdense.csv
+	julia --project=. data_scripts/T7_thin_total_6_highdense.jl
+
 plot:
 	julia --project=. figs_scripts/fig_convergence.jl
 	julia --project=. figs_scripts/fig_mid_acc.jl

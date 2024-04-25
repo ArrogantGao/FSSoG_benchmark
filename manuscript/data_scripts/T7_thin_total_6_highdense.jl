@@ -1,7 +1,7 @@
 using ExTinyMD, FastSpecSoG, EwaldSummations, JLD2
 using CSV, DataFrames
 
-N_real0 = (400, 400)
+N_real0 = (130, 130)
 R_z = 8
 w = (9, 9)
 β = 7.5 .* w
@@ -11,7 +11,7 @@ Q = 32
 Q_0 = 16
 Rz_0 = 12
 Taylor_Q = 6
-r_c = 1.799918355128706
+r_c = 1.3
 
 #for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
 for data in ["n_100000.jld2"]
@@ -25,7 +25,7 @@ for data in ["n_100000.jld2"]
 
 	boundary = ExTinyMD.Q2dBoundary(Lx, Lx, Lz)
 
-    ratio = (n_atoms / 100000)^(1/2)
+    ratio = 1.0
 	N_real = Int.(ceil.(ratio .* N_real0))
 
 	@info "FSSoG, n_atoms = $n_atoms"
@@ -38,10 +38,8 @@ for data in ["n_100000.jld2"]
 
 	@show energy_sog, abs_error, relative_error
 
-	t_short = @time energy_short(fssog_interaction, fssog_neighbor)
-	t_long = @time energy_long(fssog_interaction)
-
-	@show preset, n_atoms, t_short, t_long
+	@time E_short = energy_short(fssog_interaction, fssog_neighbor)
+	@time E_long = energy_long(fssog_interaction)
 
 	df = DataFrame(n_atoms = n_atoms, E_exact = energy_exact, E_fssog = energy_sog, abs_error = abs_error, relative_error = relative_error)
 	CSV.write("data/Acc_T7_thin_total_6_highdense.csv", df, append = true)
