@@ -2,10 +2,10 @@ using EwaldSummations, ExTinyMD, JLD2
 using Random
 Random.seed!(1234)
 
-n_atoms = 100
+n_atoms = 1000
 L = 10.0
 ratio = 1.0
-s = 7.0
+s = 6.0
 if isodd(n_atoms)
     n_atoms += 1
 end
@@ -43,4 +43,5 @@ position = [info.particle_info[i].position for i in 1:Ewald2D_interaction.n_atom
 energy_ewald = energy_long + energy_short
 @show energy_ewald
 
+@show n_atoms, L
 @save "reference/cube/n_$(n_atoms)_rc.jld2" n_atoms L atoms info energy_ewald
