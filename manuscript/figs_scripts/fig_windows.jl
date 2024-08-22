@@ -58,7 +58,8 @@ end
 for (i, (l, error, m)) in enumerate(zip(labels, [error_PKBN, error_ESN, error_GaussianN], marker))
     scatter!(axr, N, error, markersize = 10, label = l, marker = m)
 
-    @. model(x, p) = p[1] * x + p[2]
+    #@. model(x, p) = p[1] * x + p[2]
+    @. model(x, p) = log.(abs(p[1] * exp(- p[2]* x^2)))
 
     xs = [1:1:65...]
 
@@ -67,10 +68,10 @@ for (i, (l, error, m)) in enumerate(zip(labels, [error_PKBN, error_ESN, error_Ga
     mask_2 = abs.(raw_y_data) .> 1e-14
     x_data = raw_x_data[mask_2]
     y_data = raw_y_data[mask_2]
-    p0 = [1.0, 1.0]
+    p0 = [1.0, 0.01]
     fit = curve_fit(model, x_data, log.(y_data), p0)
 
-    @info "(b) $i $(fit.param[1]) x + $(fit.param[2])"
+    @info "(b) $i $(fit.param[1]) exp(-x^2 $(fit.param[2]))"
 
     g = x -> model(x, fit.param)
     lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
@@ -82,7 +83,7 @@ text!(axl, (7, 1e-14), text = "(a)", fontsize = 30, align = (:right, :baseline),
 text!(axr, (22.5, 1e-14), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
 text!(axl, (30, 10^(-7.8)), text = L"O(\text{erfc}(C_1 \mathcal{P}^{-0.5}))", fontsize = 20, align = (:right, :baseline),)
-text!(axr, (63, 10^(-7.8)), text = L"O(\exp(-C_2 I))", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (63, 10^(-7.8)), text = L"O(\exp(-C_2 I^{2}))", fontsize = 20, align = (:right, :baseline),)
 
 save("figs/mid_windows.pdf", f)
 save("figs/mid_windows.png", f)

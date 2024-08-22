@@ -25,11 +25,11 @@ gb = f[1, 2] = GridLayout()
 gta = f[2, 1] = GridLayout()
 gtb = f[2, 2] = GridLayout()
 
-axr = Axis(gb[1, 1], xlabel = L"N_\text{atoms}", yscale = log10, xscale = log10, xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
-axl = Axis(ga[1, 1], xlabel = L"N_\text{atoms}", ylabel = L"\mathcal{E}_r", yscale = log10, xscale = log10, xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
+axr = Axis(gb[1, 1], xlabel = L"N", yscale = log10, xscale = log10, xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
+axl = Axis(ga[1, 1], xlabel = L"N", ylabel = L"\mathcal{E}_r", yscale = log10, xscale = log10, xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
 
-axtl = Axis(gta[1, 1], xlabel = L"N_\text{atoms}", ylabel = L"\text{Time (s)}", yscale = log10, xscale = log10, yticks = ([1e-2, 0.1, 1, 10], ["10⁻²", "10⁻¹", "10⁰", "10¹"]), xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
-axtr = Axis(gtb[1, 1], xlabel = L"N_\text{atoms}", yscale = log10, xscale = log10, yticks = ([1e-2, 0.1, 1, 10], ["10⁻²", "10⁻¹", "10⁰", "10¹"]), xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
+axtl = Axis(gta[1, 1], xlabel = L"N", ylabel = L"\text{Time (s)}", yscale = log10, xscale = log10, yticks = ([1e-2, 0.1, 1, 10], ["10⁻²", "10⁻¹", "10⁰", "10¹"]), xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
+axtr = Axis(gtb[1, 1], xlabel = L"N", yscale = log10, xscale = log10, yticks = ([1e-2, 0.1, 1, 10], ["10⁻²", "10⁻¹", "10⁰", "10¹"]), xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
 
 ylims!(axr, (1e-16, 1))
 ylims!(axl, (1e-16, 1))

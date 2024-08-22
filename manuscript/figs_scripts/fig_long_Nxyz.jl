@@ -14,7 +14,7 @@ f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (800, 400), fontsize = 
 ga = f[1, 1] = GridLayout()
 gb = f[1, 2] = GridLayout()
 
-axl = Axis(ga[1, 1], xlabel = L"I^{\mathcal{M}_2}", ylabel = L"\mathcal{E}_r", yscale = log10)
+axl = Axis(ga[1, 1], xlabel = L"I^{\mathcal{M}_\text{l}}", ylabel = L"\mathcal{E}_r", yscale = log10)
 axr = Axis(gb[1, 1], xlabel = L"P", yscale = log10)
 
 xlims!(axl, (0, 35))
@@ -80,7 +80,7 @@ axislegend(axl, position = :rt)
 text!(axl, (7, 1e-13), text = "(a)", fontsize = 30, align = (:right, :baseline),)
 text!(axr, (13, 1e-13), text = "(b)", fontsize = 30, align = (:right, :baseline),)
 
-text!(axl, (33, 10^(-7.8)), text = L"O(e^{- C_1 (I^{\mathcal{M}_2})^2})", fontsize = 20, align = (:right, :baseline),)
+text!(axl, (33, 10^(-7.8)), text = L"O(e^{- C_1 (I^{\mathcal{M}_\text{l}})^2})", fontsize = 20, align = (:right, :baseline),)
 text!(axr, (63, 10^(-7.8)), text = L"O(C_2^{-P} / \sqrt{P !})", fontsize = 20, align = (:right, :baseline),)
 
 save("figs/long_Nxyz.pdf", f)

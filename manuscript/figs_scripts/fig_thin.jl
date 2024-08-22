@@ -16,7 +16,7 @@ gc = f[2, 1] = GridLayout()
 gd = f[2, 2] = GridLayout()
 
 ax_w = Axis(ga[1, 1], xlabel = L"\mathcal{P}", ylabel = L"\mathcal{E}_r", yscale = log10)
-ax_Nxy = Axis(gb[1, 1], xlabel = L"N_{d}", yscale = log10, xscale = log2)
+ax_Nxy = Axis(gb[1, 1], xlabel = L"I^{\mathcal{M}_{\text{l}}}", yscale = log10, xscale = log2)
 ax_Taylor = Axis(gc[1, 1], xlabel = L"Q", ylabel = L"\mathcal{E}_r", yscale = log10)
 ax_Rz = Axis(gd[1, 1], xlabel = L"P", yscale = log10)
 
@@ -82,7 +82,8 @@ for i in 1:3
     mask_Nxy = df_Nxy.gamma .== gamma
     scatter!(ax_Nxy, df_Nxy.Nxy[mask_Nxy], df_Nxy.error_rel[mask_Nxy], markersize = 10, marker = markers[i])
 
-    @. model(x, p) = p[1] * x + p[2]
+    #@. model(x, p) = p[1] * x + p[2]
+    @. model(x, p) = log.(abs(p[1] * exp(- p[2]* x^2)))
 
     xs = range(2^3.5, 2^10.5, length = 1000)
 
@@ -91,10 +92,11 @@ for i in 1:3
     mask_2 = abs.(raw_y_data) .> 1e-12
     x_data = raw_x_data[mask_2]
     y_data = raw_y_data[mask_2]
-    p0 = [1.0, 1.0]
+    p0 = [1.0, 0.01]
     fit = curve_fit(model, (x_data), log.(y_data), p0)
 
-    @info "(c) $i $(fit.param[1]) x + $(fit.param[2])"
+    #@info "(c) $i $(fit.param[1]) x + $(fit.param[2])"
+    @info "(c) $i $(fit.param[1]) exp(-x^2 $(fit.param[2]))"
 
     g = x -> model(x, fit.param)
     lines!(ax_Nxy, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
@@ -124,7 +126,7 @@ for i in 1:3
 end
 
 text!(ax_w, (31.0, 10^(-7.8)), text = L"O(\text{erfc}(C_1 \mathcal{P}^{-0.5}))", fontsize = 20, align = (:right, :baseline),)
-text!(ax_Nxy, (2^10, 10^(-5.8)), text = L"O(\exp( - C_2 N_{d}))", fontsize = 20, align = (:right, :baseline),)
+text!(ax_Nxy, (2^(10.2), 10^(-3.8)), text = L"O(\exp( - C_2 (I^{\mathcal{M}_{\text{l}}})^2))", fontsize = 20, align = (:right, :baseline),)
 text!(ax_Taylor, (12, 10^(-7.8)), text = L"O((Q! C_3^{2Q})^{-1})", fontsize = 20, align = (:right, :baseline),)
 text!(ax_Rz, (16, 10^(-7.8)), text = L"O(C_4^{-P} / \sqrt{P !})", fontsize = 20, align = (:right, :baseline),)
 
