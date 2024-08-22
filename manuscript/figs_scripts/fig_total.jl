@@ -1,4 +1,6 @@
-using CSV, DataFrames, CairoMakie, LaTeXStrings, FastSpecSoG, LsqFit
+using CSV, DataFrames, CairoMakie, LaTeXStrings, FastSpecSoG, LsqFit, Statistics
+
+include("setting.jl")
 
 df_cube_2 = CSV.read("data/Acc_T6_cube_total_2.csv", DataFrame)
 df_cube_4 = CSV.read("data/Acc_T6_cube_total_4.csv", DataFrame)
@@ -14,8 +16,6 @@ df_cube = [df_cube_2, df_cube_4, df_cube_6]
 df_thin = [df_thin_2, df_thin_4, df_thin_6]
 
 n_atoms = [1000, 3164, 10000, 31624, 100000]
-
-marker = [:circle, :diamond, :star5, :utriangle, :hexagon, :xcross]
 
 f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (800, 700), fontsize = 20)
 
@@ -43,16 +43,19 @@ bs = []
 
 for i in 1:3
     b = round(FastSpecSoG.preset_parameters[2 * i][1], digits = 2)
-    scatter!(axl, n_atoms, df_cube[i].error_rel, markersize = 10, marker = marker[i])
-    scr = scatter!(axr, n_atoms, df_thin[i].error_rel, markersize = 10, marker = marker[i])
+    scatter!(axl, n_atoms, df_cube[i].error_rel, markersize = ms, marker = markers[i], color = colors[i])
+    scr = scatter!(axr, n_atoms, df_thin[i].error_rel, markersize = ms, marker = markers[i], color = colors[i])
     push!(bs, L"b = %$b")
     push!(scrs, scr)
+    
+    hlines!(axl, [mean(df_cube[i].error_rel)], linestyle = :dash, linewidth = lw, color = colors[i])
+    hlines!(axr, [mean(df_thin[i].error_rel)], linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 for i in 1:3
     preset = 2 * i
     mask = df_t_cube.preset .== preset
-    scatter!(axtl, n_atoms, df_t_cube.t_total[mask], markersize = 10, marker = marker[i])
+    scatter!(axtl, n_atoms, df_t_cube.t_total[mask], markersize = ms, marker = markers[i], color = colors[i])
 
     @. model(x, p) = x + p[1]
     x_data = n_atoms
@@ -64,13 +67,13 @@ for i in 1:3
 
     @info "(c) $i  x + $(fit.param[1])"
     g = x -> model(log(x), fit.param)
-    lines!(axtl, Ns, exp.(g.(Ns)), linestyle = :dash, linewidth = 0.7)
+    lines!(axtl, Ns, exp.(g.(Ns)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 for i in 1:3
     preset = 2 * i
     mask = df_t_thin.preset .== preset
-    scatter!(axtr, n_atoms, df_t_thin.t_total[mask], markersize = 10, marker = marker[i])
+    scatter!(axtr, n_atoms, df_t_thin.t_total[mask], markersize = ms, marker = markers[i], color = colors[i])
 
     @. model(x, p) = x + p[1]
     x_data = n_atoms
@@ -82,7 +85,7 @@ for i in 1:3
 
     @info "(d) $i x + $(fit.param[1])"
     g = x -> model(log(x), fit.param)
-    lines!(axtr, Ns, exp.(g.(Ns)), linestyle = :dash, linewidth = 0.7)
+    lines!(axtr, Ns, exp.(g.(Ns)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 axislegend(axtl, scrs, bs, position = :rb, nbanks = 1)

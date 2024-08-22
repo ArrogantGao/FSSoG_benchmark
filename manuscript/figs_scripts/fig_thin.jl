@@ -1,13 +1,13 @@
 using CSV, DataFrames, CairoMakie, LaTeXStrings, LsqFit, SpecialFunctions
 
+include("setting.jl")
+
 df_w = CSV.read("data/Acc_T5_thin_w.csv", DataFrame)
 df_Taylor = CSV.read("data/Acc_T5_thin_TaylorQ.csv", DataFrame)
 df_Nxy = CSV.read("data/Acc_T5_thin_Nxy.csv", DataFrame)
 df_Rz = CSV.read("data/Acc_T5_thin_Rz.csv", DataFrame)
 
 gammas = unique(df_w.gamma)
-
-markers = [:circle, :diamond, :star5, :utriangle]
 
 f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (800, 700), fontsize = 20)
 ga = f[1, 1] = GridLayout()
@@ -34,7 +34,7 @@ ylims!(ax_Rz, (1e-16, 1))
 for i in 1:3
     gamma = gammas[i]
     mask_w = df_w.gamma .== gamma
-    scatter!(ax_w, df_w.w[mask_w], df_w.error_rel[mask_w], markersize = 10, label = L"\gamma = %$gamma", marker = markers[i])
+    scatter!(ax_w, df_w.w[mask_w], df_w.error_rel[mask_w], markersize = ms, label = L"\gamma = %$gamma", marker = markers[i], color = colors[i])
 
     @. model(x, p) = log.(abs.(p[1] * erfc(p[2] * sqrt(x))))
 
@@ -51,13 +51,13 @@ for i in 1:3
     @info "(a) $i $(fit.param[1]) erfc($(fit.param[2]) * sqrt(x))"
 
     g = x -> model(x, fit.param)
-    lines!(ax_w, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(ax_w, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 for i in 1:3
     gamma = gammas[i]
     mask_Taylor = df_Taylor.gamma .== gamma
-    scatter!(ax_Taylor, df_Taylor.TaylorQ[mask_Taylor], df_Taylor.error_rel[mask_Taylor], markersize = 10, marker = markers[i])
+    scatter!(ax_Taylor, df_Taylor.TaylorQ[mask_Taylor], df_Taylor.error_rel[mask_Taylor], markersize = ms, marker = markers[i], color = colors[i])
 
     @. model(x, p) = log(abs(p[2] / (factorial(x) * (p[1])^(2x) )))
 
@@ -74,13 +74,13 @@ for i in 1:3
     @info "(b) $i $(fit.param[2]) / (x! * $(fit.param[1])^(2x) ))"
 
     g = x -> model(x, fit.param)
-    lines!(ax_Taylor, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(ax_Taylor, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 for i in 1:3
     gamma = gammas[i]
     mask_Nxy = df_Nxy.gamma .== gamma
-    scatter!(ax_Nxy, df_Nxy.Nxy[mask_Nxy], df_Nxy.error_rel[mask_Nxy], markersize = 10, marker = markers[i])
+    scatter!(ax_Nxy, df_Nxy.Nxy[mask_Nxy], df_Nxy.error_rel[mask_Nxy], markersize = ms, marker = markers[i], color = colors[i])
 
     #@. model(x, p) = p[1] * x + p[2]
     @. model(x, p) = log.(abs(p[1] * exp(- p[2]* x^2)))
@@ -99,13 +99,13 @@ for i in 1:3
     @info "(c) $i $(fit.param[1]) exp(-x^2 $(fit.param[2]))"
 
     g = x -> model(x, fit.param)
-    lines!(ax_Nxy, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(ax_Nxy, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 for i in 1:3
     gamma = gammas[i]
     mask_Rz = df_Rz.gamma .== gamma
-    scatter!(ax_Rz, df_Rz.R_z[mask_Rz], df_Rz.error_rel[mask_Rz], markersize = 10, marker = markers[i])
+    scatter!(ax_Rz, df_Rz.R_z[mask_Rz], df_Rz.error_rel[mask_Rz], markersize = ms, marker = markers[i], color = colors[i])
 
     @. model(x, p) = log.(abs(p[1] / (p[2]^x * sqrt(factorial(big(x)))) ))
 
@@ -122,7 +122,7 @@ for i in 1:3
     @info "(d) $i $(fit.param[1]) / ( $(fit.param[2])^x * sqrt(x!))"
 
     g = x -> model(x, fit.param)
-    lines!(ax_Rz, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(ax_Rz, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 text!(ax_w, (31.0, 10^(-7.8)), text = L"O(\text{erfc}(C_1 \mathcal{P}^{-0.5}))", fontsize = 20, align = (:right, :baseline),)

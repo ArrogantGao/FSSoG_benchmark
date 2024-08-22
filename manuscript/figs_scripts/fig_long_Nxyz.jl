@@ -1,4 +1,5 @@
 using CSV, DataFrames, CairoMakie, LaTeXStrings, LsqFit, FastSpecSoG
+include("setting.jl")
 
 df_xy = CSV.read("data/Acc_T4_cube_Nxy.csv", DataFrame)
 df_z = CSV.read("data/Acc_T4_cube_Rz.csv", DataFrame)
@@ -6,8 +7,6 @@ df_z = CSV.read("data/Acc_T4_cube_Rz.csv", DataFrame)
 M_mid = unique(df_xy.M_mid)
 N_xy = unique(df_xy.Nxy)
 R_z = unique(df_z.Rz)
-
-marker = [:circle, :diamond, :star5, :utriangle, :hexagon, :xcross]
 
 f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (800, 400), fontsize = 20)
 
@@ -28,7 +27,7 @@ for i in 1:4
     M = M_mid[i]
     mask = df_xy.M_mid .== M
     eta = eta_array[i]
-    scatter!(axl, N_xy, df_xy.error_rel[mask], markersize = 10, label = L"\eta \approx %$eta", marker = marker[i])
+    scatter!(axl, N_xy, df_xy.error_rel[mask], markersize = ms, label = L"\eta \approx %$eta", marker = markers[i], color = colors[i])
 
     s, w = USeriesPara(6).sw[M + 1]
     @. model(x, p) = log.(abs(p[1] * w * exp(- s^2 * p[2]* x^2)))
@@ -47,14 +46,14 @@ for i in 1:4
     @info "(a) $i $(fit.param[1] * w) exp(-x^2 $(s^2 * fit.param[2]))"
 
     g = x -> model(x, fit.param)
-    lines!(axl, ks, exp.(g.(ks)), linestyle = :dash, linewidth = 0.7)
+    lines!(axl, ks, exp.(g.(ks)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 for i in 1:4
     M = M_mid[i]
     mask = df_z.M_mid .== M
     eta = eta_array[i]
-    scatter!(axr, R_z, df_z.error_rel[mask], markersize = 10, label = L"\eta \approx %$eta", marker = marker[i])
+    scatter!(axr, R_z, df_z.error_rel[mask], markersize = ms, label = L"\eta \approx %$eta", marker = markers[i], color = colors[i])
 
     @. model(x, p) = log.(abs(p[1] / (p[2]^x * sqrt(factorial(big(x)))) ))
 
@@ -72,7 +71,7 @@ for i in 1:4
     @info "(b) $i $(fit.param[1]) / ( $(fit.param[2])^x * sqrt(x!))"
 
     g = x -> model(x, fit.param)
-    lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 axislegend(axl, position = :rt)

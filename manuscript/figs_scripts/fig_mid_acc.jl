@@ -1,5 +1,7 @@
 using CSV, DataFrames, CairoMakie, LaTeXStrings, FastSpecSoG, SpecialFunctions, LsqFit
 
+include("setting.jl")
+
 df_1 = CSV.read("data/Acc_T2_1_Mmid.csv", DataFrame)
 df_2 = CSV.read("data/Acc_T2_2_Extrapadding.csv", DataFrame)
 
@@ -10,8 +12,6 @@ uspara = USeriesPara(6)
 
 Mmid_1 = df_1.M_mid
 Mmid_2 = unique(df_2.M_mid)
-
-marker = [:circle, :diamond, :star5, :utriangle]
 
 f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (800, 400), fontsize = 20)
 
@@ -31,7 +31,7 @@ pad_ratio = round.([138, 162, 186, 282] ./ (64 + 24), digits = 1)
 for (i, λ) in enumerate(λ_1)
     mask = df_1.extra_pad_ratio .== λ
     λ_r = pad_ratio[i]
-    scatter!(axl, sms[Mmid_1[mask]], df_1.error_rel[mask], markersize = 10, label = L"\lambda_z \approx %$(λ_r)", marker = marker[i])
+    scatter!(axl, sms[Mmid_1[mask]], df_1.error_rel[mask], markersize = ms, label = L"\lambda_z \approx %$(λ_r)", marker = markers[i], color = colors[i])
 
     @. model(x, p) = log.(abs(p[1] * erfc(p[2] / x) ))
 
@@ -49,14 +49,14 @@ for (i, λ) in enumerate(λ_1)
     @info "(a) $i $(fit.param[1]) erfc($(fit.param[2]) / x)"
 
     g = x -> model(x, fit.param)
-    lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 f_pad = x -> (64 + 24 + 2 + x * 24) / (64 + 24)
 
 for (i, Mmid) in enumerate(Mmid_2)
     mask = df_2.M_mid .== Mmid
-    scatter!(axr, f_pad.(λ_2), df_2.error_rel[mask], markersize = 10, label = L"\eta \approx %$Mmid", marker = marker[i])
+    scatter!(axr, f_pad.(λ_2), df_2.error_rel[mask], markersize = ms, label = L"\eta \approx %$Mmid", marker = markers[i], color = colors[i])
 
     @. model(x, p) = log.(abs(p[1] * erfc(p[2] * x) ))
 
@@ -73,7 +73,7 @@ for (i, Mmid) in enumerate(Mmid_2)
     @info "(b) $i $(fit.param[1]) erfc($(fit.param[2]) x)"
 
     g = x -> model(x, fit.param)
-    lines!(axr, f_pad.(xs), exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(axr, f_pad.(xs), exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 axislegend(axl, position = :lt)

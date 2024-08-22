@@ -1,5 +1,7 @@
 using CSV, DataFrames, CairoMakie, LaTeXStrings, SpecialFunctions, LsqFit
 
+include("setting.jl")
+
 df_ES = CSV.read("data/Acc_T3_1_WinFunc_ES.csv", DataFrame)
 df_Gaussian = CSV.read("data/Acc_T3_1_WinFunc_Gaussian.csv", DataFrame)
 df_PKB = CSV.read("data/Acc_T3_1_WinFunc_PKB.csv", DataFrame)
@@ -9,7 +11,6 @@ df_GaussianN = CSV.read("data/Acc_T3_2_Nspec_Gaussian.csv", DataFrame)
 df_PKBN = CSV.read("data/Acc_T3_2_Nspec_PKB.csv", DataFrame)
 
 labels = ["KB", "ES", "Gaussian"]
-marker = [:circle, :diamond, :star5]
 
 w = df_ES.w
 error_ES = df_ES.error_rel
@@ -34,8 +35,8 @@ xlims!(axr, (8, 68))
 ylims!(axl, (1e-16, 1.0))
 ylims!(axr, (1e-16, 1.0))
 
-for (i, (l, error, m)) in enumerate(zip(labels, [error_PKB, error_ES, error_Gaussian], marker))
-    scatter!(axl, w, error, markersize = 10, label = l, marker = m)
+for (i, (l, error, m)) in enumerate(zip(labels, [error_PKB, error_ES, error_Gaussian], markers))
+    scatter!(axl, w, error, markersize = ms, label = l, marker = m, color = colors[i])
 
     @. model(x, p) = log.(abs.(p[1] * erfc(p[2] * sqrt(x))))
 
@@ -52,11 +53,11 @@ for (i, (l, error, m)) in enumerate(zip(labels, [error_PKB, error_ES, error_Gaus
     @info "(a) $i $(fit.param[1]) erfc($(fit.param[2]) * sqrt(x))"
 
     g = x -> model(x, fit.param)
-    lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
-for (i, (l, error, m)) in enumerate(zip(labels, [error_PKBN, error_ESN, error_GaussianN], marker))
-    scatter!(axr, N, error, markersize = 10, label = l, marker = m)
+for (i, (l, error, m)) in enumerate(zip(labels, [error_PKBN, error_ESN, error_GaussianN], markers))
+    scatter!(axr, N, error, markersize = ms, label = l, marker = m, color = colors[i])
 
     #@. model(x, p) = p[1] * x + p[2]
     @. model(x, p) = log.(abs(p[1] * exp(- p[2]* x^2)))
@@ -74,7 +75,7 @@ for (i, (l, error, m)) in enumerate(zip(labels, [error_PKBN, error_ESN, error_Ga
     @info "(b) $i $(fit.param[1]) exp(-x^2 $(fit.param[2]))"
 
     g = x -> model(x, fit.param)
-    lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
 axislegend(axl, position = :rt)

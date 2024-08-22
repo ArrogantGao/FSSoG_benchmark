@@ -1,4 +1,5 @@
 using CSV, DataFrames, CairoMakie, LaTeXStrings, LsqFit, FastSpecSoG
+include("setting.jl")
 
 df_energy = CSV.read("data/Acc_T0_energy.csv", DataFrame)
 df_force = CSV.read("data/Acc_T0_force.csv", DataFrame)
@@ -6,8 +7,6 @@ df_force = CSV.read("data/Acc_T0_force.csv", DataFrame)
 Ms = unique(df_force.M)
 Mse = unique(df_energy.M)
 presets = unique(df_force.preset)
-
-marker = [:circle, :diamond, :star5, :utriangle, :hexagon, :xcross]
 
 f = Figure(backgroundcolor = RGBf(1.0, 1.0, 1.0), size = (800, 400), fontsize = 20)
 
@@ -39,7 +38,7 @@ for preset in presets
     mask_energy = df_energy.preset .== preset
     b0 = FastSpecSoG.preset_parameters[preset][1]
     b = round(FastSpecSoG.preset_parameters[preset][1], digits = 2)
-    scatter!(axl, Mse, df_energy.error[mask_energy], markersize = 10, label = L"b = %$b", marker = marker[preset])
+    scatter!(axl, Mse, df_energy.error[mask_energy], markersize = ms, label = L"b = %$b", marker = markers[preset], color = colors[preset])
 
     c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
 
@@ -55,7 +54,7 @@ for preset in presets
     # @info "(a) $preset $(df_energy.error[mask_energy][end]) + $(fit.param[1]) / $b0^x"
     g = x -> model(x, fit.param)
     xs = [0.0:0.1:300.0...]
-    lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[preset])
 end
 
 global ss = 0.0
@@ -73,7 +72,7 @@ for preset in presets
     mask_force = df_force.preset .== preset
     b0 = FastSpecSoG.preset_parameters[preset][1]
     b = round(FastSpecSoG.preset_parameters[preset][1], digits = 2)
-    scatter!(axr, Ms, df_force.error[mask_force], markersize = 10, label = L"b = %$b", marker = marker[preset])
+    scatter!(axr, Ms, df_force.error[mask_force], markersize = ms, label = L"b = %$b", marker = markers[preset], color = colors[preset])
 
     c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
 
@@ -91,7 +90,7 @@ for preset in presets
     # @info "(b) $preset $(df_force.error[mask_force][end]) + $(fit.param[1]) / $b0^3x"
     g = x -> model(x, fit.param)
     xs = [0.0:0.1:120.0...]
-    lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = 0.7)
+    lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[preset])
 end
 
 axislegend(axl, position = :lb, nbanks = 2)
@@ -102,7 +101,7 @@ text!(axr, (20, 1e-11), text = "(b)", fontsize = 30, align = (:right, :baseline)
 # text!(axl, (180, 1e-11), text = L"O(b^{-M} + C_1)", fontsize = 20, align = (:right, :baseline),)
 # text!(axr, (72, 1e-11), text = L"O(b^{-3M} + C_2)", fontsize = 20, align = (:right, :baseline),)
 
-f
-
 save("figs/cutoff.pdf", f)
 save("figs/cutoff.png", f)
+
+f
