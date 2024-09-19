@@ -11,7 +11,7 @@ end
 
 @load "reference/cube_L1/n_100_energy.jld2" n_atoms L atoms info energy_ewald
 
-# CSV.write("data/Acc_T0_energy.csv", DataFrame(preset = Int[], M = Int[], error = Float64[]))
+CSV.write("data/Acc_T0_energy.csv", DataFrame(preset = Int[], M = Int[], error = Float64[]))
 
 poses = [info.particle_info[i].position for i in 1:n_atoms]
 qs = [atoms[i].charge for i in 1:n_atoms]
@@ -22,7 +22,7 @@ Lz = 1.0
 rc = 0.1
 
 for preset in 1:6
-    for (iM, M) in enumerate([286 + 15:15:350...])
+    for (iM, M) in enumerate([1:15:350...])
         b, σ0, ω, M0 = FastSpecSoG.preset_parameters[preset]
         σ = σ0 * rc
         uspara = USeriesPara(b, σ, ω, M)

@@ -17,7 +17,7 @@ end
 function USeries_force(q_1::T, q_2::T, x_1::Point{3, T}, x_2::Point{3, T}, uspara::USeriesPara{T}) where{T}
     f = r -> q_1 * q_2 * (-1/r^2 - dU_series(r, uspara)) / 4π
     Δr = sqrt(dist2(x_1, x_2))
-    if Δr ≥ 10.0
+    if Δr ≥ 0.1
         force = - f(Δr)
         return force * (x_1 - x_2) / Δr
     else
@@ -33,7 +33,9 @@ function error(f, fe)
     return sqrt(error / length(f))
 end
 
-@load "reference/cube/n_100_force.jld2" n_atoms L atoms info force_ewald
+@load "reference/cube_L1/n_100_force.jld2" n_atoms L atoms info force_ewald
+
+CSV.write("data/Acc_T0_force.csv", DataFrame(preset = Int[], M = Int[], error = Float64[]))
 
 force_exact = [Point(f) for f in force_ewald]
 
@@ -41,8 +43,9 @@ poses = [info.particle_info[i].position for i in 1:n_atoms]
 qs = [atoms[i].charge for i in 1:n_atoms]
 
 for preset in 1:6
-    for (iM, M) in enumerate([1:5:250...])
-        b, σ, ω, M0 = FastSpecSoG.preset_parameters[preset]
+    for (iM, M) in enumerate([1:5:266...])
+        b, σ0, ω, M0 = FastSpecSoG.preset_parameters[preset]
+        σ = σ0 * 0.1
         uspara = USeriesPara(b, σ, ω, M)
         f = [Point(0.0, 0.0, 0.0) for i in 1:n_atoms]
         for i in 1:n_atoms
