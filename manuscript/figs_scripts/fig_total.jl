@@ -31,8 +31,8 @@ axl = Axis(ga[1, 1], xlabel = L"N", ylabel = L"\mathcal{E}_r", yscale = log10, x
 axtl = Axis(gta[1, 1], xlabel = L"N", ylabel = L"\text{Time (s)}", yscale = log10, xscale = log10, yticks = ([1e-2, 0.1, 1, 10], ["10⁻²", "10⁻¹", "10⁰", "10¹"]), xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
 axtr = Axis(gtb[1, 1], xlabel = L"N", yscale = log10, xscale = log10, yticks = ([1e-2, 0.1, 1, 10], ["10⁻²", "10⁻¹", "10⁰", "10¹"]), xticks = ([1e3, 1e4, 1e5], ["10³", "10⁴", "10⁵"]))
 
-ylims!(axr, (1e-16, 1))
-ylims!(axl, (1e-16, 1))
+ylims!(axr, (1e-17, 1))
+ylims!(axl, (1e-17, 1))
 ylims!(axtl, (10^(-2.5), 10^(1.5)))
 ylims!(axtr, (10^(-2.5), 10^(1.5)))
 
@@ -42,11 +42,8 @@ scrs = []
 bs = []
 
 for i in 1:3
-    b = round(FastSpecSoG.preset_parameters[2 * i][1], digits = 2)
     scatter!(axl, n_atoms, df_cube[i].error_rel, markersize = ms, marker = markers[i], color = colors[i])
     scr = scatter!(axr, n_atoms, df_thin[i].error_rel, markersize = ms, marker = markers[i], color = colors[i])
-    push!(bs, L"b = %$b")
-    push!(scrs, scr)
     
     hlines!(axl, [mean(df_cube[i].error_rel)], linestyle = :dash, linewidth = lw, color = colors[i])
     hlines!(axr, [mean(df_thin[i].error_rel)], linestyle = :dash, linewidth = lw, color = colors[i])
@@ -55,7 +52,8 @@ end
 for i in 1:3
     preset = 2 * i
     mask = df_t_cube.preset .== preset
-    scatter!(axtl, n_atoms, df_t_cube.t_total[mask], markersize = ms, marker = markers[i], color = colors[i])
+    b = round(FastSpecSoG.preset_parameters[2 * i][1], digits = 2)
+    scatter!(axtl, n_atoms, df_t_cube.t_total[mask], markersize = ms, marker = markers[i], color = colors[i], label = L"%$b")
 
     @. model(x, p) = x + p[1]
     x_data = n_atoms
@@ -88,12 +86,12 @@ for i in 1:3
     lines!(axtr, Ns, exp.(g.(Ns)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
-axislegend(axtl, scrs, bs, position = :rb, nbanks = 1)
+axislegend(axtl, L"b", position = :lt, nbanks = 1)
 
-text!(axl, (2000, 1e-2), text = "(a)", fontsize = 30, align = (:right, :baseline),)
-text!(axr, (2000, 1e-2), text = "(b)", fontsize = 30, align = (:right, :baseline),)
-text!(axtl, (2000, 10), text = "(c)", fontsize = 30, align = (:right, :baseline),)
-text!(axtr, (2000, 10), text = "(d)", fontsize = 30, align = (:right, :baseline),)
+text!(axl, (1e5, 10^(-16.5)), text = "(a)", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (1e5, 10^(-16.5)), text = "(b)", fontsize = 20, align = (:right, :baseline),)
+text!(axtl, (1e5, 10^(-2.4)), text = "(c)", fontsize = 20, align = (:right, :baseline),)
+text!(axtr, (1e5, 10^(-2.4)), text = "(d)", fontsize = 20, align = (:right, :baseline),)
 
 save("figs/total_error.pdf", f)
 save("figs/total_error.png", f)

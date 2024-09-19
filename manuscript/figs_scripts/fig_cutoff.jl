@@ -20,8 +20,8 @@ function main()
     xlims!(axl, (0, 350))
     xlims!(axr, (0, 140))
 
-    ylims!(axl, (1e-16, 1))
-    ylims!(axr, (1e-16, 1))
+    ylims!(axl, (1e-17, 1))
+    ylims!(axr, (1e-17, 1))
 
     global ss1 = 0.0
     for preset in presets
@@ -40,7 +40,7 @@ function main()
         mask_energy = df_energy.preset .== preset
         b0 = FastSpecSoG.preset_parameters[preset][1]
         b = round(FastSpecSoG.preset_parameters[preset][1], digits = 2)
-        scatter!(axl, Mse, df_energy.error[mask_energy], markersize = ms, label = L"b = %$b", marker = markers[preset], color = colors[preset])
+        scatter!(axl, Mse, df_energy.error[mask_energy], markersize = ms, label = L"%$b", marker = markers[preset], color = colors[preset])
 
         c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
 
@@ -74,7 +74,7 @@ function main()
         mask_force = df_force.preset .== preset
         b0 = FastSpecSoG.preset_parameters[preset][1]
         b = round(FastSpecSoG.preset_parameters[preset][1], digits = 2)
-        scatter!(axr, Ms, df_force.error[mask_force], markersize = ms, label = L"b = %$b", marker = markers[preset], color = colors[preset])
+        scatter!(axr, Ms, df_force.error[mask_force], markersize = ms, label = L"%$b", marker = markers[preset], color = colors[preset])
 
         c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
 
@@ -82,8 +82,13 @@ function main()
         raw_y_data = df_force.error[mask_force]
         raw_x_data = Ms
 
-        x_data = raw_x_data[preset:end]
-        y_data = raw_y_data[preset:end]
+        tt = preset
+        if preset ∈ [5, 6]
+            tt = 2 * preset
+        end
+
+        x_data = raw_x_data[tt:end]
+        y_data = raw_y_data[tt:end]
         p0 = [1.0]
         fit = curve_fit(model, x_data, log.(abs.(y_data)), p0)
 
@@ -95,10 +100,10 @@ function main()
         lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[preset])
     end
 
-    axislegend(axl, position = :lb, nbanks = 2)
+    axislegend(axr, L"b", position = :lb, nbanks = 2, titleposition = :left)
 
-    text!(axl, (50, 1e-11), text = "(a)", fontsize = 30, align = (:right, :baseline),)
-    text!(axr, (20, 1e-11), text = "(b)", fontsize = 30, align = (:right, :baseline),)
+    text!(axl, (340, 10^(-16.5)), text = "(a)", fontsize = 20, align = (:right, :baseline),)
+    text!(axr, (137, 10^(-16.5)), text = "(b)", fontsize = 20, align = (:right, :baseline),)
 
     # text!(axl, (180, 1e-11), text = L"O(b^{-M} + C_1)", fontsize = 20, align = (:right, :baseline),)
     # text!(axr, (72, 1e-11), text = L"O(b^{-3M} + C_2)", fontsize = 20, align = (:right, :baseline),)
@@ -109,4 +114,4 @@ function main()
     return f
 end
 
-main()
+f = main()

@@ -18,8 +18,8 @@ axr = Axis(gb[1, 1], xlabel = L"P", yscale = log10)
 
 xlims!(axl, (0, 35))
 xlims!(axr, (0, 65))
-ylims!(axl, (1e-16, 1))
-ylims!(axr, (1e-16, 1))
+ylims!(axl, (1e-17, 1))
+ylims!(axr, (1e-17, 1))
 
 eta_array=[0.11,0.15,0.19,0.26]
 
@@ -27,7 +27,7 @@ for i in 1:4
     M = M_mid[i]
     mask = df_xy.M_mid .== M
     eta = eta_array[i]
-    scatter!(axl, N_xy, df_xy.error_rel[mask], markersize = ms, label = L"\eta \approx %$eta", marker = markers[i], color = colors[i])
+    scatter!(axl, N_xy, df_xy.error_rel[mask], markersize = ms, label = L"%$eta", marker = markers[i], color = colors[i])
 
     s, w = USeriesPara(6).sw[M + 1]
     @. model(x, p) = log.(abs(p[1] * w * exp(- s^2 * p[2]* x^2)))
@@ -53,7 +53,7 @@ for i in 1:4
     M = M_mid[i]
     mask = df_z.M_mid .== M
     eta = eta_array[i]
-    scatter!(axr, R_z, df_z.error_rel[mask], markersize = ms, label = L"\eta \approx %$eta", marker = markers[i], color = colors[i])
+    scatter!(axr, R_z, df_z.error_rel[mask], markersize = ms, label = L"%$eta", marker = markers[i], color = colors[i])
 
     @. model(x, p) = log.(abs(p[1] / (p[2]^x * sqrt(factorial(big(x)))) ))
 
@@ -74,10 +74,10 @@ for i in 1:4
     lines!(axr, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[i])
 end
 
-axislegend(axl, position = :rt)
+axislegend(axl, L"\eta", position = :rt, titleposition = :left)
 
-text!(axl, (7, 1e-13), text = "(a)", fontsize = 30, align = (:right, :baseline),)
-text!(axr, (13, 1e-13), text = "(b)", fontsize = 30, align = (:right, :baseline),)
+text!(axl, (33, 10^(-16.5)), text = "(a)", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (63, 10^(-16.5)), text = "(b)", fontsize = 20, align = (:right, :baseline),)
 
 text!(axl, (33, 10^(-7.8)), text = L"O(e^{- C_1 (I^{\mathcal{M}_\text{l}})^2})", fontsize = 20, align = (:right, :baseline),)
 text!(axr, (63, 10^(-7.8)), text = L"O(C_2^{-P} / \sqrt{P !})", fontsize = 20, align = (:right, :baseline),)

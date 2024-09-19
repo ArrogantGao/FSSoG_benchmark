@@ -29,8 +29,8 @@ for i in 1:6
     mask_1 = df_k.preset .== i
     mask_2 = df_r.preset .== i
     b = round(FastSpecSoG.preset_parameters[i][1], digits = 2)
-    scatter!(axr, km, df_k.error_rel[mask_1], markersize = 10, label = L"b = %$b", marker = marker[i])
-    scatter!(axl, Ms, df_r.error_rel[mask_2] .+ df_total.rel_err[i], markersize = 10, label = L"b = %$b", marker = marker[i])
+    scatter!(axr, km, df_k.error_rel[mask_1], markersize = 10, label = L"%$b", marker = marker[i])
+    scatter!(axl, Ms, df_r.error_rel[mask_2] .+ df_total.rel_err[i], markersize = 10, label = L"%$b", marker = marker[i])
 
     s0, w0 = USeriesPara(i).sw[1]
     @. model(x, p) = log.(abs.(p[1] * x *exp(-x^2*s0^2)))
@@ -49,10 +49,10 @@ for i in 1:6
     lines!(axr, ks, exp.(g.(ks)), linestyle = :dash, linewidth = 0.7)
 end
 
-axislegend(axl, position = :lb, nbanks = 2)
+axislegend(axl, L"b", position = :lb, nbanks = 2, titleposition = :left)
 
-text!(axl, (35, 1e-10), text = "(a)", fontsize = 30, align = (:right, :baseline),)
-text!(axr, (0.5, 1e-10), text = "(b)", fontsize = 30, align = (:right, :baseline),)
+text!(axl, (240, 10^(-15.5)), text = "(a)", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (3.35, 10^(-15.5)), text = "(b)", fontsize = 20, align = (:right, :baseline),)
 
 text!(axr, (3.2, 10^(-5.2)), text = L"O(K_{\text{max}} e^{-s_0^2 K_{\text{max}}^2})", fontsize = 20, align = (:right, :baseline),)
 
