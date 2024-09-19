@@ -4,10 +4,9 @@ using Random
 Random.seed!(1234)
 
 function USeries_energy(q_1::T, q_2::T, x_1::Point{3, T}, x_2::Point{3, T}, uspara::USeriesPara{T}) where{T}
-    f = r -> q_1 * q_2 * (1/r - U_series(r, uspara)) / 4π
     Δr = sqrt(dist2(x_1, x_2))
     if Δr ≥ 10.0
-        return f(Δr)
+        return q_1 * q_2 * (1/Δr - U_series(Δr, uspara)) / 4π
     else
         return zero(T)
     end
