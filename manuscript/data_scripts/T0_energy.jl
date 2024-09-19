@@ -1,39 +1,45 @@
 using FastSpecSoG, CSV, DataFrames, EwaldSummations, ExTinyMD, ForwardDiff, JLD2
-using Base.Threads
+using OhMyThreads: tmapreduce
+using Base.Threads: nthreads
 using Random
 Random.seed!(1234)
 
-function USeries_energy(q_1::T, q_2::T, x_1::Point{3, T}, x_2::Point{3, T}, uspara::USeriesPara{T}) where{T}
+@inline function USeries_energy(q_1::T, q_2::T, x_1::Point{3, T}, x_2::Point{3, T}, uspara::USeriesPara{T}, r_c::T) where{T}
     Δr = sqrt(dist2(x_1, x_2))
-    if Δr ≥ 10.0
-        return q_1 * q_2 * (1/Δr - U_series(Δr, uspara)) / 4π
-    else
-        return zero(T)
-    end
+    return Δr ≥ r_c ? q_1 * q_2 * (1/Δr - U_series(Δr, uspara)) / 4π : zero(T)
 end
 
-@load "reference/cube/n_100_energy.jld2" n_atoms L atoms info energy_ewald
+@load "reference/cube_L1/n_100_energy.jld2" n_atoms L atoms info energy_ewald
+
+# CSV.write("data/Acc_T0_energy.csv", DataFrame(preset = Int[], M = Int[], error = Float64[]))
 
 poses = [info.particle_info[i].position for i in 1:n_atoms]
 qs = [atoms[i].charge for i in 1:n_atoms]
 
+Lx = 1.0
+Ly = 1.0
+Lz = 1.0
+rc = 0.1
+
 for preset in 1:6
-    for (iM, M) in enumerate([1:15:300...])
-        b, σ, ω, M0 = FastSpecSoG.preset_parameters[preset]
+    for (iM, M) in enumerate([286:15:350...])
+        b, σ0, ω, M0 = FastSpecSoG.preset_parameters[preset]
+        σ = σ0 * rc
         uspara = USeriesPara(b, σ, ω, M)
+
         energy_total = 0.0
+
         for i in 1:n_atoms
-            ei = Atomic{Float64}(0.0)
-            x_1 = poses[i]
-            @threads for j in 1:n_atoms
+            ei = tmapreduce(+, 1:n_atoms; ntasks = nthreads()) do j
                 t = 0.0
                 for mx in -40:40, my in -40:40
-                    x_2 = poses[j] + Point(20.0 * mx, 20.0 * my, 0.0)
-                    t += USeries_energy(qs[i], qs[j], x_1, x_2, uspara)
+                    x_2 = poses[j] + Point(Lx * mx, Ly * my, 0.0)
+                    t += USeries_energy(qs[i], qs[j], poses[i], x_2, uspara, 0.1)
                 end
-                atomic_add!(ei, t)
+                t
             end
-            energy_total += ei[]
+
+            energy_total += ei
         end
         e = abs(energy_total) / abs(energy_ewald)
         @show preset, M, e
