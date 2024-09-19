@@ -30,7 +30,8 @@ for preset in presets
     cr1 = df_energy.error[mask_energy][end]
     ss1 += cr1 / c
 end
-global as1 = ss1 / 6
+# global as1 = ss1 / 6
+global as1 = 5.0
 @show as1
 
 
@@ -42,7 +43,7 @@ for preset in presets
 
     c = log(b0)^(-1.5) * exp(-π^2 / (2 * log(b0)))
 
-    @. model(x, p) = log((c * as1 + 1 / b0^(x + p[1])))
+    @. model(x, p) = log((c * as1 + p[1] / b0^(x)))
     raw_y_data = df_energy.error[mask_energy]
     raw_x_data = Mse
 
@@ -53,7 +54,7 @@ for preset in presets
 
     # @info "(a) $preset $(df_energy.error[mask_energy][end]) + $(fit.param[1]) / $b0^x"
     g = x -> model(x, fit.param)
-    xs = [0.0:0.1:300.0...]
+    xs = [0.0:0.1:350.0...]
     lines!(axl, xs, exp.(g.(xs)), linestyle = :dash, linewidth = lw, color = colors[preset])
 end
 
