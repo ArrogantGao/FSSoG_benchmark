@@ -16,7 +16,7 @@ gb = f[1, 2] = GridLayout()
 axl = Axis(ga[1, 1], xlabel = L"M", ylabel = L"\mathcal{E}_r", yscale = log10)
 axr = Axis(gb[1, 1], xlabel = L"M", yscale = log10)
 
-xlims!(axl, (0, 300))
+xlims!(axl, (0, 350))
 xlims!(axr, (0, 120))
 
 ylims!(axl, (1e-16, 1))

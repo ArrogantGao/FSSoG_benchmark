@@ -20,7 +20,6 @@ run_T0_total:
 	julia --project=. data_scripts/T0_total.jl
 
 run_T0_energy:
-	echo "preset,M,error" >> data/Acc_T0_energy.csv
 	julia --project=. -t 128 data_scripts/T0_energy.jl
 
 run_T0_force:

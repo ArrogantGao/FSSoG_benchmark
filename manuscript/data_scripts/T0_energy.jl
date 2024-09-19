@@ -22,7 +22,7 @@ Lz = 1.0
 rc = 0.1
 
 for preset in 1:6
-    for (iM, M) in enumerate([286:15:350...])
+    for (iM, M) in enumerate([286 + 15:15:350...])
         b, σ0, ω, M0 = FastSpecSoG.preset_parameters[preset]
         σ = σ0 * rc
         uspara = USeriesPara(b, σ, ω, M)
