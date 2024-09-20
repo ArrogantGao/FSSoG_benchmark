@@ -39,7 +39,7 @@ function main()
     Rz_0 = 9
     Q_0 = 8
 
-    for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2", "n_312268.jld2", "n_1000000.jld2"]
+    for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2", "n_316228.jld2", "n_1000000.jld2"]
 
       path = "../manuscript/reference/cube_200/$data"
       @load path n_atoms L atoms info energy_per_atoms

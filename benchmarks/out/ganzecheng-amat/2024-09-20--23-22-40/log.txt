@@ -7,3 +7,85 @@ lambda_true = 2.125
 eta = 0.6825757720090021
 (preset, n_atoms, t_short, t_mid, t_long) = (2, 1000, 0.006965317, 0.013870208, 0.000256203)
 (preset, n_atoms, t_short, t_mid, t_long) = (2, 3164, 0.024350966, 0.038275021, 0.000829203)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 10000, 0.081718479, 0.111061888, 0.002643059)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 31624, 0.268509685, 0.331602955, 0.008415863)
+(preset, n_atoms, t_short, t_mid, t_long) = (2, 100000, 0.888948108, 1.048440975, 0.026690953)
+┌ Warning: Opening file with JLD2.MmapIO failed, falling back to IOStream
+└ @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:175
+ERROR: LoadError: SystemError: opening file "../manuscript/reference/cube_200/n_312268.jld2": No such file or directory
+Stacktrace:
+  [1] systemerror(p::String, errno::Int32; extrainfo::Nothing)
+    @ Base ./error.jl:176
+  [2] systemerror
+    @ ./error.jl:176
+  [3] systemerror
+    @ ./error.jl:175 [inlined]
+  [4] open(fname::String; lock::Bool, read::Bool, write::Bool, create::Bool, truncate::Bool, append::Bool)
+    @ Base ./iostream.jl:293
+  [5] open
+    @ ./iostream.jl:275 [inlined]
+  [6] openfile
+    @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:165 [inlined]
+  [7] openfile(T::Type, fname::String, wr::Bool, create::Bool, truncate::Bool, fallback::Type)
+    @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:176
+  [8] jldopen(fname::String, wr::Bool, create::Bool, truncate::Bool, iotype::Type{JLD2.MmapIO}; fallback::Type{IOStream}, compress::Bool, mmaparrays::Bool, typemap::Dict{String, Any}, parallel_read::Bool, plain::Bool)
+    @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:244
+  [9] jldopen
+    @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:189 [inlined]
+ [10] #jldopen#22
+    @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:335 [inlined]
+ [11] jldopen (repeats 2 times)
+    @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:329 [inlined]
+ [12] jldopen(f::Function, args::String; kws::@Kwargs{})
+    @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:2
+ [13] jldopen
+    @ ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:1 [inlined]
+ [14] macro expansion
+    @ ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:152 [inlined]
+ [15] main()
+    @ Main ~/work/FSSoG_benchmark/benchmarks/run_cube_2.jl:46
+ [16] top-level scope
+    @ ~/work/FSSoG_benchmark/benchmarks/run_cube_2.jl:74
+in expression starting at /home/xzgao/work/FSSoG_benchmark/benchmarks/run_cube_2.jl:74
+
+caused by: SystemError: opening file "../manuscript/reference/cube_200/n_312268.jld2": No such file or directory
+Stacktrace:
+  [1] systemerror(p::String, errno::Int32; extrainfo::Nothing)
+    @ Base ./error.jl:176
+  [2] systemerror
+    @ ./error.jl:176
+  [3] systemerror
+    @ ./error.jl:175 [inlined]
+  [4] open(fname::String; lock::Bool, read::Bool, write::Bool, create::Bool, truncate::Bool, append::Bool)
+    @ Base ./iostream.jl:293
+  [5] open
+    @ ./iostream.jl:275 [inlined]
+  [6] JLD2.MmapIO(fname::String, write::Bool, create::Bool, truncate::Bool)
+    @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/mmapio.jl:105
+  [7] openfile
+    @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:168 [inlined]
+  [8] openfile(T::Type, fname::String, wr::Bool, create::Bool, truncate::Bool, fallback::Type)
+    @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:173
+  [9] jldopen(fname::String, wr::Bool, create::Bool, truncate::Bool, iotype::Type{JLD2.MmapIO}; fallback::Type{IOStream}, compress::Bool, mmaparrays::Bool, typemap::Dict{String, Any}, parallel_read::Bool, plain::Bool)
+    @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:244
+ [10] jldopen
+    @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:189 [inlined]
+ [11] #jldopen#22
+    @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:335 [inlined]
+ [12] jldopen (repeats 2 times)
+    @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:329 [inlined]
+ [13] jldopen(f::Function, args::String; kws::@Kwargs{})
+    @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:2
+ [14] jldopen
+    @ ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:1 [inlined]
+ [15] macro expansion
+    @ ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:152 [inlined]
+ [16] main()
+    @ Main ~/work/FSSoG_benchmark/benchmarks/run_cube_2.jl:46
+ [17] top-level scope
+    @ ~/work/FSSoG_benchmark/benchmarks/run_cube_2.jl:74
+lambda_true = 2.357142857142857
+eta = 0.6470906530368045
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 1000, 0.010796294, 0.034575949, 0.002297056)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 3164, 0.038032705, 0.139232142, 0.007280269)
+(preset, n_atoms, t_short, t_mid, t_long) = (4, 10000, 0.12654217, 0.399670048, 0.022981494)
