@@ -1,0 +1,25 @@
+Starting benchmark...
+lambda_true = 2.125
+eta = 0.6825757720090021
+ERROR: LoadError: KeyError: key "enery_per_atoms" not found
+Stacktrace:
+ [1] getindex(g::JLD2.Group{JLD2.JLDFile{JLD2.MmapIO}}, name::String)
+   @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/groups.jl:96
+ [2] read
+   @ ~/.julia/packages/JLD2/JyzIz/src/JLD2.jl:368 [inlined]
+ [3] (::var"#1#2")(f::JLD2.JLDFile{JLD2.MmapIO})
+   @ Main ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:153
+ [4] jldopen(f::Function, args::String; kws::@Kwargs{})
+   @ JLD2 ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:4
+ [5] jldopen
+   @ ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:1 [inlined]
+ [6] macro expansion
+   @ ~/.julia/packages/JLD2/JyzIz/src/loadsave.jl:152 [inlined]
+ [7] main()
+   @ Main ~/work/FSSoG_benchmark/benchmarks/run_cube_2.jl:46
+ [8] top-level scope
+   @ ~/work/FSSoG_benchmark/benchmarks/run_cube_2.jl:74
+in expression starting at /home/xzgao/work/FSSoG_benchmark/benchmarks/run_cube_2.jl:74
+lambda_true = 2.357142857142857
+eta = 0.6470906530368045
+ERROR: LoadError: 

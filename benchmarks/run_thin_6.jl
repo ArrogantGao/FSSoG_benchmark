@@ -31,16 +31,17 @@ function main()
 	r_c = 10.0
 	
 
-	for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
+	for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2", "n_312268.jld2", "n_1000000.jld2"]
 
-		path = "../manuscript/reference/thin/$data" 
-		@load path n_atoms Lx Lz atoms info energy_ewald
+		path = "../manuscript/reference/thin_200/$data" 
+		@load path n_atoms Lx Lz atoms info energy_per_atoms
+
 
 		boundary = ExTinyMD.Q2dBoundary(Lx, Lx, Lz)
 
 		ratio = (n_atoms / 1000)^(1/2)
 		N_real = Int.(ceil.(ratio .* N_real0))
-		interaction = FSSoGThinInteraction((Lx, Lx, Lz), n_atoms, r_c, Q, 0.3, N_real, R_z, w, β, cheb_order, Taylor_Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)
+		interaction = FSSoGThinInteraction((Lx, Lx, Lz), n_atoms, r_c, Q, 0.0, N_real, R_z, w, β, cheb_order, Taylor_Q, Rz_0, Q_0; preset = preset, ϵ = 1.0)
 		neighbor = CellList3D(info, interaction.r_c, boundary, 1)
 
 		for i in 1:interaction.n_atoms

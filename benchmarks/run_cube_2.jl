@@ -19,32 +19,31 @@ function main()
 	output_file = parsed_args["output-file"]
 
 	
-L0 = 20.0
+	L0 = 20.0
 
-N_real0 = (8, 8, 8)
-w = (4, 4, 4)
-β = 5.0 .* w
-extra_pad_ratio_intial = 2
-lambda_true = (2*extra_pad_ratio_intial*w[1]+N_real0[1]+2*w[1]+2)/(N_real0[1]+2*w[1])
-@show lambda_true
-cheb_order = 4
-preset = 2
-uspara = USeriesPara(preset) 
-M_mid_initial = 3 
-eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
-@show eta
-N_grid = (0, 0, 1)
-Q_0 = 4
-Rz_0 = 4
-Ql = 4
-Qs = 6
-r_c = 9.99
+	N_real0 = (8, 8, 8)
+	w = (4, 4, 4)
+	β = 5.0 .* w
+	extra_pad_ratio_intial = 2
+	lambda_true = (2*extra_pad_ratio_intial*w[1]+N_real0[1]+2*w[1]+2)/(N_real0[1]+2*w[1])
+	@show lambda_true
+	cheb_order = 4
+	preset = 2
+	uspara = USeriesPara(preset) 
+	M_mid_initial = 3 
+	eta = uspara.sw[M_mid_initial][1] / L0 + 0.0001
+	@show eta
+	N_grid = (0, 0, 1)
+	Q_0 = 4
+	Rz_0 = 4
+	Ql = 4
+	Qs = 6
+	r_c = 9.99
 
+	for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2", "n_312268.jld2", "n_1000000.jld2"]
 
-	for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
-
-		path = "../manuscript/reference/cube/$data"
-		@load path n_atoms L atoms info energy_ewald
+		path = "../manuscript/reference/cube_200/$data"
+		@load path n_atoms L atoms info energy_per_atoms
 
 		boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
@@ -53,7 +52,7 @@ r_c = 9.99
 		extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
 
 		M_mid = proper_M(eta, L, uspara)
-		interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Qs, 0.1, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Ql, Rz_0, Q_0; preset = preset, ϵ = 1.0)
+		interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Qs, 0.0, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Ql, Rz_0, Q_0; preset = preset, ϵ = 1.0)
 		neighbor = CellList3D(info, interaction.r_c, boundary, 1)
 
 		for i in 1:interaction.n_atoms
