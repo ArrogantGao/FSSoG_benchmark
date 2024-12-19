@@ -1,4 +1,4 @@
-# Repo for benchmarking
+# Repo for benchmarking the FastSpecSoG.jl
 
 This repos is to validate the accuracy and benchmark the performance of FastSpecSoG.jl.
 
