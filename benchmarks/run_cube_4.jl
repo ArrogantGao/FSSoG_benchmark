@@ -39,34 +39,34 @@ function main()
     Rz_0 = 9
     Q_0 = 8
 
-    for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2"]
+    for data in ["n_1000.jld2", "n_3164.jld2", "n_10000.jld2", "n_31624.jld2", "n_100000.jld2", "n_316228.jld2", "n_1000000.jld2"]
 
-        path = "../manuscript/reference/cube/$data" 
-        @load path n_atoms L atoms info energy_ewald
+      path = "../manuscript/reference/cube_200/$data"
+      @load path n_atoms L atoms info energy_per_atoms
 
-        boundary = ExTinyMD.Q2dBoundary(L, L, L)
+      boundary = ExTinyMD.Q2dBoundary(L, L, L)
 
-        ratio = (n_atoms / 1000)^(1/3)
-        N_real = Int.(ceil.(ratio .* N_real0))
-        extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
+      ratio = (n_atoms / 1000)^(1 / 3)
+      N_real = Int.(ceil.(ratio .* N_real0))
+      extra_pad_ratio = Int(ceil(extra_pad_ratio_intial * ratio))
 
-        M_mid = proper_M(eta, L, uspara)
-        interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Qs, 0.1, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Ql, Rz_0, Q_0; preset = preset, ϵ = 1.0)
-        neighbor = CellList3D(info, interaction.r_c, boundary, 1)
-        
-        for i in 1:interaction.n_atoms
-            interaction.charge[i] = atoms[info.particle_info[i].id].charge
-            interaction.position[i] = info.particle_info[i].position.coo
-        end
+      M_mid = proper_M(eta, L, uspara)
+      interaction = FSSoGInteraction((L, L, L), n_atoms, r_c, Qs, 0.0, N_real, w, β, extra_pad_ratio, cheb_order, M_mid, N_grid, Ql, Rz_0, Q_0; preset = preset, ϵ = 1.0)
+      neighbor = CellList3D(info, interaction.r_c, boundary, 1)
 
-        t_short = @belapsed energy_short($interaction, $neighbor)
-        t_mid = @belapsed energy_mid($interaction)
-        t_long = @belapsed energy_long($interaction)
+      for i in 1:interaction.n_atoms
+        interaction.charge[i] = atoms[info.particle_info[i].id].charge
+        interaction.position[i] = info.particle_info[i].position.coo
+      end
 
-        @show preset, n_atoms, t_short, t_mid, t_long
+      t_short = @belapsed energy_short($interaction, $neighbor)
+      t_mid = @belapsed energy_mid($interaction)
+      t_long = @belapsed energy_long($interaction)
 
-        df = DataFrame(preset = preset, n_atoms = n_atoms, t_short = t_short, t_mid = t_mid, t_long = t_long, t_total = t_short + t_mid + t_long)
-        CSV.write(output_file, df, append = true)
+      @show preset, n_atoms, t_short, t_mid, t_long
+
+      df = DataFrame(preset = preset, n_atoms = n_atoms, t_short = t_short, t_mid = t_mid, t_long = t_long, t_total = t_short + t_mid + t_long)
+      CSV.write(output_file, df, append = true)
     end
 end
 

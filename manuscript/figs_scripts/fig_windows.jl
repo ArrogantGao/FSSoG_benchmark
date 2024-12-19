@@ -32,8 +32,8 @@ axr = Axis(gb[1, 1], xlabel = L"I", yscale = log10)
 
 xlims!(axl, (0, 30))
 xlims!(axr, (8, 68))
-ylims!(axl, (1e-16, 1.0))
-ylims!(axr, (1e-16, 1.0))
+ylims!(axl, (1e-17, 1.0))
+ylims!(axr, (1e-17, 1.0))
 
 for (i, (l, error, m)) in enumerate(zip(labels, [error_PKB, error_ES, error_Gaussian], markers))
     scatter!(axl, w, error, markersize = ms, label = l, marker = m, color = colors[i])
@@ -80,8 +80,8 @@ end
 
 axislegend(axl, position = :rt)
 
-text!(axl, (7, 1e-14), text = "(a)", fontsize = 30, align = (:right, :baseline),)
-text!(axr, (22.5, 1e-14), text = "(b)", fontsize = 30, align = (:right, :baseline),)
+text!(axl, (29, 10^(-16.5)), text = "(a)", fontsize = 20, align = (:right, :baseline),)
+text!(axr, (66, 10^(-16.5)), text = "(b)", fontsize = 20, align = (:right, :baseline),)
 
 text!(axl, (30, 10^(-7.8)), text = L"O(\text{erfc}(C_1 \mathcal{P}^{-0.5}))", fontsize = 20, align = (:right, :baseline),)
 text!(axr, (63, 10^(-7.8)), text = L"O(\exp(-C_2 I^{2}))", fontsize = 20, align = (:right, :baseline),)

@@ -1,7 +1,7 @@
 default: init update
 
 init:
-	julia --project=. -e 'using Pkg; Pkg.add(url = "https://github.com/HPMolSim/FastSpecSoG.jl"); Pkg.add(url = "https://github.com/HPMolSim/EwaldSummations.jl.git");  Pkg.instantiate(); Pkg.precompile();'
+	julia --project=. -e 'using Pkg; Pkg.add(url = "https://github.com/HPMolSim/ExTinyMD.jl"); Pkg.add(url = "https://github.com/HPMolSim/FastSpecSoG.jl"); Pkg.add(url = "https://github.com/HPMolSim/EwaldSummations.jl.git");  Pkg.instantiate(); Pkg.precompile();'
 
 update:
 	julia --project=. -e 'using Pkg; Pkg.update(); Pkg.precompile();'
@@ -20,17 +20,9 @@ run_T0_total:
 	julia --project=. data_scripts/T0_total.jl
 
 run_T0_energy:
-	touch data/Acc_T0_energy.csv
-	rm data/Acc_T0_energy.csv
-	touch data/Acc_T0_energy.csv
-	echo "preset,M,error" >> data/Acc_T0_energy.csv
-	julia --project=. -t 36 data_scripts/T0_energy.jl
+	julia --project=. -t 128 data_scripts/T0_energy.jl
 
 run_T0_force:
-	touch data/Acc_T0_force.csv
-	rm data/Acc_T0_force.csv
-	touch data/Acc_T0_force.csv
-	echo "preset,M,error" >> data/Acc_T0_force.csv
 	julia --project=. -t 36 data_scripts/T0_force.jl
 
 run_T1:
@@ -137,39 +129,21 @@ run_Ewald2D_thin_hr:
 	julia --project=. -t 128 reference/thin_high_rho.jl
 
 run_cube_total_2:
-	rm data/Acc_T6_cube_total_2.csv
-	touch data/Acc_T6_cube_total_2.csv
-	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_cube_total_2.csv
 	julia --project=. data_scripts/T6_cube_total_2.jl
 
 run_cube_total_4:
-	rm data/Acc_T6_cube_total_4.csv
-	touch data/Acc_T6_cube_total_4.csv
-	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_cube_total_4.csv
 	julia --project=. data_scripts/T6_cube_total_4.jl
 
 run_cube_total_6:
-	rm data/Acc_T6_cube_total_6.csv
-	touch data/Acc_T6_cube_total_6.csv
-	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_cube_total_6.csv
 	julia --project=. data_scripts/T6_cube_total_6.jl
 
 run_thin_total_2:
-	rm data/Acc_T6_thin_total_2.csv
-	touch data/Acc_T6_thin_total_2.csv
-	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_thin_total_2.csv
 	julia --project=. data_scripts/T6_thin_total_2.jl
 
 run_thin_total_4:
-	rm data/Acc_T6_thin_total_4.csv
-	touch data/Acc_T6_thin_total_4.csv
-	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_thin_total_4.csv
 	julia --project=. data_scripts/T6_thin_total_4.jl
 
 run_thin_total_6:
-	rm data/Acc_T6_thin_total_6.csv
-	touch data/Acc_T6_thin_total_6.csv
-	echo "n_atoms,energy_ewald,energy_fssog,error,error_rel" >> data/Acc_T6_thin_total_6.csv
 	julia --project=. data_scripts/T6_thin_total_6.jl
 
 run_thin_hd:

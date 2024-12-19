@@ -25,16 +25,16 @@ xlims!(ax_Taylor, (0, 17))
 xlims!(ax_Nxy, (2^3.5, 2^10.5))
 xlims!(ax_Rz, (0, 17))
 
-ylims!(ax_w, (1e-16, 1))
-ylims!(ax_Taylor, (1e-16, 1))
-ylims!(ax_Nxy, (1e-16, 1))
-ylims!(ax_Rz, (1e-16, 1))
+ylims!(ax_w, (1e-17, 1))
+ylims!(ax_Taylor, (1e-17, 1))
+ylims!(ax_Nxy, (1e-17, 1))
+ylims!(ax_Rz, (1e-17, 1))
 
 
 for i in 1:3
     gamma = gammas[i]
     mask_w = df_w.gamma .== gamma
-    scatter!(ax_w, df_w.w[mask_w], df_w.error_rel[mask_w], markersize = ms, label = L"\gamma = %$gamma", marker = markers[i], color = colors[i])
+    scatter!(ax_w, df_w.w[mask_w], df_w.error_rel[mask_w], markersize = ms, label = L"%$gamma", marker = markers[i], color = colors[i])
 
     @. model(x, p) = log.(abs.(p[1] * erfc(p[2] * sqrt(x))))
 
@@ -130,12 +130,12 @@ text!(ax_Nxy, (2^(10.2), 10^(-3.8)), text = L"O(\exp( - C_2 (I^{\mathcal{M}_{\te
 text!(ax_Taylor, (12, 10^(-7.8)), text = L"O((Q! C_3^{2Q})^{-1})", fontsize = 20, align = (:right, :baseline),)
 text!(ax_Rz, (16, 10^(-7.8)), text = L"O(C_4^{-P} / \sqrt{P !})", fontsize = 20, align = (:right, :baseline),)
 
-text!(ax_w, (5.0, 1e-13), text = "(a)", fontsize = 30, align = (:right, :baseline),)
-text!(ax_Nxy, (2^4.5, 1e-13), text = "(b)", fontsize = 30, align = (:right, :baseline),)
-text!(ax_Taylor, (2.5, 1e-13), text = "(c)", fontsize = 30, align = (:right, :baseline),)
-text!(ax_Rz, (2.5, 1e-13), text = "(d)", fontsize = 30, align = (:right, :baseline),)
+text!(ax_w, (33.5, 10^(-16.5)), text = "(a)", fontsize = 20, align = (:right, :baseline),)
+text!(ax_Nxy, (2^10.3, 10^(-16.5)), text = "(b)", fontsize = 20, align = (:right, :baseline),)
+text!(ax_Taylor, (16.5, 10^(-16.5)), text = "(c)", fontsize = 20, align = (:right, :baseline),)
+text!(ax_Rz, (16.5, 10^(-16.5)), text = "(d)", fontsize = 20, align = (:right, :baseline),)
 
-axislegend(ax_w, position = :rt)
+axislegend(ax_w, L"\gamma", position = :rt, titleposition = :left)
 
 save("figs/fig_thin.pdf", f)
 save("figs/fig_thin.png", f)
