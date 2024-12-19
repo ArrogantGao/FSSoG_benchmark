@@ -1,6 +1,6 @@
 # Repo for benchmarking the FastSpecSoG.jl
 
-This repos is to validate the accuracy and benchmark the performance of FastSpecSoG.jl.
+This repos is to validate the accuracy and benchmark the performance of [FastSpecSoG.jl](https://github.com/HPMolSim/FastSpecSoG.jl). The related article as avaiable at https://arxiv.org/abs/2412.04595.
 
 ## How to run
 
