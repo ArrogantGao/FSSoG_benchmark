@@ -3,6 +3,8 @@ using FastSpecSoG, CSV, DataFrames
 using Random
 Random.seed!(123)
 
+CSV.write("data/Acc_T2_1_Mmid.csv", DataFrame(preset = Int[], M_mid = Int[], energy_exact = Float64[], energy_k = Float64[], abs_error = Float64[], relative_error = Float64[]))
+
 n_atoms = 1000
 L = (20.0, 20.0, 20.0)
 N_real = (64, 64, 64)

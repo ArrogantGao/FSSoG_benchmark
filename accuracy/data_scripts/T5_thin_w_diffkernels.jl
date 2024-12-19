@@ -2,6 +2,8 @@ using FastSpecSoG, CSV, DataFrames, LaTeXStrings, ChebParticleMesh, FFTW, Interp
 using Random
 Random.seed!(123)
 
+CSV.write("data/Acc_T5_thin_w_diffkernels.csv", DataFrame(preset = Int[], w = Int[], gamma = Int[], energy_exact = Float64[], energy_k = Float64[], abs_error = Float64[], relative_error = Float64[]))
+
 include("diff_kernels.jl")
 
 n_atoms = 1000

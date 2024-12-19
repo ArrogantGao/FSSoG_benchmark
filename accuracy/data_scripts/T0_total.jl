@@ -1,6 +1,8 @@
 using ExTinyMD, FastSpecSoG, EwaldSummations, JLD2
 using CSV, DataFrames
 
+CSV.write("data/Acc_T0_total.csv", DataFrame(preset = Int[], M = Int[], total = Float64[], error_rel = Float64[]))
+
 L0 = 20.0
 N_real0 = (36, 36, 36)
 

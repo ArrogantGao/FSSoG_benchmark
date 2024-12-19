@@ -2,6 +2,8 @@ using FastSpecSoG, CSV, DataFrames
 using Random
 Random.seed!(123)
 
+CSV.write("data/Acc_T5_thin_zeroth.csv", DataFrame(preset = Int[], gamma = Int[], energy_exact = Float64[], energy_k = Float64[], abs_error = Float64[], relative_error = Float64[]))
+
 n_atoms = 1000
 
 qs = [(-1.0)^i for i in 1:n_atoms]

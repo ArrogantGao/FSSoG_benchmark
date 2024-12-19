@@ -1,6 +1,8 @@
 using ExTinyMD, FastSpecSoG, EwaldSummations, JLD2
 using CSV, DataFrames
 
+CSV.write("data/Acc_T7_thin_total_6_highdense.csv", DataFrame(n_atoms = Int[], abs_error = Float64[], relative_error = Float64[]))
+
 N_real0 = (130, 130)
 R_z = 8
 w = (9, 9)

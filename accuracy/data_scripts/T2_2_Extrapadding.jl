@@ -3,6 +3,8 @@ using FastSpecSoG, Plots, CSV, DataFrames, LaTeXStrings
 using Random
 Random.seed!(123)
 
+CSV.write("data/Acc_T2_2_Extrapadding.csv", DataFrame(preset = Int[], extra_pad_ratio = Int[], M_mid = Int[], error = Float64[], error_rel = Float64[]))
+
 n_atoms = 1000
 L = (20.0, 20.0, 20.0)
 N_real = (64, 64, 64)

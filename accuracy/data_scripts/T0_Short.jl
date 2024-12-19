@@ -17,6 +17,8 @@ function U_total(qs, neighbors, s, w)
     return U_total
 end
 
+CSV.write("data/Acc_T0_short.csv", DataFrame(preset = Int[], M = Int[], total = Float64[], near_sw = Float64[], error_rel = Float64[]))
+
 n_atoms = 1000
 L = (20.0, 20.0, 20.0)
 

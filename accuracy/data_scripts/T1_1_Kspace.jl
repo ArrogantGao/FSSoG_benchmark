@@ -4,6 +4,8 @@ Random.seed!(123)
 
 @show Threads.nthreads(), nprocs()
 
+CSV.write("data/Acc_T1_1_Kspace.csv", DataFrame(preset = Int[], k_max = Int[], energy_exact = Float64[], energy_k = Float64[], abs_error = Float64[], relative_error = Float64[]))
+
 n_atoms = 1000
 L = (20.0, 20.0, 20.0)
 

@@ -4,6 +4,8 @@ using ChebParticleMesh
 using Random
 Random.seed!(123)
 
+CSV.write("data/Acc_T3_1_WinFunc_ES.csv", DataFrame(preset = Int[], w = Int[], energy_exact = Float64[], energy_k = Float64[], abs_error = Float64[], relative_error = Float64[]))
+
 n_atoms = 1000
 L = (20.0, 20.0, 20.0)
 

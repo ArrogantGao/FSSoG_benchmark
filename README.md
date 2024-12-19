@@ -1,26 +1,10 @@
 # Repo for benchmarking
 
-## How to init
-Type the following commands in bash
-```
-git clone git@github.com:ArrogantGao/FSSoG_benchmark.git
-cd FSSoG_benchmark
-julia --project=.
-```
-Then in Julia REPL
-```
-(FSSoG_benchmark) pkg> add https://github.com/HPMolSim/FastSpecSoG.jl
+This repos is to validate the accuracy and benchmark the performance of FastSpecSoG.jl.
 
-(FSSoG_benchmark) pkg> instantiate
+## How to run
 
-(FSSoG_benchmark) pkg> resolve
-  No Changes to `~/temp/FSSoG_benchmark/Project.toml`
-  No Changes to `~/temp/FSSoG_benchmark/Manifest.toml`
+The scripts for accuracy are in the `accuracy` folder, and the scripts for benchmarks are in the `benchmarks` folder.
+To initilize the project, run `make` in the subfolder.
 
-julia> exit()
-```
-To run the scripts, for example
-```
-cd FFCT
-julia --project=.. FFCT_profile.jl
-```
+To run the 

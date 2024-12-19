@@ -2,6 +2,8 @@ using FastSpecSoG, CSV, DataFrames
 using Random
 Random.seed!(123)
 
+CSV.write("data/Acc_T4_cube_Nxy.csv", DataFrame(preset = Int[], N_xy = Int[], M_mid = Int[], energy_exact = Float64[], energy_k = Float64[], abs_error = Float64[], relative_error = Float64[]))
+
 @show Threads.nthreads(), nprocs()
 
 n_atoms = 1000

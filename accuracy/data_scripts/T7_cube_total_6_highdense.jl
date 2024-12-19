@@ -1,6 +1,8 @@
 using ExTinyMD, FastSpecSoG, EwaldSummations, JLD2
 using CSV, DataFrames
 
+CSV.write("data/Acc_T7_cube_total_6_highdense.csv", DataFrame(n_atoms = Int[], abs_error = Float64[], relative_error = Float64[]))
+
 L0 = 10.0
 N_real0 = (94, 94, 94)
 
