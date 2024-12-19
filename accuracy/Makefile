@@ -24,7 +24,7 @@ run_T2:
 	julia --project=. data_scripts/T2_1_Mmid.jl
 	julia --project=. data_scripts/T2_2_Extrapadding.jl
 
-run_T3_1:
+run_T3:
 	julia --project=. data_scripts/T3_1_WinFunc_ES.jl
 	julia --project=. data_scripts/T3_1_WinFunc_Gaussian.jl
 	julia --project=. data_scripts/T3_1_WinFunc_PKB.jl
@@ -65,4 +65,3 @@ plot:
 	julia --project=. figs_scripts/fig_windows.jl
 	julia --project=. figs_scripts/fig_thin.jl
 	julia --project=. figs_scripts/fig_zeroth.jl
-	julia --project=. figs_scripts/fig_total.jl

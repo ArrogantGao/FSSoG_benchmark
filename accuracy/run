@@ -1,0 +1,16 @@
+#! /bin/bash
+
+nthreads=32
+
+make run_Ewald2D_reference nthreads=$nthreads
+make run_T0 nthreads=$nthreads
+make run_T1 nthreads=$nthreads
+make run_T2
+make run_T3
+make run_T4
+make run_T5
+make run_cube_total
+make run_thin_total
+make run_high_dense
+
+make plot
